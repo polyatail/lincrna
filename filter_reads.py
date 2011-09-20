@@ -40,7 +40,7 @@ def _illumina14(description):
     else:
         raise ValueError("Filtered field must be 1/0")
     
-    return meta_split[6], meta_split[7], meta_split[:7]
+    return meta_split[6], meta_split[7], ":".join(meta_split[:6])
     
 def _illumina18(description):
     main_split = description.split(" ")
@@ -68,17 +68,22 @@ def _single_parser(fname, callback):
 def _paired_parser(fname, callback):
     stripped_fname = ".".join(fname.split(".")[:-1])
     left_out = open(os.path.join(options.output_dir,
-                                 stripped_fname + "-left.fastq"), "w")
+                                 stripped_fname + "-left.fastq"), "w+")
     right_out = open(os.path.join(options.output_dir,
-                                  stripped_fname + "-right.fastq"), "w")
+                                  stripped_fname + "-right.fastq"), "w+")
+                                  
+    left_count = 0
+    right_count = 0
     
     for seq_rec in SeqIO.parse(args[0], "fastq"):
         mate_pair, filtered, _ = callback(seq_rec.description)
 
         if filtered == "Y":
             if mate_pair == "1":
+                left_count += 1
                 SeqIO.write(seq_rec, left_out, "fastq")
             elif mate_pair == "2":
+                right_count += 1
                 SeqIO.write(seq_rec, right_out, "fastq")
             else:
                 raise ValueError("Paired end field must be 1/2")
@@ -86,6 +91,22 @@ def _paired_parser(fname, callback):
             pass
         else:
             raise ValueError("Filtered field must be Y/N")
+            
+    left_out.seek(0)
+    right_out.seek(0)
+    
+    left_parser = SeqIO.parse(left_out, "fastq")
+    right_parser = SeqIO.parse(right_out, "fastq")
+
+    if left_count <> right_count:
+        raise ValueError("Left read count (%s) != right read count (%s)" % \
+                         (left_count, right_count))
+
+    for _ in range(left_count):
+        left_rec = left_parser.next()
+        right_rec = right_parser.next()
+
+        assert callback(left_rec.description)[2] == callback(right_rec.description)[2]
 
 def main():
     illumina_ver = _illumina_version(args[0])
