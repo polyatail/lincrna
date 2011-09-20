@@ -28,15 +28,18 @@ def run_tophat(prefix, tophat_options, sample_reads, sample_name):
     os.mkdir(outdir)
     
     with open(os.path.join(outdir, "tophat.log"), "w") as th_log:
-        tophat_proc = subprocess.Popen(["tophat",
-                                        "-p", str(options.num_threads),
-                                        "-o", outdir,
-                                        "-z", "none"] + \
-                                        tophat_options + \
-                                        paired_end_args + \
-                                        [args[0]] + \
-                                        sample_reads,
-                                        stderr=th_log)
+        tophat_cmd = ["tophat",
+                      "-p", str(options.num_threads),
+                      "-o", outdir,
+                      "-z", "none"] + \
+                      tophat_options + \
+                      paired_end_args + \
+                      [args[0]] + \
+                      sample_reads
+                                        
+        th_log.write(" ".join(tophat_cmd) + "\n\n")
+        
+        tophat_proc = subprocess.Popen(tophat_cmd, stderr=th_log)
                                         
     while tophat_proc.poll() == None:
         time.sleep(1)
