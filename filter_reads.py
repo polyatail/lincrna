@@ -16,7 +16,7 @@ def _illumina_version(fname):
     
     if len(desc_split) == 2:
         # Illumina v1.8
-        illumina_ver = "1.8"
+        illumina_ver = _illumina18
         
         meta_split = desc_split[1].split(":")
         
@@ -24,69 +24,47 @@ def _illumina_version(fname):
             raise ValueError("Illumina v1.8+ metadata format invalid")
     elif len(desc_split) == 1:
         # Illumina v1.4
-        illumina_ver = "1.4"
+        illumina_ver = _illumina14
     else:
         raise ValueError("Could not detect Illumina pipeline version")
         
     return illumina_ver
+
+def _illumina14(description):
+    meta_split = description.split(":")
     
-def _illumina14_single_parser(fname):
+    if meta_split[7] == "1":
+        meta_split[7] = "Y"
+    elif meta_split[7] == "0":
+        meta_split[7] = "N"
+    else:
+        raise ValueError("Filtered field must be 1/0")
+    
+    return meta_split[6], meta_split[7]
+    
+def _illumina18(description):
+    meta_split = description.split(" ")[1].split(":")
+    
+    return meta_split[0], meta_split[1]
+
+def _single_parser(fname, callback):
     stripped_fname = ".".join(fname.split(".")[:-1])
     filtered_out = open(os.path.join(options.output_dir,
                                      stripped_fname + "-filtered.fastq"), "w")
 
     for seq_rec in SeqIO.parse(args[0], "fastq"):
-        meta_split = seq_rec.description.split(":")
+        mate_pair, filtered = callback(seq_rec.description)
         
-        assert meta_split[6] == "1"
+        assert mate_pair == "1"
         
-        if meta_split[7] == "1":
+        if filtered == "Y":
             SeqIO.write(seq_rec, filtered_out, "fastq")
-        elif meta_split[7] == "0":
-            pass
-        else:
-            raise ValueError("Filtered field must be 1/0")
-            
-def _illumina14_paired_parser(fname):
-    stripped_fname = ".".join(fname.split(".")[:-1])
-    left_out = open(os.path.join(options.output_dir,
-                                 stripped_fname + "-left.fastq"), "w")
-    right_out = open(os.path.join(options.output_dir,
-                                  stripped_fname + "-right.fastq"), "w")
-    
-    for seq_rec in SeqIO.parse(args[0], "fastq"):
-        meta_split = seq_rec.description.split(":")
-
-        if meta_split[7] == "1":
-            if meta_split[6] == "1":
-                SeqIO.write(seq_rec, left_out, "fastq")
-            elif meta_split[6] == "2":
-                SeqIO.write(seq_rec, right_out, "fastq")
-            else:
-                raise ValueError("Paired end field must be 1/2")
-        elif meta_split[7] == "0":
-            pass
-        else:
-            raise ValueError("Filtered field must be 1/0")
-
-def _illumina18_single_parser(fname):
-    stripped_fname = ".".join(fname.split(".")[:-1])
-    filtered_out = open(os.path.join(options.output_dir,
-                                     stripped_fname + "-filtered.fastq"), "w")
-
-    for seq_rec in SeqIO.parse(args[0], "fastq"):
-        meta_split = seq_rec.description.split(" ")[1].split(":")
-        
-        assert meta_split[0] == "1"
-        
-        if meta_split[1] == "Y":
-            SeqIO.write(seq_rec, filtered_out, "fastq")
-        elif meta_split[1] == "N":
+        elif filtered == "N":
             pass
         else:
             raise ValueError("Filtered field must be Y/N")
-
-def _illumina18_paired_parser(fname):
+            
+def _paired_parser(fname, callback):
     stripped_fname = ".".join(fname.split(".")[:-1])
     left_out = open(os.path.join(options.output_dir,
                                  stripped_fname + "-left.fastq"), "w")
@@ -94,16 +72,16 @@ def _illumina18_paired_parser(fname):
                                   stripped_fname + "-right.fastq"), "w")
     
     for seq_rec in SeqIO.parse(args[0], "fastq"):
-        meta_split = seq_rec.description.split(" ")[1].split(":")
+        mate_pair, filtered = callback(seq_rec.description)
 
-        if meta_split[1] == "Y":
-            if meta_split[0] == "1":
+        if filtered == "Y":
+            if mate_pair == "1":
                 SeqIO.write(seq_rec, left_out, "fastq")
-            elif meta_split[0] == "2":
+            elif mate_pair == "2":
                 SeqIO.write(seq_rec, right_out, "fastq")
             else:
                 raise ValueError("Paired end field must be 1/2")
-        elif meta_split[1] == "N":
+        elif filtered == "N":
             pass
         else:
             raise ValueError("Filtered field must be Y/N")
@@ -114,16 +92,10 @@ def main():
     if not os.path.exists(options.output_dir):
         os.mkdir(options.output_dir)
 
-    if illumina_ver == "1.4":
-        if options.paired_end:
-            _illumina14_paired_parser(args[0])
-        else:
-            _illumina14_single_parser(args[0])
-    elif illumina_ver == "1.8":
-        if options.paired_end:
-            _illumina18_paired_parser(args[0])
-        else:
-            _illumina18_single_parser(args[0])        
+    if options.paired_end:
+        _paired_parser(args[0], illumina_ver)
+    else:
+        _single_parser(args[0], illumina_ver)
         
 if __name__ == "__main__":
     parser = OptionParser(usage="%prog [options] <reads.fastq>",
