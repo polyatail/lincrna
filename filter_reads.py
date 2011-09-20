@@ -40,12 +40,13 @@ def _illumina14(description):
     else:
         raise ValueError("Filtered field must be 1/0")
     
-    return meta_split[6], meta_split[7]
+    return meta_split[6], meta_split[7], meta_split[:7]
     
 def _illumina18(description):
-    meta_split = description.split(" ")[1].split(":")
+    main_split = description.split(" ")
+    meta_split = main_split[1].split(":")
     
-    return meta_split[0], meta_split[1]
+    return meta_split[0], meta_split[1], main_split[0]
 
 def _single_parser(fname, callback):
     stripped_fname = ".".join(fname.split(".")[:-1])
@@ -53,7 +54,7 @@ def _single_parser(fname, callback):
                                      stripped_fname + "-filtered.fastq"), "w")
 
     for seq_rec in SeqIO.parse(args[0], "fastq"):
-        mate_pair, filtered = callback(seq_rec.description)
+        mate_pair, filtered, _ = callback(seq_rec.description)
         
         assert mate_pair == "1"
         
@@ -72,7 +73,7 @@ def _paired_parser(fname, callback):
                                   stripped_fname + "-right.fastq"), "w")
     
     for seq_rec in SeqIO.parse(args[0], "fastq"):
-        mate_pair, filtered = callback(seq_rec.description)
+        mate_pair, filtered, _ = callback(seq_rec.description)
 
         if filtered == "Y":
             if mate_pair == "1":
