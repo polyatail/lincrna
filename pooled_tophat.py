@@ -132,13 +132,17 @@ def parse_options(arguments):
     options, args = parser.parse_args(arguments)
     
     if len(args) < 2:
-        raise ValueError("Not enough arguments")
+        print "Error: Not enough arguments"
+        parser.print_help()
+        sys.exit(0)
         
     if options.labels != None:
         options.labels = options.labels.split(",")
         
         if len(options.labels) <> len(args) - 1:
-            raise ValueError("When using -L, must specify a label for every condition")
+            print "When using -L, must specify a label for every condition"
+            parser.print_help()
+            sys.exit(0)
     else:
         options.labels = ["sample%s" % (x,) for x in range(len(args))]
         
