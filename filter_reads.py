@@ -38,7 +38,9 @@ def _illumina_version(fname):
 def _illumina14(description):
     meta_split = description.split(":")
 
-    try:    
+    try:
+        # IMPORTANT: 1 = KEEP THE READ, 0 = DISCARD THE READ
+        # INTERNALLY, Y = DISCARD THE READ, N = KEEP THE READ
         if meta_split[7] == "1":
             meta_split[7] = "N"
         elif meta_split[7] == "0":
