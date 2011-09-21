@@ -72,7 +72,7 @@ def _single_parser(fp_in, fp_out, callback):
             raise ValueError("Found mate_pair = 2 in single-end library")
         
         if filtered == "N":
-            SeqIO.write(fp_out, filtered_out, "fastq")
+            SeqIO.write(seq_rec, fp_out, "fastq")
         elif filtered == "Y":
             pass
         else:

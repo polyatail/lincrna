@@ -13,12 +13,14 @@ class testFilterReads(unittest.TestCase):
         self.ver14_pe_mixed = open("./test_data/ver14_pe_mixed.fastq", "r")
         self.ver14_pe_unordered = open("./test_data/ver14_pe_unordered.fastq", "r")
         self.ver14_bad_metadata = open("./test_data/ver14_bad_metadata.fastq", "r")
+        self.ver14_single = open("./test_data/ver14_single.fastq", "r")
 
         self.ver18_pe_good = open("./test_data/ver18_pe_good.fastq", "r")
         self.ver18_pe_bad = open("./test_data/ver18_pe_bad.fastq", "r")
         self.ver18_pe_mixed = open("./test_data/ver18_pe_mixed.fastq", "r")
         self.ver18_pe_unordered = open("./test_data/ver18_pe_unordered.fastq", "r")
         self.ver18_bad_metadata = open("./test_data/ver18_bad_metadata.fastq", "r")
+        self.ver18_single = open("./test_data/ver18_single.fastq", "r")
         
         self.left_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
         self.right_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
@@ -37,6 +39,9 @@ class testFilterReads(unittest.TestCase):
         result = filter_reads._illumina_version(self.ver14_pe_unordered)
         self.assertEqual(result, filter_reads._illumina14)
         
+        result = filter_reads._illumina_version(self.ver14_single)
+        self.assertEqual(result, filter_reads._illumina14)
+        
         self.assertRaises(ValueError,
                           filter_reads._illumina_version,
                           self.ver14_bad_metadata)
@@ -52,6 +57,9 @@ class testFilterReads(unittest.TestCase):
         self.assertEqual(result, filter_reads._illumina18)
 
         result = filter_reads._illumina_version(self.ver18_pe_unordered)
+        self.assertEqual(result, filter_reads._illumina18)
+        
+        result = filter_reads._illumina_version(self.ver18_single)
         self.assertEqual(result, filter_reads._illumina18)
         
         self.assertRaises(ValueError,
@@ -117,6 +125,9 @@ class testFilterReads(unittest.TestCase):
                                     self.left_tempfile,
                                     self.right_tempfile,
                                     filter_reads._illumina14)
+                                    
+        self.left_tempfile.seek(0)
+        self.right_tempfile.seek(0)
         
         self.assertTrue(filecmp.cmp(self.left_tempfile.name,
                                     "./test_data/ver14_pe_mixed-LEFT.fastq"))
@@ -136,6 +147,9 @@ class testFilterReads(unittest.TestCase):
                                     self.left_tempfile,
                                     self.right_tempfile,
                                     filter_reads._illumina18)
+
+        self.left_tempfile.seek(0)
+        self.right_tempfile.seek(0)
         
         self.assertTrue(filecmp.cmp(self.left_tempfile.name,
                                     "./test_data/ver18_pe_mixed-LEFT.fastq"))
@@ -149,6 +163,27 @@ class testFilterReads(unittest.TestCase):
                           self.left_tempfile,
                           self.right_tempfile,
                           filter_reads._illumina18)
-            
+
+    def testSingleParser_v14(self):
+        filter_reads._single_parser(self.ver14_single,
+                                    self.left_tempfile,
+                                    filter_reads._illumina14)
+
+        self.left_tempfile.seek(0)
+
+        self.assertTrue(filecmp.cmp(self.left_tempfile.name,
+                                    "./test_data/ver14_single-FILTERED.fastq"))
+
+
+    def testSingleParser_v18(self):
+        filter_reads._single_parser(self.ver18_single,
+                                    self.left_tempfile,
+                                    filter_reads._illumina18)
+
+        self.left_tempfile.seek(0)
+
+        self.assertTrue(filecmp.cmp(self.left_tempfile.name,
+                                    "./test_data/ver18_single-FILTERED.fastq"))
+                                    
 if __name__ == "__main__":
     unittest.main()
