@@ -11,7 +11,7 @@ import sys
 import os
 
 def _illumina_version(fname):
-    first_record = SeqIO.parse(args[0], "fastq").next()
+    first_record = SeqIO.parse(fname, "fastq").next()
     desc_split = first_record.description.split(" ")
     
     if len(desc_split) == 2:
