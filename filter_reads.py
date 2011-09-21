@@ -25,6 +25,11 @@ def _illumina_version(fname):
     elif len(desc_split) == 1:
         # Illumina v1.4
         illumina_ver = _illumina14
+        
+        meta_split = desc_split[0].split(":")
+        
+        if len(meta_split) <> 8:
+            raise ValueError("Illumina v1.4 metadata format invalid")
     else:
         raise ValueError("Could not detect Illumina pipeline version")
         
@@ -32,19 +37,28 @@ def _illumina_version(fname):
 
 def _illumina14(description):
     meta_split = description.split(":")
-    
-    if meta_split[7] == "1":
-        meta_split[7] = "Y"
-    elif meta_split[7] == "0":
-        meta_split[7] = "N"
-    else:
-        raise ValueError("Filtered field must be 1/0")
+
+    try:    
+        if meta_split[7] == "1":
+            meta_split[7] = "Y"
+        elif meta_split[7] == "0":
+            meta_split[7] = "N"
+        else:
+            raise ValueError("Filtered field must be 1/0")
+    except IndexError:
+        raise ValueError("Illumina v1.4 metadata format invalid")
     
     return meta_split[6], meta_split[7], ":".join(meta_split[:6])
     
 def _illumina18(description):
-    main_split = description.split(" ")
-    meta_split = main_split[1].split(":")
+    try:
+        main_split = description.split(" ")
+        meta_split = main_split[1].split(":")
+    except IndexError:
+        raise ValueError("Illumina v1.8+ metadata format invalid")
+        
+    if len(meta_split) <> 4:
+        raise ValueError("Illumina v1.8+ metadata format invalid")
     
     return meta_split[0], meta_split[1], main_split[0]
 
@@ -53,7 +67,7 @@ def _single_parser(fname, callback):
     filtered_out = open(os.path.join(options.output_dir,
                                      stripped_fname + "-filtered.fastq"), "w")
 
-    for seq_rec in SeqIO.parse(args[0], "fastq"):
+    for seq_rec in SeqIO.parse(fname, "fastq"):
         mate_pair, filtered, _ = callback(seq_rec.description)
         
         assert mate_pair == "1"
@@ -75,7 +89,7 @@ def _paired_parser(fname, callback):
     left_count = 0
     right_count = 0
     
-    for seq_rec in SeqIO.parse(args[0], "fastq"):
+    for seq_rec in SeqIO.parse(fname, "fastq"):
         mate_pair, filtered, _ = callback(seq_rec.description)
 
         if filtered == "Y":
@@ -119,7 +133,7 @@ def main():
     else:
         _single_parser(args[0], illumina_ver)
         
-if __name__ == "__main__":
+def parse_options(arguments):
     parser = OptionParser(usage="%prog [options] <reads.fastq>",
                           version="%prog " + str(__version__))
                           
@@ -135,9 +149,11 @@ if __name__ == "__main__":
                       default=False,
                       help="this is a paired-end library")
               
-    options, args = parser.parse_args()
+    options, args = parser.parse_args(arguments)
     
     if len(args) <> 1:
         raise ValueError("Incorrect number of arguments")
-
+        
+if __name__ == "__main__":
+    parse_options(sys.argv[1:])
     main()
