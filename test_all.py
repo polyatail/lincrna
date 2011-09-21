@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+__author__ = "Andrew Sczesnak"
+__email__ = "andrew.sczesnak@med.nyu.edu"
+__date__ = "9/19/2011"
+__version__ = 0.0
+
 import unittest
 import tempfile
 import filecmp
