@@ -40,9 +40,9 @@ def _illumina14(description):
 
     try:    
         if meta_split[7] == "1":
-            meta_split[7] = "Y"
-        elif meta_split[7] == "0":
             meta_split[7] = "N"
+        elif meta_split[7] == "0":
+            meta_split[7] = "Y"
         else:
             raise ValueError("Filtered field must be 1/0")
     except IndexError:
@@ -66,11 +66,12 @@ def _single_parser(fp_in, fp_out, callback):
     for seq_rec in SeqIO.parse(fp_in, "fastq"):
         mate_pair, filtered, _ = callback(seq_rec.description)
         
-        assert mate_pair == "1"
+        if mate_pair != "1":
+            raise ValueError("Found mate_pair = 2 in single-end library")
         
-        if filtered == "Y":
+        if filtered == "N":
             SeqIO.write(fp_out, filtered_out, "fastq")
-        elif filtered == "N":
+        elif filtered == "Y":
             pass
         else:
             raise ValueError("Filtered field must be Y/N")
@@ -82,7 +83,7 @@ def _paired_parser(fp_in, fp_out_left, fp_out_right, callback):
     for seq_rec in SeqIO.parse(fp_in, "fastq"):
         mate_pair, filtered, _ = callback(seq_rec.description)
 
-        if filtered == "Y":
+        if filtered == "N":
             if mate_pair == "1":
                 left_count += 1
                 SeqIO.write(seq_rec, fp_out_left, "fastq")
@@ -91,16 +92,16 @@ def _paired_parser(fp_in, fp_out_left, fp_out_right, callback):
                 SeqIO.write(seq_rec, fp_out_right, "fastq")
             else:
                 raise ValueError("Paired end field must be 1/2")
-        elif filtered == "N":
+        elif filtered == "Y":
             pass
         else:
             raise ValueError("Filtered field must be Y/N")
             
-    left_out.seek(0)
-    right_out.seek(0)
+    fp_out_left.seek(0)
+    fp_out_right.seek(0)
     
-    left_parser = SeqIO.parse(left_out, "fastq")
-    right_parser = SeqIO.parse(right_out, "fastq")
+    left_parser = SeqIO.parse(fp_out_left, "fastq")
+    right_parser = SeqIO.parse(fp_out_right, "fastq")
 
     if left_count <> right_count:
         raise ValueError("Left read count (%s) != right read count (%s)" % \
@@ -110,7 +111,8 @@ def _paired_parser(fp_in, fp_out_left, fp_out_right, callback):
         left_rec = left_parser.next()
         right_rec = right_parser.next()
 
-        assert callback(left_rec.description)[2] == callback(right_rec.description)[2]
+        if callback(left_rec.description)[2] != callback(right_rec.description)[2]:
+            raise ValueError("Output reads are not in order")
         
 def parse_options(arguments):
     parser = OptionParser(usage="%prog [options] <reads.fastq>",
