@@ -62,43 +62,33 @@ def _illumina18(description):
     
     return meta_split[0], meta_split[1], main_split[0]
 
-def _single_parser(fname, callback):
-    stripped_fname = ".".join(fname.split(".")[:-1])
-    filtered_out = open(os.path.join(options.output_dir,
-                                     stripped_fname + "-filtered.fastq"), "w")
-
-    for seq_rec in SeqIO.parse(fname, "fastq"):
+def _single_parser(fp_in, fp_out, callback):
+    for seq_rec in SeqIO.parse(fp_in, "fastq"):
         mate_pair, filtered, _ = callback(seq_rec.description)
         
         assert mate_pair == "1"
         
         if filtered == "Y":
-            SeqIO.write(seq_rec, filtered_out, "fastq")
+            SeqIO.write(fp_out, filtered_out, "fastq")
         elif filtered == "N":
             pass
         else:
             raise ValueError("Filtered field must be Y/N")
             
-def _paired_parser(fname, callback):
-    stripped_fname = ".".join(fname.split(".")[:-1])
-    left_out = open(os.path.join(options.output_dir,
-                                 stripped_fname + "-left.fastq"), "w+")
-    right_out = open(os.path.join(options.output_dir,
-                                  stripped_fname + "-right.fastq"), "w+")
-                                  
+def _paired_parser(fp_in, fp_out_left, fp_out_right, callback):      
     left_count = 0
     right_count = 0
     
-    for seq_rec in SeqIO.parse(fname, "fastq"):
+    for seq_rec in SeqIO.parse(fp_in, "fastq"):
         mate_pair, filtered, _ = callback(seq_rec.description)
 
         if filtered == "Y":
             if mate_pair == "1":
                 left_count += 1
-                SeqIO.write(seq_rec, left_out, "fastq")
+                SeqIO.write(seq_rec, fp_out_left, "fastq")
             elif mate_pair == "2":
                 right_count += 1
-                SeqIO.write(seq_rec, right_out, "fastq")
+                SeqIO.write(seq_rec, fp_out_right, "fastq")
             else:
                 raise ValueError("Paired end field must be 1/2")
         elif filtered == "N":
@@ -121,17 +111,6 @@ def _paired_parser(fname, callback):
         right_rec = right_parser.next()
 
         assert callback(left_rec.description)[2] == callback(right_rec.description)[2]
-
-def main():
-    illumina_ver = _illumina_version(args[0])
-    
-    if not os.path.exists(options.output_dir):
-        os.mkdir(options.output_dir)
-
-    if options.paired_end:
-        _paired_parser(args[0], illumina_ver)
-    else:
-        _single_parser(args[0], illumina_ver)
         
 def parse_options(arguments):
     parser = OptionParser(usage="%prog [options] <reads.fastq>",
@@ -154,6 +133,35 @@ def parse_options(arguments):
     if len(args) <> 1:
         raise ValueError("Incorrect number of arguments")
         
+    return options, args
+
+def main():
+    options, args = parse_options(sys.argv[1:])
+
+    illumina_ver = _illumina_version(args[0])
+    
+    if not os.path.exists(options.output_dir):
+        os.mkdir(options.output_dir)
+
+    stripped_fname = ".".join(args[0].split(".")[:-1])
+
+    if options.paired_end:
+        left_out = os.path.join(options.output_dir,
+                                stripped_fname + "-left.fastq")
+        right_out = os.path.join(options.output_dir,
+                                 stripped_fname + "-right.fastq")
+                            
+        _paired_parser(open(args[0], "r"),
+                       open(left_out, "w+"),
+                       open(right_out, "w+"),
+                       illumina_ver)
+    else:
+        filtered_out = os.path.join(options.output_dir,
+                                    stripped_fname + "-filtered.fastq")
+
+        _single_parser(open(args[0], "r"),
+                       open(filtered_out, "w+"),
+                       illumina_ver)
+        
 if __name__ == "__main__":
-    parse_options(sys.argv[1:])
     main()
