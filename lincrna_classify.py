@@ -9,7 +9,7 @@ from optparse import OptionParser
 import copy
 import shlex
 import os
-import pprint
+import _phylocsf
 
 def _gtf_parser(gtf_file):
     empty_tx = {"raw": {},
@@ -24,7 +24,8 @@ def _gtf_parser(gtf_file):
                 "locus_id": None,
                 "csf": None,
                 "cov": {},
-                "pfams": None}
+                "pfams": None,
+                "note": None}
                 
     transcripts = {}
     
@@ -162,50 +163,111 @@ def _filter_overlaps(transcripts, filter_gtf):
             
     return rejects
     
-def _write_rejects(rejects, rejects_file):
-    with open(rejects_file, "w") as fp:
-        for tx_id in rejects.keys():
-            fp.write("\n".join(rejects[tx_id]["raw"].values()))
+def _filter_csf(transcripts, max_csf):
+    rejects = {}    
+    
+    for tx_id in transcripts.keys():
+        score = transcripts[tx_id]["csf"]
+
+        if score == 'Failure("no sufficiently long ORFs found")':
+            continue
+        elif isinstance(score, float):
+            if score > max_csf:
+                rejects[tx_id] = copy.deepcopy(transcripts[tx_id])
+                del transcripts[tx_id]
+        else:
+            raise ValueError("Unexpected value (%s) for score" % (score,))
+            
+    return rejects          
+    
+def _write_gtf(gtf, gtf_file):
+    with open(gtf_file, "w") as fp:
+        for tx_id in gtf.keys():
+            fp.write("\n".join(gtf[tx_id]["raw"].values()))
+            
+def _merge_transcripts(from_tx, to_tx, note):
+    for tx_id in from_tx.keys():
+        if tx_id in to_tx:
+            raise ValueError("Transcript (%s) exists in destination!" % (tx_id,))
+
+        to_tx[tx_id] = copy.deepcopy(from_tx[tx_id])
+        to_tx[tx_id]["note"] = note
+
+def _write_metadata(transcripts, outfile):
+    fields = ["num_exons",
+              "tx_len",
+              "tx_classcode",
+              "csf",
+              "pfams",
+              "note"]    
+    
+    with open(outfile, "w") as fp:
+        fp.write("\t".join(["transcript_id", "max(cov)"] + fields) + "\n")
+        
+        for tx_id in transcripts.keys():
+            fp.write("\t".join(map(str, [tx_id, max(transcripts[tx_id]["cov"].values())] + \
+            [transcripts[tx_id][x] for x in fields])) + "\n")
             
 def main():
     if not os.path.exists(options.output_dir):
         os.mkdir(options.output_dir)
 
     # parse the GTF
-    transcripts = _gtf_parser(args[0])
+    transcripts = _gtf_parser(args[1])
     
     # add data from tracking file
-    _tracking_parser(args[1], transcripts)
+    _tracking_parser(args[2], transcripts)
+    
+    all_rejects = {}
     
     rejects = _filter_exon_num(transcripts, options.min_exons)
-    _write_rejects(rejects, os.path.join(options.output_dir,
-                                         "rejects.too_few_exons.gtf"))
+    _write_gtf(rejects, os.path.join(options.output_dir,
+                                     "rejects.too_few_exons.gtf"))
+    _merge_transcripts(rejects, all_rejects, "Too few exons")
     
     rejects = _filter_tx_length(transcripts, options.min_size)
-    _write_rejects(rejects, os.path.join(options.output_dir,
-                                         "rejects.too_short.gtf"))
+    _write_gtf(rejects, os.path.join(options.output_dir,
+                                     "rejects.too_short.gtf"))
+    _merge_transcripts(rejects, all_rejects, "Too short")
 
     rejects = _filter_coverage(transcripts, options.min_cov)
-    _write_rejects(rejects, os.path.join(options.output_dir,
-                                         "rejects.low_coverage.gtf"))
+    _write_gtf(rejects, os.path.join(options.output_dir,
+                                     "rejects.low_coverage.gtf"))
+    _merge_transcripts(rejects, all_rejects, "Low coverage")
 
     for filter_num, filter_gtf in enumerate(options.filter):
         rejects = _filter_overlaps(transcripts, filter_gtf)
-        _write_rejects(rejects, os.path.join(options.output_dir,
-                                             "rejects.filter%s.gtf" % (filter_num,)))
+        _write_gtf(rejects, os.path.join(options.output_dir,
+                                         "rejects.filter%s.gtf" % (filter_num,)))
+        _merge_transcripts(rejects, all_rejects, "Filtered by " + filter_gtf)
 
     # run Pfam
     if options.exclude_pfam:
         pass
                                       
-    # run CSF scores
-    if options.min_csf:
-        pass
+    if options.max_csf:
+        # obtain CSF scores
+        csf_scores = _phylocsf.score_transcripts(transcripts,
+                                                 args[0],
+                                                 options.num_threads)
 
-#    pprint.pprint(transcripts)
+        for tx_id, score in csf_scores.items():
+            transcripts[tx_id]["csf"] = score
+
+        # filter on CSF score
+        rejects = _filter_csf(transcripts, options.max_csf)
+        _write_gtf(rejects, os.path.join(options.output_dir,
+                                         "rejects.high_csf.gtf"))
+        _merge_transcripts(rejects, all_rejects, "CSF too high")
+
+    _write_metadata(all_rejects, os.path.join(options.output_dir, "rejects.metadata"))
+    _write_gtf(all_rejects, os.path.join(options.output_dir, "rejects.gtf"))
+
+    _write_metadata(transcripts, os.path.join(options.output_dir, "kept.metadata"))
+    _write_gtf(transcripts, os.path.join(options.output_dir, "kept.gtf"))
             
 if __name__ == "__main__":
-    parser = OptionParser(usage="%prog [options] <transcripts.gtf> <transcripts.tracking>",
+    parser = OptionParser(usage="%prog [options] <assembly> <transcripts.gtf> <transcripts.tracking>",
                           version="%prog " + str(__version__))
     
     parser.add_option("-o",
@@ -253,12 +315,12 @@ if __name__ == "__main__":
                       help="remove transcripts with exons overlapping these GTFs")
                       
     # (4) Positive coding potential threshold
-    parser.add_option("--min-csf",
-                      dest="min_csf",
+    parser.add_option("--max-csf",
+                      dest="max_csf",
                       type="float",
-                      metavar="10.0",
+                      metavar="100.0",
                       default=False,
-                      help="minimum CSF score of transcript")
+                      help="remove transcripts with CSF scores above this value")
                       
     # (5) Known protein domain filter
     parser.add_option("--exclude-pfam",

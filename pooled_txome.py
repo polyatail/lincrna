@@ -9,34 +9,7 @@ from optparse import OptionParser
 import os
 import subprocess
 import time
-
-def _find_genome_fastas(dirname):
-    dir_contents = os.listdir(dirname)
-    
-    assembly = None
-    chromosome_files = []
-    
-    for item in dir_contents:
-        if item.endswith(".sizes"):
-            if assembly == None:
-                assembly = item[:-6]
-            else:
-                raise ValueError("Multiple .sizes file in genome directory")   
-        elif item.startswith("chr") and item.endswith(".fa"):
-            chromosome_files.append(item.split(".")[0])
-            
-    if assembly == None:
-        raise ValueError("Did not file any .sizes file")
-            
-    with open(os.path.join(dirname, assembly + ".sizes"), "r") as fp:
-        all_chromosomes = [x.split("\t")[0] for x in fp]
-        
-    chroms_without_files = set(all_chromosomes).difference(chromosome_files)
-        
-    if chroms_without_files:
-        raise ValueError("Chromosomes (%s) do not have FASTAs" % (", ".join(chroms_without_files),))
-        
-    return assembly, chromosome_files
+import _common
     
 def _index_bam(bamfile):
     if not os.path.exists(bamfile):
@@ -232,7 +205,7 @@ def main():
                       cond_reads, cond_name)
                         
 if __name__ == "__main__":
-    parser = OptionParser(usage="%prog [options] <path_to_genome_fastas> <sample1.sam> [...sampleN.sam]",
+    parser = OptionParser(usage="%prog [options] <assembly> <sample1.sam> [...sampleN.sam]",
                           version="%prog " + str(__version__))
                           
     parser.add_option("-o",
@@ -293,6 +266,6 @@ if __name__ == "__main__":
     else:
         options.labels = ["sample%s" % (x,) for x in range(len(args))]
         
-    options.assembly, options.chroms = _find_genome_fastas(args[0])
+    options.assembly, options.chroms = _common._find_genome_files(_common.genome_fasta[args[0]])
         
     main()
