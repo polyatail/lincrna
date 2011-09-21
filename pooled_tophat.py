@@ -6,6 +6,7 @@ __date__ = "9/19/2011"
 __version__ = 0.0
 
 from optparse import OptionParser
+import sys
 import os
 import subprocess
 import time
@@ -63,6 +64,8 @@ def _bed_to_junc(bedfile):
     return juncs
 
 def main():
+    options, args = parse_options(sys.argv[1:])    
+    
     if not os.path.exists(options.output_dir):
         os.mkdir(options.output_dir)
     
@@ -88,8 +91,8 @@ def main():
     for cond_name, cond_reads in zip(options.labels, args[1:]):
         run_tophat("", ["-j", pooled_juncs_file,
                         "--no-novel-juncs"], cond_reads, cond_name)
-                        
-if __name__ == "__main__":
+
+def parse_options(arguments):
     parser = OptionParser(usage="%prog [options] <bowtie_index> <reads1-L[,reads1-R]> [reads2-L[,reads2-R]]",
                           version="%prog " + str(__version__))
                           
@@ -126,7 +129,7 @@ if __name__ == "__main__":
                       default=20,
                       help="the standard deviation of the distance between pairs")
     
-    options, args = parser.parse_args()
+    options, args = parser.parse_args(arguments)
     
     if len(args) < 2:
         raise ValueError("Not enough arguments")
@@ -139,4 +142,7 @@ if __name__ == "__main__":
     else:
         options.labels = ["sample%s" % (x,) for x in range(len(args))]
         
+    return options, args
+                        
+if __name__ == "__main__":
     main()
