@@ -63,36 +63,9 @@ def _bed_to_junc(bedfile):
             
     return juncs
 
-def main():
-    options, args = parse_options(sys.argv[1:])    
-    
-    if not os.path.exists(options.output_dir):
-        os.mkdir(options.output_dir)
-    
-    # run tophat on each sample individually, using default params with
-    # --min-anchor=5 and --min-isoform-fraction=0
-    for cond_name, cond_reads in zip(options.labels, args[1:]):
-        run_tophat("prerun_", ["-F", "0", "-a", "5"], cond_reads, cond_name)
-
-    # generate pooled junctions across all samples
-    pooled_juncs_file = os.path.join(options.output_dir, "pooled.juncs")
-    pooled_juncs = []
-    
-    for cond_name in options.labels:
-        pooled_juncs.extend(_bed_to_junc(os.path.join(options.output_dir,
-                                                      "prerun_" + sample_name,
-                                                      "junctions.bed")))
-
-    with open(pooled_juncs_file, "w") as fp:
-        fp.write("\n".join(pooled_juncs))
-        
-    # re-run tophat on each sample individually, using default params with
-    # --raw-juncs and --no-novel-juncs
-    for cond_name, cond_reads in zip(options.labels, args[1:]):
-        run_tophat("", ["-j", pooled_juncs_file,
-                        "--no-novel-juncs"], cond_reads, cond_name)
-
 def parse_options(arguments):
+    global options, args
+
     parser = OptionParser(usage="%prog [options] <bowtie_index> <reads1-L[,reads1-R]> [reads2-L[,reads2-R]]",
                           version="%prog " + str(__version__))
                           
@@ -145,8 +118,35 @@ def parse_options(arguments):
             sys.exit(0)
     else:
         options.labels = ["sample%s" % (x,) for x in range(len(args))]
+
+def main():
+    parse_options(sys.argv[1:])    
+    
+    if not os.path.exists(options.output_dir):
+        os.mkdir(options.output_dir)
+    
+    # run tophat on each sample individually, using default params with
+    # --min-anchor=5 and --min-isoform-fraction=0
+    for cond_name, cond_reads in zip(options.labels, args[1:]):
+        run_tophat("prerun_", ["-F", "0", "-a", "5"], cond_reads, cond_name)
+
+    # generate pooled junctions across all samples
+    pooled_juncs_file = os.path.join(options.output_dir, "pooled.juncs")
+    pooled_juncs = []
+    
+    for cond_name in options.labels:
+        pooled_juncs.extend(_bed_to_junc(os.path.join(options.output_dir,
+                                                      "prerun_" + sample_name,
+                                                      "junctions.bed")))
+
+    with open(pooled_juncs_file, "w") as fp:
+        fp.write("\n".join(pooled_juncs))
         
-    return options, args
+    # re-run tophat on each sample individually, using default params with
+    # --raw-juncs and --no-novel-juncs
+    for cond_name, cond_reads in zip(options.labels, args[1:]):
+        run_tophat("", ["-j", pooled_juncs_file,
+                        "--no-novel-juncs"], cond_reads, cond_name)
                         
 if __name__ == "__main__":
     main()

@@ -117,6 +117,8 @@ def _paired_parser(fp_in, fp_out_left, fp_out_right, callback):
             raise ValueError("Output reads are not in order")
         
 def parse_options(arguments):
+    global options, args
+
     parser = OptionParser(usage="%prog [options] <reads.fastq>",
                           version="%prog " + str(__version__))
                           
@@ -136,11 +138,9 @@ def parse_options(arguments):
     
     if len(args) <> 1:
         raise ValueError("Incorrect number of arguments")
-        
-    return options, args
 
 def main():
-    options, args = parse_options(sys.argv[1:])
+    parse_options(sys.argv[1:])
 
     illumina_ver = _illumina_version(args[0])
     
