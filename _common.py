@@ -8,8 +8,26 @@ __version__ = 0.0
 import os
 from Bio import AlignIO
 
+# path to dependencies
+BOWTIE_PATH = "/usr/bin/bowtie"
+TOPHAT_PATH = "/usr/bin/tophat"
+CUFFLINKS_PATH = "/usr/bin/cufflinks"
+CUFFCOMPARE_PATH = "/usr/bin/cuffcompare"
+PHYLOCSF_PATH = "/opt/bio/PhyloCSF-e346e1c/PhyloCSF"
+PFAMSCAN_PATH = "/opt/bio/pfamscan/pfam_scan.pl"
+
+# path to sequence data
 genome_mafs = {"mm9": "/comp_sync/data/foreign/ucsc/20100921_multiz30way"}
 genome_fasta = {"mm9": "/comp_sync/data/foreign/ucsc/20100819_mm9_sequence"}
+bowtie_index = {"mm9": "/comp_sync/data/foreign/bowtie_index/mm9/basespace"}
+
+# constants for unit tests
+BOWTIE_VERSION = "bowtie version 0.12.7"
+TOPHAT_VERSION = "TopHat v1.3.1"
+CUFFLINKS_VERSION = "cufflinks v1.1.0"
+CUFFCOMPARE_VERSION = "cuffcompare v1.1.0 (2699)"
+PHYLOCSF_HELP = "usage: PhyloCSF.Linux.x86_64 parameter_set [file1 file2 ...]"
+PFAMSCAN_HELP = "pfam_scan.pl: search a FASTA file against a library of Pfam HMMs"
 
 def _load_maf(assembly):
     dirname = genome_mafs[assembly]

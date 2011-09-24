@@ -8,8 +8,73 @@ __version__ = 0.0
 import unittest
 import tempfile
 import filecmp
+import subprocess
+import time
 
+import _common
 import filter_reads
+import pooled_tophat
+
+class testDependencies(unittest.TestCase):
+    def setUp(self):
+        pass
+    
+    def testBowtie(self):
+        bowtie = subprocess.Popen([_common.BOWTIE_PATH, "--version"],
+                                  stdout=subprocess.PIPE)
+        
+        while bowtie.poll() == None:
+            time.sleep(0.1)
+        
+        self.assertTrue(bowtie.stdout.readline().strip().endswith(_common.BOWTIE_VERSION))
+        
+    def testTopHat(self):
+        tophat = subprocess.Popen([_common.TOPHAT_PATH, "--version"],
+                                  stdout=subprocess.PIPE)
+        
+        while tophat.poll() == None:
+            time.sleep(0.1)
+        
+        self.assertEqual(tophat.stdout.readline().strip(), _common.TOPHAT_VERSION)
+        
+    def testCufflinks(self):
+        cufflinks = subprocess.Popen([_common.CUFFLINKS_PATH, "--no-update-check"],
+                                     stderr=subprocess.PIPE)
+        
+        while cufflinks.poll() == None:
+            time.sleep(0.1)
+        
+        self.assertEqual(cufflinks.stderr.readline().strip(), _common.CUFFLINKS_VERSION)
+        
+    def testCuffcompare(self):
+        cuffcomp = subprocess.Popen([_common.CUFFCOMPARE_PATH],
+                                     stderr=subprocess.PIPE)
+        
+        while cuffcomp.poll() == None:
+            time.sleep(0.1)
+        
+        self.assertEqual(cuffcomp.stderr.readline().strip(), _common.CUFFCOMPARE_VERSION)
+        
+    def testPhyloCSF(self):
+        phylocsf = subprocess.Popen([_common.PHYLOCSF_PATH],
+                                    stdout=subprocess.PIPE)
+        
+        while phylocsf.poll() == None:
+            time.sleep(0.1)
+        
+        self.assertEqual(phylocsf.stdout.readline().strip(), _common.PHYLOCSF_HELP)
+        
+    def testPfamScan(self):
+        pfamscan = subprocess.Popen([_common.PFAMSCAN_PATH],
+                                    stderr=subprocess.PIPE)
+        
+        while pfamscan.poll() == None:
+            time.sleep(0.1)
+            
+        # skip first line
+        _ = pfamscan.stderr.readline()
+
+        self.assertEqual(pfamscan.stderr.readline().strip(), _common.PFAMSCAN_HELP)
 
 class testFilterReads(unittest.TestCase):
     def setUp(self):
@@ -190,5 +255,114 @@ class testFilterReads(unittest.TestCase):
         self.assertTrue(filecmp.cmp(self.left_tempfile.name,
                                     "./test_data/ver18_single-FILTERED.fastq"))
                                     
+class testPooledTopHat(unittest.TestCase):
+    def setUp(self):
+        pooled_tophat.parse_options(["-o", "./test_out"])
+        pass
+
+    def testBedToJunc(self):
+        expected = ['chr19\t3261580\t3262041\t-',
+                    'chr19\t3265619\t3266376\t-',
+                    'chr19\t3266417\t3267271\t-',
+                    'chr19\t3268370\t3268721\t-', 
+                    'chr19\t3268796\t3271591\t-', 
+                    'chr19\t3271664\t3272923\t-', 
+                    'chr19\t3272971\t3274415\t-', 
+                    'chr19\t3274510\t3276821\t-', 
+                    'chr19\t3276854\t3279596\t-']
+                    
+        result = pooled_tophat._bed_to_junc("./test_data/th_junc_good1.bed")
+        
+        self.assertEqual(result, expected)
+        
+        self.assertRaises(ValueError,
+                          pooled_tophat._bed_to_junc,
+                          "./test_data/th_junc_bad.bed")
+    
+    def testPoolJuncs(self):
+        outfile = tempfile.NamedTemporaryFile("w+",delete=False)        
+        result = pooled_tophat._pool_juncs(["./test_data/th_junc_good1.bed",
+                                            "./test_data/th_junc_good2.bed"],
+                                            outfile.name)
+                                            
+        outfile.seek(0)
+        self.assertTrue(filecmp.cmp(outfile.name, "./test_data/th_pooled.juncs"))
+    
+    def testRunTopHat(self):
+        # run tophat individually on ver14/ver18 single/paired end libs
+        # SL1858 - v14 single
+        # SL6494 - v18 single
+        # SL1976 - v14 paired
+        # SL7068 - v18 paired
+        pass
+    
+    def testMain(self):
+        # run all the libraries above in a pooled run
+        pooled_tophat.main(["-o", "./test_out",
+                            "-L", "ver14,ver18",
+                            _common.bowtie_index["mm9"],
+                            "./test_data/ver14_pe_mixed-LEFT.fastq,./test_data/ver14_pe_mixed-RIGHT.fastq",
+#                            "./test_data/ver18_pe_mixed-LEFT.fastq,./test_data/ver18_pe_mixed-RIGHT.fastq"])
+    
+#class testPooledTxome(unittest.TestCase):
+#    def setUp(self):
+#        pass
+#    
+#    def testRunCufflinks(self):
+#        pass
+#    
+#    def testRunScripture(self):
+#        pass
+#    
+#    def testRunCuffcompare(self):
+#        pass
+#    
+#    def testIndexBAM(self):
+#        pass
+#    
+#    def testBedToGTF(self):
+#        pass
+#    
+#class testLincRNAClassify(unittest.TestCase):
+#    def setUp(self):
+#        pass
+#    
+#    def testGTFParser(self):
+#        pass
+#    
+#    def testTrackingParser(self):
+#        pass
+#    
+#    def testFilterExonNum(self):
+#        pass
+#    
+#    def testFilterTxLen(self):
+#        pass
+#    
+#    def testFilterCoverage(self):
+#        pass
+#    
+#    def testFilterOverlaps(self):
+#        pass
+#    
+#    def testWriteGTF(self):
+#        pass
+#    
+#    def testMergeTranscripts(self):
+#        pass
+#    
+#    def testWriteMetadata(self):
+#        pass
+#    
+#class testPhyloCSF(unittest.TestCase):
+#    def setUp(self):
+#        pass
+#
+#    def testScoreBlock(self):
+#        pass
+#    
+#    def testScoreTranscripts(self):
+#        pass
+
 if __name__ == "__main__":
     unittest.main()
