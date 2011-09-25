@@ -18,7 +18,7 @@ def run_tophat(prefix, tophat_options, sample_reads, sample_name):
     if len(sample_reads) == 2:
         paired_end_args = ["-r", str(options.inner_dist),
                            "--mate-std-dev", str(options.inner_dist_sd)]
-    elif len(cond_reads) > 2:
+    elif len(sample_reads) > 2:
         raise ValueError("Maximum of two reads per sample!")
     else:
         paired_end_args = []

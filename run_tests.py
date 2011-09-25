@@ -257,7 +257,10 @@ class testFilterReads(unittest.TestCase):
                                     
 class testPooledTopHat(unittest.TestCase):
     def setUp(self):
-        pooled_tophat.parse_options(["-o", "./test_out"])
+        pooled_tophat.parse_options(["-o", "./test_out",
+                                     "-p", "30",
+                                     _common.bowtie_index["mm9"],
+                                     "/dev/null"])
         pass
 
     def testBedToJunc(self):
@@ -288,20 +291,20 @@ class testPooledTopHat(unittest.TestCase):
         outfile.seek(0)
         self.assertTrue(filecmp.cmp(outfile.name, "./test_data/th_pooled.juncs"))
     
-    def testRunTopHat(self):
-        # run tophat individually on ver14/ver18 single/paired end libs
+    def testRunTH_v14_single(self):
+        pooled_tophat.run_tophat("", [], "./test_data/v14_s_subset.fastq", "v14_single")
         # SL1858 - v14 single
         # SL6494 - v18 single
         # SL1976 - v14 paired
         # SL7068 - v18 paired
         pass
     
-    def testMain(self):
-        # run all the libraries above in a pooled run
-        pooled_tophat.main(["-o", "./test_out",
-                            "-L", "ver14,ver18",
-                            _common.bowtie_index["mm9"],
-                            "./test_data/ver14_pe_mixed-LEFT.fastq,./test_data/ver14_pe_mixed-RIGHT.fastq",
+#    def testMain(self):
+#        # run all the libraries above in a pooled run
+#        pooled_tophat.main(["-o", "./test_out",
+#                            "-L", "ver14,ver18",
+#                            _common.bowtie_index["mm9"],
+#                            "./test_data/ver14_pe_mixed-LEFT.fastq,./test_data/ver14_pe_mixed-RIGHT.fastq",
 #                            "./test_data/ver18_pe_mixed-LEFT.fastq,./test_data/ver18_pe_mixed-RIGHT.fastq"])
     
 #class testPooledTxome(unittest.TestCase):
