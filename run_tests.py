@@ -292,7 +292,7 @@ class testPooledTopHat(unittest.TestCase):
         self.assertTrue(filecmp.cmp(outfile.name, "./test_data/th_pooled.juncs"))
     
     def testRunTH_v14_single(self):
-        pooled_tophat.run_tophat("", [], "./test_data/v14_s_subset.fastq", "v14_single")
+        pooled_tophat.run_tophat("", ["--segment-length", "18"], "./test_data/v14_s_subset.fastq", "v14_single")
         # SL1858 - v14 single
         # SL6494 - v18 single
         # SL1976 - v14 paired
