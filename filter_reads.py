@@ -24,6 +24,11 @@ def phred_version(fastq_type):
     except KeyError:
         raise ValueError("Specified FASTQ type has no quality value")
 
+def fastq_readlen(fname):
+    first_record = SeqIO.parse(fname, "fastq").next()
+
+    return len(first_record.seq)
+
 def fastq_version(fname):
     first_record = SeqIO.parse(fname, "fastq").next()
     desc_split = first_record.description.split(" ")
