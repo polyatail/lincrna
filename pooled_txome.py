@@ -79,9 +79,6 @@ def _bed_to_gtf(infile, outfile):
 def run_cufflinks(prefix, cufflinks_options, sample_reads, sample_name):
     outdir = os.path.join(options.output_dir, prefix + sample_name)
 
-    if not os.path.exists(options.output_dir):
-        raise ValueError("Output directory %s does not exist!" % (options.output_dir,))
-
     if os.path.exists(outdir):
         raise ValueError("Output directory %s already exists!" % (outdir,))
 
@@ -105,9 +102,6 @@ def run_cufflinks(prefix, cufflinks_options, sample_reads, sample_name):
         
 def run_scripture(prefix, scripture_options, sample_reads, sample_name):
     outdir = os.path.join(options.output_dir, prefix + sample_name)
-
-    if not os.path.exists(options.output_dir):
-        raise ValueError("Output directory %s does not exist!" % (options.output_dir,))
 
     if os.path.exists(outdir):
         raise ValueError("Output directory %s already exists!" % (outdir,))
