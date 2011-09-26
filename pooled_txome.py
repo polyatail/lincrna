@@ -114,9 +114,9 @@ def run_scripture(prefix, scripture_options, sample_reads, sample_name):
             scripture_cmd = [_common.SCRIPTURE_PATH,
                              "-alignment", sample_reads,
                              "-out", os.path.join(outdir, chrom + ".segments"),
-                             "-sizeFile", os.path.join(args[0], options.assembly + ".sizes"),
+                             "-sizeFile", os.path.join(options.genome_dir, options.assembly + ".sizes"),
                              "-chr", chrom,
-                             "-chrSequence", os.path.join(args[0], chrom + ".fa")] + \
+                             "-chrSequence", os.path.join(options.genome_dir, chrom + ".fa")] + \
                              scripture_options
                              
             sc_log.write(" ".join(scripture_cmd) + "\n\n")    
@@ -223,9 +223,12 @@ def parse_options(arguments):
             raise ValueError("When using -L, must specify a label for every condition")
     else:
         options.labels = ["sample%s" % (x,) for x in range(len(args))]
-        
-    options.assembly, options.chroms = _common._find_genome_files(_common.genome_fasta[args[0]])
-        
+
+    options.genome_dir = _common.genome_fasta[args[0]]    
+    options.assembly, options.chroms = _common._find_genome_files(options.genome_dir)
+
+    if options.assembly != args[0]:
+        raise ValueError("Specified assembly does not match assembly found")
 
 def main():
     parse_options(sys.argv[1:])
