@@ -1,0 +1,6 @@
+* Implement pfamscanner wrapper
+* Write unit tests for pooled_txome
+* Write unit tests for _phylocsf
+* Write unit tests for _common
+* Write unit tests for _pfamscan
+* Wriet unit tests for lincrna_classify
