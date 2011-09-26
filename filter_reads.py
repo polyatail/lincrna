@@ -173,7 +173,7 @@ def main():
     if not os.path.exists(options.output_dir):
         os.mkdir(options.output_dir)
 
-    stripped_fname = ".".join(args[0].split(".")[:-1])
+    stripped_fname = ".".join(os.path.basename(args[0]).split(".")[:-1])
 
     if options.paired_end:
         left_out = os.path.join(options.output_dir,
