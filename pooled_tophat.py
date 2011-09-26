@@ -11,6 +11,34 @@ import os
 import subprocess
 import time
 
+def _validate_reads(sample_reads):
+    # figure out phred type and read length for each file
+    phred_ver = []
+    readlen = []
+
+    for fname in sample_reads:
+        fq_ver = filter_reads.fastq_version(fname)
+        ph_ver = filter_reads.phred_version(fq_ver)
+        rl = filter_reads.fastq_readlen(fname)
+
+        phred_ver.append(ph_ver)
+        readlen.append(rl)
+
+    # make sure they're consistent
+    if len(set(phred_ver)) <> 1:
+        raise ValueError("Passed reads files have multiple phred types: %s" % \
+                         (phred_ver,))
+    else:
+        phred_ver = phred_ver[0]
+
+    if len(set(readlen)) <> 1:
+        raise ValueError("Passed reads files have multiple read lengths: %s" % \
+                         (readlen,))
+    else:
+        readlen = readlen[0]
+
+    return phred_ver, readlen
+
 def run_tophat(prefix, tophat_options, sample_reads, sample_name):
     sample_reads = sample_reads.split(",")
     outdir = os.path.join(options.output_dir, prefix + sample_name)
@@ -23,20 +51,13 @@ def run_tophat(prefix, tophat_options, sample_reads, sample_name):
     else:
         paired_end_args = []
 
-    # figure out phred type for each file, make sure it's consistent
-    phred_ver = []
+    phred_ver, readlen = _validate_reads(sample_reads)
 
-    for fname in sample_reads:
-        fq_ver = filter_reads.fastq_version(fname)
-        ph_ver = filter_reads.phred_version(fq_ver)
-
-        phred_ver.append(ph_ver)
-
-    if len(set(phred_ver)) <> 1:
-        raise ValueError("Passed reads files have multiple phred types: %s" % \
-                         (phred_ver,))
+    # set segment length
+    if readlen < 50:
+        seg_length = int(readlen / 2)
     else:
-        phred_ver = phred_ver[0]
+        seg_length = 25
 
     if os.path.exists(outdir):
         raise ValueError("Output directory %s already exists!" % (outdir,))
@@ -48,6 +69,7 @@ def run_tophat(prefix, tophat_options, sample_reads, sample_name):
                       "-p", str(options.num_threads),
                       "-o", outdir,
                       "-z", "none",
+                      "--segment-length", seg_length,
                       "--" + phred_ver] + \
                       tophat_options + \
                       paired_end_args + \
