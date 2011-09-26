@@ -136,7 +136,8 @@ def score_transcripts(transcripts, assembly, num_threads):
             results.append(pool.apply_async(_score_block, [work_block, assembly]))
             work_block = []
     else:
-        results.append(pool.apply_async(_score_block, [work_block, assembly]))
+        if len(work_block) > 0:
+            results.append(pool.apply_async(_score_block, [work_block, assembly]))
 
     # get results
     result_data = {}
