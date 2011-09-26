@@ -7,6 +7,7 @@ __version__ = 0.0
 
 from optparse import OptionParser
 import _common
+import filter_reads
 import sys
 import os
 import subprocess
@@ -78,7 +79,7 @@ def run_tophat(prefix, tophat_options, sample_reads, sample_name):
                       "-p", str(options.num_threads),
                       "-o", outdir,
                       "-z", "none",
-                      "--segment-length", seg_length,
+                      "--segment-length", str(seg_length),
                       "--" + phred_ver] + \
                       tophat_options + \
                       paired_end_args + \

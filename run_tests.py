@@ -99,10 +99,10 @@ class testFilterReads(unittest.TestCase):
         result = filter_reads.fastq_readlen(self.ver14_single)
         self.assertEqual(result, 36)
 
-        result = filter_reads.readlen(self.ver14_pe_mixed)
+        result = filter_reads.fastq_readlen(self.ver14_pe_mixed)
         self.assertEqual(result, 72)
 
-        result = filter_reads.readlen(self.ver18_pe_mixed)
+        result = filter_reads.fastq_readlen(self.ver18_pe_mixed)
         self.assertEqual(result, 100)
         
     def testFASTQVersion(self):
@@ -302,14 +302,28 @@ class testPooledTopHat(unittest.TestCase):
 
     def testValidateReads(self):
         # mixed FASTQ version
-        self.assertRaises(pooled_tophat._validate_reads,
+        self.assertRaises(ValueError,
+                          pooled_tophat._validate_reads,
                           ["./test_data/v18_100bp.fastq",
                            "./test_data/v14_100bp.fastq"])
 
         # mixed read lengths
-        self.assertRaises(pooled_tophat._validate_reads,
+        self.assertRaises(ValueError,
+                          pooled_tophat._validate_reads,
                           ["./test_data/v14_36bp.fastq",
                            "./test_data/v14_72bp.fastq"])
+
+        self.assertEqual((filter_reads.ILLUMINA_V14, "phred64", 36),
+                         pooled_tophat._validate_reads(["./test_data/v14_36bp.fastq"]))
+
+        self.assertEqual((filter_reads.ILLUMINA_V14, "phred64", 72),
+                         pooled_tophat._validate_reads(["./test_data/v14_72bp.fastq"]))
+
+        self.assertEqual((filter_reads.ILLUMINA_V14, "phred64", 100),
+                         pooled_tophat._validate_reads(["./test_data/v14_100bp.fastq"]))
+
+        self.assertEqual((filter_reads.ILLUMINA_V18, "phred33", 100),
+                         pooled_tophat._validate_reads(["./test_data/v18_100bp.fastq"]))
 
     def testRunTH_v14_single(self):
         pooled_tophat.run_tophat("",
