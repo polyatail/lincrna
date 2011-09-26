@@ -10,13 +10,16 @@ from Bio import SeqIO
 import sys
 import os
 
+ILLUMINA_V14 = 0x01
+ILLUMINA_V18 = 0x02
+
 def _illumina_version(fname):
     first_record = SeqIO.parse(fname, "fastq").next()
     desc_split = first_record.description.split(" ")
     
     if len(desc_split) == 2:
         # Illumina v1.8
-        illumina_ver = _illumina18
+        illumina_ver = ILLUMINA_V18
         
         meta_split = desc_split[1].split(":")
         
@@ -24,7 +27,7 @@ def _illumina_version(fname):
             raise ValueError("Illumina v1.8+ metadata format invalid")
     elif len(desc_split) == 1:
         # Illumina v1.4
-        illumina_ver = _illumina14
+        illumina_ver = ILLUMINA_V14
         
         meta_split = desc_split[0].split(":")
         
@@ -143,6 +146,13 @@ def main():
     parse_options(sys.argv[1:])
 
     illumina_ver = _illumina_version(args[0])
+
+    if illumina_ver == ILLUMINA_V14:
+        callback_func = _illumina14
+    elif illumina_ver = ILLUMINA_V18:
+        callback_func = _illumina18
+    else:
+        raise ValueError("No callback function for Illumina version")
     
     if not os.path.exists(options.output_dir):
         os.mkdir(options.output_dir)
@@ -158,14 +168,14 @@ def main():
         _paired_parser(open(args[0], "r"),
                        open(left_out, "w+"),
                        open(right_out, "w+"),
-                       illumina_ver)
+                       callback_func)
     else:
         filtered_out = os.path.join(options.output_dir,
                                     stripped_fname + "-filtered.fastq")
 
         _single_parser(open(args[0], "r"),
                        open(filtered_out, "w+"),
-                       illumina_ver)
+                       callback_func)
         
 if __name__ == "__main__":
     main()
