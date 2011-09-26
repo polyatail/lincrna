@@ -94,6 +94,16 @@ class testFilterReads(unittest.TestCase):
         
         self.left_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
         self.right_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
+
+    def testReadLen(self):
+        result = filter_reads.fastq_readlen(self.ver14_single)
+        self.assertEqual(result, 36)
+
+        result = filter_reads.readlen(self.ver14_pe_mixed)
+        self.assertEqual(result, 72)
+
+        result = filter_reads.readlen(self.ver18_pe_mixed)
+        self.assertEqual(result, 100)
         
     def testFASTQVersion(self):
         # version 1.4 tests
