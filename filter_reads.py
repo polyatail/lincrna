@@ -18,7 +18,7 @@ FASTQ_PARAMS = {ILLUMINA_V14: {"callback": _illumina14,
                 ILLUMINA_V18: {"callback": _illumina18,
                                "quals": "phred33"}}
 
-def _fastq_version(fname):
+def fastq_version(fname):
     first_record = SeqIO.parse(fname, "fastq").next()
     desc_split = first_record.description.split(" ")
     
@@ -150,7 +150,7 @@ def parse_options(arguments):
 def main():
     parse_options(sys.argv[1:])
 
-    read_ver = _fastq_version(args[0])
+    read_ver = fastq_version(args[0])
 
     try:
         callback_func = FASTQ_PARAMS[read_ver]["callback"]
