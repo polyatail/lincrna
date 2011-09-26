@@ -18,6 +18,12 @@ FASTQ_PARAMS = {ILLUMINA_V14: {"callback": _illumina14,
                 ILLUMINA_V18: {"callback": _illumina18,
                                "quals": "phred33"}}
 
+def phred_version(fastq_type):
+    try:
+        return FASTQ_PARAMS[fastq_type]["quals"]
+    except KeyError:
+        raise ValueError("Specified FASTQ type has no quality value")
+
 def fastq_version(fname):
     first_record = SeqIO.parse(fname, "fastq").next()
     desc_split = first_record.description.split(" ")
