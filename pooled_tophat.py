@@ -23,6 +23,21 @@ def run_tophat(prefix, tophat_options, sample_reads, sample_name):
     else:
         paired_end_args = []
 
+    # figure out phred type for each file, make sure it's consistent
+    phred_ver = []
+
+    for fname in sample_reads:
+        fq_ver = filter_reads.fastq_version(fname)
+        ph_ver = filter_reads.phred_version(fq_ver)
+
+        phred_ver.append(ph_ver)
+
+    if len(set(phred_ver)) <> 1:
+        raise ValueError("Passed reads files have multiple phred types: %s" % \
+                         (phred_ver,))
+    else:
+        phred_ver = phred_ver[0]
+
     if os.path.exists(outdir):
         raise ValueError("Output directory %s already exists!" % (outdir,))
 
@@ -32,7 +47,8 @@ def run_tophat(prefix, tophat_options, sample_reads, sample_name):
         tophat_cmd = ["tophat",
                       "-p", str(options.num_threads),
                       "-o", outdir,
-                      "-z", "none"] + \
+                      "-z", "none",
+                      "--" + phred_ver] + \
                       tophat_options + \
                       paired_end_args + \
                       [args[0]] + \
