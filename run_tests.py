@@ -271,7 +271,6 @@ class testPooledTopHat(unittest.TestCase):
                                      "-p", "30",
                                      _common.bowtie_index["mm9"],
                                      "/dev/null"])
-        pass
 
     def testBedToJunc(self):
         expected = ['chr19\t3261580\t3262041\t-',
@@ -313,20 +312,38 @@ class testPooledTopHat(unittest.TestCase):
                            "./test_data/v14_72bp.fastq"])
 
     def testRunTH_v14_single(self):
-        pooled_tophat.run_tophat("", ["--segment-length", "18"], "./test_data/v14_s_subset.fastq", "v14_single")
-        # SL1858 - v14 single
-        # SL6494 - v18 single
-        # SL1976 - v14 paired
-        # SL7068 - v18 paired
-        pass
+        pooled_tophat.run_tophat("",
+                                 [],
+                                 "./test_data/v14_s_subset.fastq",
+                                 "v14_single")
+
+    def testRunTH_v14_paired(self):
+        pooled_tophat.run_tophat("",
+                                 [],
+                                 "./test_data/v14_p_subset-left.fastq,./test_data/v14_p_subset-right.fastq",
+                                 "v14_paired")
     
-#    def testMain(self):
-#        # run all the libraries above in a pooled run
-#        pooled_tophat.main(["-o", "./test_out",
-#                            "-L", "ver14,ver18",
-#                            _common.bowtie_index["mm9"],
-#                            "./test_data/ver14_pe_mixed-LEFT.fastq,./test_data/ver14_pe_mixed-RIGHT.fastq",
-#                            "./test_data/ver18_pe_mixed-LEFT.fastq,./test_data/ver18_pe_mixed-RIGHT.fastq"])
+    def testRunTH_v18_single(self):
+        pooled_tophat.run_tophat("",
+                                 [],
+                                 "./test_data/v18_s_subset.fastq",
+                                 "v18_single")
+
+    def testRunTH_v18_paired(self):
+        pooled_tophat.run_tophat("",
+                                 [],
+                                 "./test_data/v18_p_subset-left.fastq,./test_data/v18_p_subset-right.fastq",
+                                 "v18_paired")
+    
+    def testMain(self):
+        # run all the libraries above in a pooled run
+        pooled_tophat.main(["-o", "./test_out",
+                            "-L", "v14s,v14p,v18s,v18p",
+                            _common.bowtie_index["mm9"],
+                            "./test_data/v14_s_subset.fastq",
+                            "./test_data/v14_p_subset-left.fastq,./test_data/v14_p_subset-right.fastq",
+                            "./test_data/v18_s_subset.fastq",
+                            "./test_data/v18_p_subset-left.fastq,./test_data/v18_p_subset-right.fastq"]
     
 #class testPooledTxome(unittest.TestCase):
 #    def setUp(self):
