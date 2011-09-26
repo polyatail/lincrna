@@ -83,7 +83,7 @@ def run_tophat(prefix, tophat_options, sample_reads, sample_name):
                       "--" + phred_ver] + \
                       tophat_options + \
                       paired_end_args + \
-                      [args[0]] + \
+                      [_common.bowtie_index[args[0]]] + \
                       sample_reads
                                         
         th_log.write(" ".join(tophat_cmd) + "\n\n")
@@ -128,7 +128,7 @@ def _pool_juncs(in_bedfiles, out_juncfile):
 def parse_options(arguments):
     global options, args
 
-    parser = OptionParser(usage="%prog [options] <bowtie_index> <reads1-L[,reads1-R]> [reads2-L[,reads2-R]]",
+    parser = OptionParser(usage="%prog [options] <assembly> <reads1-L[,reads1-R]> [reads2-L[,reads2-R]]",
                           version="%prog " + str(__version__))
                           
     parser.add_option("-o",
