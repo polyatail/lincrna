@@ -185,13 +185,15 @@ def _write_gtf(gtf, gtf_file):
         for tx_id in gtf.keys():
             fp.write("\n".join(gtf[tx_id]["raw"].values()))
             
-def _merge_transcripts(from_tx, to_tx, note):
+def _merge_transcripts(from_tx, to_tx, note = None):
     for tx_id in from_tx.keys():
         if tx_id in to_tx:
             raise ValueError("Transcript (%s) exists in destination!" % (tx_id,))
 
         to_tx[tx_id] = copy.deepcopy(from_tx[tx_id])
-        to_tx[tx_id]["note"] = note
+
+        if note != None:
+            to_tx[tx_id]["note"] = note
 
 def _write_metadata(transcripts, outfile):
     fields = ["num_exons",
