@@ -290,6 +290,12 @@ class testPooledTopHat(unittest.TestCase):
                                             
         outfile.seek(0)
         self.assertTrue(filecmp.cmp(outfile.name, "./test_data/th_pooled.juncs"))
+
+    def testRunTH_mixed_phred(self):
+        self.assertRaises(pooled_tophat.run_tophat,
+                          "",
+                          "./test_data/v14_p_subset-left.fastq,./test_data/v18_p_subset_right.fastq",
+                          "v14-18_mixed")
     
     def testRunTH_v14_single(self):
         pooled_tophat.run_tophat("", ["--segment-length", "18"], "./test_data/v14_s_subset.fastq", "v14_single")
