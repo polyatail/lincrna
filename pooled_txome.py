@@ -85,7 +85,7 @@ def run_cufflinks(prefix, cufflinks_options, sample_reads, sample_name):
     os.mkdir(outdir)
     
     with open(os.path.join(outdir, "cufflinks.log"), "w") as cl_log:
-        cufflinks_cmd = ["cufflinks", "-q",
+        cufflinks_cmd = [_common.CUFFLINKS_PATH, "-q",
                          "-p", str(options.num_threads),
                          "-o", outdir,
                          "-m", str(options.fragment_mean),
@@ -110,7 +110,7 @@ def run_scripture(prefix, scripture_options, sample_reads, sample_name):
 
     for chrom in options.chroms:
         with open(os.path.join(outdir, "scripture.log"), "a") as sc_log:
-            scripture_cmd = ["scripture",
+            scripture_cmd = [_common.SCRIPTURE_PATH,
                              "-alignment", sample_reads,
                              "-out", os.path.join(outdir, chrom + ".segments"),
                              "-sizeFile", os.path.join(args[0], options.assembly + ".sizes"),
@@ -145,7 +145,7 @@ def run_cuffcompare(cuffcomp_options, input_gtfs):
     os.mkdir(outdir)
     
     with open(os.path.join(outdir, "cuffcompare.log"), "w") as cc_log:
-        cuffcomp_cmd = ["cuffcompare", "-V",
+        cuffcomp_cmd = [_common.CUFFCOMPARE_PATH, "-V",
                         "-o", os.path.join(outdir, "cuffcompare"),
                         "-s", args[0]] + \
                         ([] if not options.reference else ["-r", options.reference]) + \

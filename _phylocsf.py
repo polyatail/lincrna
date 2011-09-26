@@ -87,7 +87,7 @@ def _score_block(work_block, assembly):
     files.write("\n".join(temps_to_tx_id.keys()))
     files.flush()
 
-    phylocsf_proc = subprocess.Popen(["/opt/bio/PhyloCSF-e346e1c/PhyloCSF",
+    phylocsf_proc = subprocess.Popen([_common.PHYLOCSF_PATH,
                                       "29mammals",
                                       "--files", files.name,
                                       "--frames=6",

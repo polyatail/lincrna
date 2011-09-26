@@ -6,6 +6,7 @@ __date__ = "9/19/2011"
 __version__ = 0.0
 
 from optparse import OptionParser
+import _common
 import sys
 import os
 import subprocess
@@ -73,7 +74,7 @@ def run_tophat(prefix, tophat_options, sample_reads, sample_name):
     os.mkdir(outdir)
     
     with open(os.path.join(outdir, "tophat.log"), "w") as th_log:
-        tophat_cmd = ["tophat",
+        tophat_cmd = [_common.TOPHAT_PATH,
                       "-p", str(options.num_threads),
                       "-o", outdir,
                       "-z", "none",
