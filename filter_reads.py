@@ -13,9 +13,9 @@ import os
 ILLUMINA_V14 = 0x01
 ILLUMINA_V18 = 0x02
 
-FASTQ_PARAMS = {ILLUMINA_V14: {"callback": _illumina14,
+FASTQ_PARAMS = {ILLUMINA_V14: {"callback": "_illumina14",
                                "quals": "phred64"},
-                ILLUMINA_V18: {"callback": _illumina18,
+                ILLUMINA_V18: {"callback": "_illumina18",
                                "quals": "phred33"}}
 
 def phred_version(fastq_type):
@@ -164,7 +164,7 @@ def main():
     read_ver = fastq_version(args[0])
 
     try:
-        callback_func = FASTQ_PARAMS[read_ver]["callback"]
+        callback_func = globals()[FASTQ_PARAMS[read_ver]["callback"]]
     except KeyError:
         raise ValueError("No callback function for FASTQ version")
     
