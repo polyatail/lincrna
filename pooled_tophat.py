@@ -13,6 +13,7 @@ import time
 
 def _validate_reads(sample_reads):
     # figure out phred type and read length for each file
+    fastq_ver = []
     phred_ver = []
     readlen = []
 
@@ -21,10 +22,17 @@ def _validate_reads(sample_reads):
         ph_ver = filter_reads.phred_version(fq_ver)
         rl = filter_reads.fastq_readlen(fname)
 
+        fastq_ver.append(fq_ver)
         phred_ver.append(ph_ver)
         readlen.append(rl)
 
     # make sure they're consistent
+    if len(set(fastq_ver)) <> 1:
+        raise ValueError("Passed reads files have multiple FASTQ types: %s" % \
+                         (fastq_ver,))
+    else:
+        fastq_ver = fastq_ver[0]
+
     if len(set(phred_ver)) <> 1:
         raise ValueError("Passed reads files have multiple phred types: %s" % \
                          (phred_ver,))
@@ -37,7 +45,7 @@ def _validate_reads(sample_reads):
     else:
         readlen = readlen[0]
 
-    return phred_ver, readlen
+    return fastq_ver, phred_ver, readlen
 
 def run_tophat(prefix, tophat_options, sample_reads, sample_name):
     sample_reads = sample_reads.split(",")
@@ -51,7 +59,7 @@ def run_tophat(prefix, tophat_options, sample_reads, sample_name):
     else:
         paired_end_args = []
 
-    phred_ver, readlen = _validate_reads(sample_reads)
+    _, phred_ver, readlen = _validate_reads(sample_reads)
 
     # set segment length
     if readlen < 50:
