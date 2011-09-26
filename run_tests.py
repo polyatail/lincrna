@@ -301,12 +301,17 @@ class testPooledTopHat(unittest.TestCase):
         outfile.seek(0)
         self.assertTrue(filecmp.cmp(outfile.name, "./test_data/th_pooled.juncs"))
 
-    def testRunTH_mixed_phred(self):
-        self.assertRaises(pooled_tophat.run_tophat,
-                          "",
-                          "./test_data/v14_p_subset-left.fastq,./test_data/v18_p_subset_right.fastq",
-                          "v14-18_mixed")
-    
+    def testValidateReads(self):
+        # mixed FASTQ version
+        self.assertRaises(pooled_tophat._validate_reads,
+                          ["./test_data/v18_100bp.fastq",
+                           "./test_data/v14_100bp.fastq"])
+
+        # mixed read lengths
+        self.assertRaises(pooled_tophat._validate_reads,
+                          ["./test_data/v14_36bp.fastq",
+                           "./test_data/v14_72bp.fastq"])
+
     def testRunTH_v14_single(self):
         pooled_tophat.run_tophat("", ["--segment-length", "18"], "./test_data/v14_s_subset.fastq", "v14_single")
         # SL1858 - v14 single
