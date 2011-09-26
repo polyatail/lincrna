@@ -343,7 +343,7 @@ class testPooledTopHat(unittest.TestCase):
                             "./test_data/v14_s_subset.fastq",
                             "./test_data/v14_p_subset-left.fastq,./test_data/v14_p_subset-right.fastq",
                             "./test_data/v18_s_subset.fastq",
-                            "./test_data/v18_p_subset-left.fastq,./test_data/v18_p_subset-right.fastq"]
+                            "./test_data/v18_p_subset-left.fastq,./test_data/v18_p_subset-right.fastq"])
     
 #class testPooledTxome(unittest.TestCase):
 #    def setUp(self):
