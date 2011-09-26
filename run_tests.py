@@ -95,45 +95,45 @@ class testFilterReads(unittest.TestCase):
         self.left_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
         self.right_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
         
-    def testIlluminaVersion(self):
+    def testFASTQVersion(self):
         # version 1.4 tests
-        result = filter_reads._illumina_version(self.ver14_pe_good)
+        result = filter_reads.fastq_version(self.ver14_pe_good)
         self.assertEqual(result, filter_reads.ILLUMINA_V14)
 
-        result = filter_reads._illumina_version(self.ver14_pe_bad)
+        result = filter_reads.fastq_version(self.ver14_pe_bad)
         self.assertEqual(result, filter_reads.ILLUMINA_V14)
 
-        result = filter_reads._illumina_version(self.ver14_pe_mixed)
+        result = filter_reads.fastq_version(self.ver14_pe_mixed)
         self.assertEqual(result, filter_reads.ILLUMINA_V14)
 
-        result = filter_reads._illumina_version(self.ver14_pe_unordered)
+        result = filter_reads.fastq_version(self.ver14_pe_unordered)
         self.assertEqual(result, filter_reads.ILLUMINA_V14)
         
-        result = filter_reads._illumina_version(self.ver14_single)
+        result = filter_reads.fastq_version(self.ver14_single)
         self.assertEqual(result, filter_reads.ILLUMINA_V14)
         
         self.assertRaises(ValueError,
-                          filter_reads._illumina_version,
+                          filter_reads.fastq_version,
                           self.ver14_bad_metadata)
             
         # version 1.8 tests
-        result = filter_reads._illumina_version(self.ver18_pe_good)
+        result = filter_reads.fastq_version(self.ver18_pe_good)
         self.assertEqual(result, filter_reads.ILLUMINA_V18)
 
-        result = filter_reads._illumina_version(self.ver18_pe_bad)
+        result = filter_reads.fastq_version(self.ver18_pe_bad)
         self.assertEqual(result, filter_reads.ILLUMINA_V18)
 
-        result = filter_reads._illumina_version(self.ver18_pe_mixed)
+        result = filter_reads.fastq_version(self.ver18_pe_mixed)
         self.assertEqual(result, filter_reads.ILLUMINA_V18)
 
-        result = filter_reads._illumina_version(self.ver18_pe_unordered)
+        result = filter_reads.fastq_version(self.ver18_pe_unordered)
         self.assertEqual(result, filter_reads.ILLUMINA_V18)
         
-        result = filter_reads._illumina_version(self.ver18_single)
+        result = filter_reads.fastq_version(self.ver18_single)
         self.assertEqual(result, filter_reads.ILLUMINA_V18)
         
         self.assertRaises(ValueError,
-                          filter_reads._illumina_version,
+                          filter_reads.fastq_version,
                           self.ver18_bad_metadata)
                           
     def testIllumina14(self):
