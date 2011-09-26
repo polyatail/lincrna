@@ -13,13 +13,18 @@ import os
 ILLUMINA_V14 = 0x01
 ILLUMINA_V18 = 0x02
 
-def _illumina_version(fname):
+FASTQ_PARAMS = {ILLUMINA_V14: {"callback": _illumina14,
+                               "quals": "phred64"},
+                ILLUMINA_V18: {"callback": _illumina18,
+                               "quals": "phred33"}}
+
+def _fastq_version(fname):
     first_record = SeqIO.parse(fname, "fastq").next()
     desc_split = first_record.description.split(" ")
     
     if len(desc_split) == 2:
         # Illumina v1.8
-        illumina_ver = ILLUMINA_V18
+        read_ver = ILLUMINA_V18
         
         meta_split = desc_split[1].split(":")
         
@@ -27,16 +32,16 @@ def _illumina_version(fname):
             raise ValueError("Illumina v1.8+ metadata format invalid")
     elif len(desc_split) == 1:
         # Illumina v1.4
-        illumina_ver = ILLUMINA_V14
+        read_ver = ILLUMINA_V14
         
         meta_split = desc_split[0].split(":")
         
         if len(meta_split) <> 8:
             raise ValueError("Illumina v1.4 metadata format invalid")
     else:
-        raise ValueError("Could not detect Illumina pipeline version")
+        raise ValueError("Could not detect FASTQ pipeline version")
         
-    return illumina_ver
+    return read_ver
 
 def _illumina14(description):
     meta_split = description.split(":")
@@ -145,14 +150,12 @@ def parse_options(arguments):
 def main():
     parse_options(sys.argv[1:])
 
-    illumina_ver = _illumina_version(args[0])
+    read_ver = _fastq_version(args[0])
 
-    if illumina_ver == ILLUMINA_V14:
-        callback_func = _illumina14
-    elif illumina_ver = ILLUMINA_V18:
-        callback_func = _illumina18
-    else:
-        raise ValueError("No callback function for Illumina version")
+    try:
+        callback_func = FASTQ_PARAMS[read_ver]["callback"]
+    except KeyError:
+        raise ValueError("No callback function for FASTQ version")
     
     if not os.path.exists(options.output_dir):
         os.mkdir(options.output_dir)
