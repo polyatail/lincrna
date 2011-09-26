@@ -6,6 +6,7 @@ __date__ = "9/19/2011"
 __version__ = 0.0
 
 from optparse import OptionParser
+import sys
 import copy
 import shlex
 import os
@@ -332,5 +333,10 @@ if __name__ == "__main__":
                       help="remove transcripts containing Pfam domains")
                       
     options, args = parser.parse_args()
+
+    if len(args) <> 3:
+        print "Error: Incorrect number of arguments"
+        parser.print_help()
+        sys.exit(0)
 
     main()

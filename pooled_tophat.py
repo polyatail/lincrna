@@ -175,7 +175,7 @@ def parse_options(arguments):
         options.labels = options.labels.split(",")
         
         if len(options.labels) <> len(args) - 1:
-            print "When using -L, must specify a label for every condition"
+            print "Error: When using -L, must specify a label for every condition"
             parser.print_help()
             sys.exit(0)
     else:

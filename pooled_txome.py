@@ -214,13 +214,17 @@ def parse_options(arguments):
     options, args = parser.parse_args()
     
     if len(args) < 2:
-        raise ValueError("Not enough arguments")
+        print "Error: Not enough arguments"
+        parser.print_help()
+        sys.exit(0)
         
     if options.labels != None:
         options.labels = options.labels.split(",")
         
         if len(options.labels) <> len(args) - 1:
-            raise ValueError("When using -L, must specify a label for every condition")
+            print "Error: When using -L, must specify a label for every condition"
+            parser.print_help()
+            sys.exit(0)
     else:
         options.labels = ["sample%s" % (x,) for x in range(len(args))]
 
@@ -228,7 +232,9 @@ def parse_options(arguments):
     options.assembly, options.chroms = _common._find_genome_files(options.genome_dir)
 
     if options.assembly != args[0]:
-        raise ValueError("Specified assembly does not match assembly found")
+        print "Error: Specified assembly does not match assembly found"
+        parser.print_help()
+        sys.exit(0)
 
 def main():
     parse_options(sys.argv[1:])

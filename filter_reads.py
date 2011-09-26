@@ -156,7 +156,9 @@ def parse_options(arguments):
     options, args = parser.parse_args(arguments)
     
     if len(args) <> 1:
-        raise ValueError("Incorrect number of arguments")
+        print "Error: Incorrect number of arguments"
+        parser.print_help()
+        sys.exit(0)
 
 def main():
     parse_options(sys.argv[1:])
