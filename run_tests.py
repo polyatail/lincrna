@@ -324,6 +324,18 @@ class testPooledTopHat(unittest.TestCase):
 
         self.assertEqual((filter_reads.ILLUMINA_V18, "phred33", 100),
                          pooled_tophat._validate_reads(["./test_data/v18_100bp.fastq"]))
+    
+    def testRunTH_v18_single(self):
+        pooled_tophat.run_tophat("",
+                                 [],
+                                 "./test_data/v18_s_subset.fastq",
+                                 "v18_single")
+
+    def testRunTH_v18_paired(self):
+        pooled_tophat.run_tophat("",
+                                 [],
+                                 "./test_data/v18_p_subset-left.fastq,./test_data/v18_p_subset-right.fastq",
+                                 "v18_paired")
 
     def testRunTH_v14_single(self):
         pooled_tophat.run_tophat("",
@@ -337,27 +349,15 @@ class testPooledTopHat(unittest.TestCase):
                                  "./test_data/v14_p_subset-left.fastq,./test_data/v14_p_subset-right.fastq",
                                  "v14_paired")
     
-    def testRunTH_v18_single(self):
-        pooled_tophat.run_tophat("",
-                                 [],
-                                 "./test_data/v18_s_subset.fastq",
-                                 "v18_single")
-
-    def testRunTH_v18_paired(self):
-        pooled_tophat.run_tophat("",
-                                 [],
-                                 "./test_data/v18_p_subset-left.fastq,./test_data/v18_p_subset-right.fastq",
-                                 "v18_paired")
-    
-    def testMain(self):
+    def testFullRun(self):
         # run all the libraries above in a pooled run
         pooled_tophat.main(["-o", "./test_out",
-                            "-L", "v14s,v14p,v18s,v18p",
+                            "-L", "v18s,v18p,v14s,v14p",
                             "mm9",
-                            "./test_data/v14_s_subset.fastq",
-                            "./test_data/v14_p_subset-left.fastq,./test_data/v14_p_subset-right.fastq",
                             "./test_data/v18_s_subset.fastq",
-                            "./test_data/v18_p_subset-left.fastq,./test_data/v18_p_subset-right.fastq"])
+                            "./test_data/v18_p_subset-left.fastq,./test_data/v18_p_subset-right.fastq",
+                            "./test_data/v14_s_subset.fastq",
+                            "./test_data/v14_p_subset-left.fastq,./test_data/v14_p_subset-right.fastq"])
     
 #class testPooledTxome(unittest.TestCase):
 #    def setUp(self):

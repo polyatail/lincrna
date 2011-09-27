@@ -62,6 +62,15 @@ def run_tophat(prefix, tophat_options, sample_reads, sample_name):
         paired_end_args = []
 
     _, phred_ver, readlen = _validate_reads(sample_reads)
+    
+    if phred_ver == "phred64":
+        phred_param = ["--phred64-quals"]
+    elif phred_ver == "phred33":
+        phred_param = []
+    elif phred_ver == "solexa33":
+        phred_param = ["--solexa-quals"]
+    else:
+        raise ValueError("Unrecognized phred version")
 
     # set segment length
     if readlen < 50:
@@ -79,8 +88,8 @@ def run_tophat(prefix, tophat_options, sample_reads, sample_name):
                       "-p", str(options.num_threads),
                       "-o", outdir,
                       "-z", "none",
-                      "--segment-length", str(seg_length),
-                      "--" + phred_ver] + \
+                      "--segment-length", str(seg_length)] + \
+                      phred_param + \
                       tophat_options + \
                       paired_end_args + \
                       [_common.bowtie_index[args[0]]] + \
