@@ -269,7 +269,7 @@ class testPooledTopHat(unittest.TestCase):
     def setUp(self):
         pooled_tophat.parse_options(["-o", "./test_out",
                                      "-p", "30",
-                                     _common.bowtie_index["mm9"],
+                                     "mm9",
                                      "/dev/null"])
 
     def testBedToJunc(self):
@@ -353,7 +353,7 @@ class testPooledTopHat(unittest.TestCase):
         # run all the libraries above in a pooled run
         pooled_tophat.main(["-o", "./test_out",
                             "-L", "v14s,v14p,v18s,v18p",
-                            _common.bowtie_index["mm9"],
+                            "mm9",
                             "./test_data/v14_s_subset.fastq",
                             "./test_data/v14_p_subset-left.fastq,./test_data/v14_p_subset-right.fastq",
                             "./test_data/v18_s_subset.fastq",
