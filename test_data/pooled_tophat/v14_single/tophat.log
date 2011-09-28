@@ -1,0 +1,27 @@
+/usr/bin/tophat -p 30 -o ./test_out/v14_single -z none --segment-length 18 --phred64-quals /comp_sync/data/foreign/bowtie_index/mm9/basespace ./test_data/v14_s_subset.fastq
+
+
+[Tue Sep 27 20:06:34 2011] Beginning TopHat run (v1.3.1)
+-----------------------------------------------
+[Tue Sep 27 20:06:34 2011] Preparing output location ./test_out/v14_single/
+[Tue Sep 27 20:06:34 2011] Checking for Bowtie index files
+[Tue Sep 27 20:06:34 2011] Checking for reference FASTA file
+[Tue Sep 27 20:06:34 2011] Checking for Bowtie
+	Bowtie version:			 0.12.7.0
+[Tue Sep 27 20:06:34 2011] Checking for Samtools
+	Samtools Version: 0.1.12a
+[Tue Sep 27 20:06:34 2011] Generating SAM header for /comp_sync/data/foreign/bowtie_index/mm9/basespace
+[Tue Sep 27 20:06:39 2011] Preparing reads
+	format:		 fastq
+	quality scale:	 phred64 (reads generated with GA pipeline version >= 1.3)
+	Left  reads: min. length=36, count=177
+[Tue Sep 27 20:06:39 2011] Mapping left_kept_reads against basespace with Bowtie 
+[Tue Sep 27 20:06:44 2011] Processing bowtie hits
+[Tue Sep 27 20:11:40 2011] Mapping left_kept_reads_seg1 against basespace with Bowtie (1/2)
+[Tue Sep 27 20:11:45 2011] Mapping left_kept_reads_seg2 against basespace with Bowtie (2/2)
+[Tue Sep 27 20:11:51 2011] Searching for junctions via segment mapping
+Warning: junction database is empty!
+[Tue Sep 27 20:16:47 2011] Joining segment hits
+[Tue Sep 27 20:21:44 2011] Reporting output tracks
+-----------------------------------------------
+Run complete [00:15:10 elapsed]

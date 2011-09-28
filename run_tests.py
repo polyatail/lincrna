@@ -330,24 +330,44 @@ class testPooledTopHat(unittest.TestCase):
                                  [],
                                  "./test_data/v18_s_subset.fastq",
                                  "v18_single")
+                                 
+        self.assertTrue(filecmp.cmp("./test_out/v18_single/accepted_hits.bam",
+                                    "./test_data/pooled_tophat/v18_single/accepted_hits.bam"))
+        self.assertTrue(filecmp.cmp("./test_out/v18_single/junctions.bed",
+                                    "./test_data/pooled_tophat/v18_single/junctions.bed"))
 
     def testRunTH_v18_paired(self):
         pooled_tophat.run_tophat("",
                                  [],
                                  "./test_data/v18_p_subset-left.fastq,./test_data/v18_p_subset-right.fastq",
                                  "v18_paired")
+                                 
+        self.assertTrue(filecmp.cmp("./test_out/v18_single/accepted_hits.bam",
+                                    "./test_data/pooled_tophat/v18_paired/accepted_hits.bam"))
+        self.assertTrue(filecmp.cmp("./test_out/v18_single/junctions.bed",
+                                    "./test_data/pooled_tophat/v18_paired/junctions.bed"))
 
     def testRunTH_v14_single(self):
         pooled_tophat.run_tophat("",
                                  [],
                                  "./test_data/v14_s_subset.fastq",
                                  "v14_single")
+                                 
+        self.assertTrue(filecmp.cmp("./test_out/v18_single/accepted_hits.bam",
+                                    "./test_data/pooled_tophat/v14_single/accepted_hits.bam"))
+        self.assertTrue(filecmp.cmp("./test_out/v18_single/junctions.bed",
+                                    "./test_data/pooled_tophat/v14_single/junctions.bed"))
 
     def testRunTH_v14_paired(self):
         pooled_tophat.run_tophat("",
                                  [],
                                  "./test_data/v14_p_subset-left.fastq,./test_data/v14_p_subset-right.fastq",
                                  "v14_paired")
+                                 
+        self.assertTrue(filecmp.cmp("./test_out/v14_paired/accepted_hits.bam",
+                                    "./test_data/pooled_tophat/v18_single/accepted_hits.bam"))
+        self.assertTrue(filecmp.cmp("./test_out/v14_paired/junctions.bed",
+                                    "./test_data/pooled_tophat/v18_single/junctions.bed"))
     
     def testFullRun(self):
         # run all the libraries above in a pooled run
@@ -358,7 +378,41 @@ class testPooledTopHat(unittest.TestCase):
                             "./test_data/v18_p_subset-left.fastq,./test_data/v18_p_subset-right.fastq",
                             "./test_data/v14_s_subset.fastq",
                             "./test_data/v14_p_subset-left.fastq,./test_data/v14_p_subset-right.fastq"])
-    
+                                 
+        self.assertTrue(filecmp.cmp("./test_out/prerun_v18s/accepted_hits.bam",
+                                    "./test_data/pooled_tophat/prerun_v18s/accepted_hits.bam"))
+        self.assertTrue(filecmp.cmp("./test_out/prerun_v18s/junctions.bed",
+                                    "./test_data/pooled_tophat/prerun_v18s/junctions.bed"))
+        self.assertTrue(filecmp.cmp("./test_out/prerun_v18p/accepted_hits.bam",
+                                    "./test_data/pooled_tophat/prerun_v18p/accepted_hits.bam"))
+        self.assertTrue(filecmp.cmp("./test_out/prerun_v18p/junctions.bed",
+                                    "./test_data/pooled_tophat/prerun_v18p/junctions.bed"))
+        self.assertTrue(filecmp.cmp("./test_out/prerun_v14s/accepted_hits.bam",
+                                    "./test_data/pooled_tophat/prerun_v14s/accepted_hits.bam"))
+        self.assertTrue(filecmp.cmp("./test_out/prerun_v14s/junctions.bed",
+                                    "./test_data/pooled_tophat/prerun_v14s/junctions.bed"))
+        self.assertTrue(filecmp.cmp("./test_out/prerun_v14p/accepted_hits.bam",
+                                    "./test_data/pooled_tophat/prerun_v14p/accepted_hits.bam"))
+        self.assertTrue(filecmp.cmp("./test_out/prerun_v14p/junctions.bed",
+                                    "./test_data/pooled_tophat/prerun_v14p/junctions.bed"))
+
+        self.assertTrue(filecmp.cmp("./test_out/v18s/accepted_hits.bam",
+                                    "./test_data/pooled_tophat/v18s/accepted_hits.bam"))
+        self.assertTrue(filecmp.cmp("./test_out/v18s/junctions.bed",
+                                    "./test_data/pooled_tophat/v18s/junctions.bed"))
+        self.assertTrue(filecmp.cmp("./test_out/v18p/accepted_hits.bam",
+                                    "./test_data/pooled_tophat/v18p/accepted_hits.bam"))
+        self.assertTrue(filecmp.cmp("./test_out/v18p/junctions.bed",
+                                    "./test_data/pooled_tophat/v18p/junctions.bed"))
+        self.assertTrue(filecmp.cmp("./test_out/v14s/accepted_hits.bam",
+                                    "./test_data/pooled_tophat/v14s/accepted_hits.bam"))
+        self.assertTrue(filecmp.cmp("./test_out/v14s/junctions.bed",
+                                    "./test_data/pooled_tophat/v14s/junctions.bed"))
+        self.assertTrue(filecmp.cmp("./test_out/v14p/accepted_hits.bam",
+                                    "./test_data/pooled_tophat/v14p/accepted_hits.bam"))
+        self.assertTrue(filecmp.cmp("./test_out/v14p/junctions.bed",
+                                    "./test_data/pooled_tophat/v14p/junctions.bed"))
+
 #class testPooledTxome(unittest.TestCase):
 #    def setUp(self):
 #        pass

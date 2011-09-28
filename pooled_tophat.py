@@ -205,10 +205,12 @@ def main(arguments=sys.argv[1:]):
                    cond_name)
 
     # generate pooled junctions across all samples
+    pooled_juncs_file = os.path.join(options.output_dir, "pooled.juncs")
+
     _pool_juncs([os.path.join(options.output_dir,
                               "prerun_" + x,
                               "junctions.bed") for x in options.labels],
-                os.path.join(options.output_dir, "pooled.juncs"))
+                pooled_juncs_file)
         
     # re-run tophat on each sample individually, using default params with
     # --raw-juncs and --no-novel-juncs
