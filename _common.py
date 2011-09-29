@@ -11,9 +11,9 @@ from Bio import AlignIO
 # path to dependencies
 BOWTIE_PATH = "/usr/bin/bowtie"
 TOPHAT_PATH = "/usr/bin/tophat"
-CUFFLINKS_PATH = "/usr/bin/cufflinks"
+CUFFLINKS_PATH = "/opt/bio/OLD_VERSIONS/cufflinks-1.0.3/cufflinks"
 SCRIPTURE_PATH = "/usr/bin/scripture"
-CUFFCOMPARE_PATH = "/usr/bin/cuffcompare"
+CUFFCOMPARE_PATH = "/opt/bio/OLD_VERSIONS/cufflinks-1.0.3/cuffcompare"
 PHYLOCSF_PATH = "/opt/bio/PhyloCSF-e346e1c/PhyloCSF"
 PFAMSCAN_PATH = "/opt/bio/pfamscan/pfam_scan.pl"
 
