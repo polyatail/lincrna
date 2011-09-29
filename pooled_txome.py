@@ -88,9 +88,7 @@ def run_cufflinks(prefix, cufflinks_options, sample_reads, sample_name):
     with open(os.path.join(outdir, "cufflinks.log"), "w") as cl_log:
         cufflinks_cmd = [_common.CUFFLINKS_PATH, "-q",
                          "-p", str(options.num_threads),
-                         "-o", outdir,
-                         "-m", str(options.fragment_mean),
-                         "-s", str(options.fragment_sd)] + \
+                         "-o", outdir] + \
                          cufflinks_options + \
                          [sample_reads]
 

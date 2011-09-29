@@ -1,0 +1,14 @@
+/opt/bio/OLD_VERSIONS/cufflinks-1.0.3/cufflinks -q -p 30 -o ./txome_out/cufflinks_v18s --min-frags-per-transfrag 0 ./test_out/v18s/accepted_hits.bam
+
+Warning: Your version of Cufflinks is not up-to-date. It is recommended that you upgrade to Cufflinks v1.1.0 to benefit from the most recent features and bug fixes (http://cufflinks.cbcb.umd.edu).
+[16:52:29] Inspecting reads and determining fragment length distribution.
+Processed 1058 loci.                        
+Warning: Using default Gaussian distribution due to insufficient paired-end reads in open ranges.  It is recommended that correct paramaters (--frag-len-mean and --frag-len-std-dev) be provided.
+> Map Properties:
+>	Total Map Mass: 682.00
+>	Read Type: 36bp single-end
+>	Fragment Length Distribution: Truncated Gaussian (default)
+>	              Default Mean: 200
+>	           Default Std Dev: 80
+[16:52:30] Assembling transcripts and estimating abundances.
+Processed 1058 loci.                        

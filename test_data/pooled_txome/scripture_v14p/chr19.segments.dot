@@ -1,0 +1,23 @@
+digraph chr19_3.423405300376917E-7_6.134243E7_21.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+"chr19:4111093-4111165"->"chr19:4286275-4286405"->"chr19:5364701-5364773"->"chr19:5364795-5364867"->"chr19:6247661-6247733"->"chr19:8990619-8990691"->"chr19:8990717-8990789"->"chr19:10269605-10269677"->"chr19:10269693-10269765"->"chr19:12067838-12067910"->"chr19:12841774-12841846"->"chr19:12841868-12841940"->"chr19:30105593-30105665"->"chr19:41133793-41133865"->"chr19:41133866-41133938"->"chr19:42176868-42176940"->"chr19:43564252-43564324"->"chr19:43564353-43564425"[style=invis];
+"chr19:4111093-4111165" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:4286275-4286405" [width=0.325, fixedsize=true, label=2.0, comment=3.423405300376917E-7];
+"chr19:5364701-5364773" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:5364795-5364867" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:6247661-6247733" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:8990619-8990691" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:8990717-8990789" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:10269605-10269677" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:10269693-10269765" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:12067838-12067910" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:12841774-12841846" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:12841868-12841940" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:30105593-30105665" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:41133793-41133865" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:41133866-41133938" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:42176868-42176940" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:43564252-43564324" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+"chr19:43564353-43564425" [width=0.18, fixedsize=true, label=1.0, comment=3.423405300376917E-7];
+}

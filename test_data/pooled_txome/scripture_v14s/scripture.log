@@ -1,0 +1,2012 @@
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr17.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr17 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr17.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 8
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr1.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr1 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr1.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 3
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr3_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr3_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr3_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr13_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr13_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr13_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr15.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr15 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr15.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 3
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chrX_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chrX_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chrX_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr12.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr12 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr12.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 3
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr2.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr2 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr2.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 4
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr16_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr16_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr16_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.001 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr7_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr7_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr7_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr10.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr10 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr10.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 5
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chrY.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chrY -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chrY.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr9_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr9_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr9_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr14.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr14 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr14.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 1
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr3.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr3 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr3.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 3
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr5.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr5 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr5.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 4
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr16.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr16 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr16.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 1
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr1_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr1_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr1_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr8.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr8 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr8.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 7
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr7.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr7 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr7.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 9
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr8_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr8_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr8_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr5_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr5_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr5_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr19.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr19 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr19.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chrUn_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chrUn_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chrUn_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Exception in thread "main" java.lang.NullPointerException
+	at broad.pda.seq.segmentation.ContinuousDataAlignmentModel.makeGraphWithCounts(ContinuousDataAlignmentModel.java:1271)
+	at broad.pda.seq.segmentation.ContinuousDataAlignmentModel.contiguousAcrossGraph(ContinuousDataAlignmentModel.java:1212)
+	at broad.pda.seq.segmentation.ContinuousDataAlignmentModel.main(ContinuousDataAlignmentModel.java:2306)
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr6.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr6 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr6.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 6
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr11.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr11 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr11.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 3
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr13.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr13 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr13.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 3
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr17_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr17_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr17_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chrY_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chrY_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chrY_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr4_random.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr4_random -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr4_random.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.001 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 0
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr9.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr9 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr9.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 8
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chrX.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chrX -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chrX.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 4
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr4.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr4 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr4.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 8
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chr18.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chr18 -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chr18.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Got read iterator
+Made it through all reads
+Collapsed reads
+Decollapsed by introns
+Made first graph
+Got extended pieces
+Made second graph
+Done making spliced graph
+Done adding paired ends (if available)
+Done getting paths. Total: 3
+Done with local segmentation
+Done setting local rate in graph
+Done scoring paths.
+/usr/bin/scripture -alignment ./test_out/v14s/accepted_hits.bam -out ./txome_out/scripture_v14s/chrM.segments -sizeFile /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/mm9.sizes -chr chrM -chrSequence /comp_sync/data/foreign/ucsc/20100816_mm9_sequence/chrM.fa
+
+Using Version VPaperR3
+Has pairs: false
+Has upweighting turned on: false
+Computing weights..... upweighting? false weight: 1.0
+AlignmentDataModel loaded, initializing model stats
+Computing alignment global stats for chromosome chr1
+Computing alignment global stats for chromosome chr10
+Computing alignment global stats for chromosome chr11
+Computing alignment global stats for chromosome chr12
+Computing alignment global stats for chromosome chr13
+Computing alignment global stats for chromosome chr13_random
+Computing alignment global stats for chromosome chr14
+Computing alignment global stats for chromosome chr15
+Computing alignment global stats for chromosome chr16
+Computing alignment global stats for chromosome chr16_random
+Computing alignment global stats for chromosome chr17
+Computing alignment global stats for chromosome chr17_random
+Computing alignment global stats for chromosome chr18
+Computing alignment global stats for chromosome chr19
+Computing alignment global stats for chromosome chr1_random
+Computing alignment global stats for chromosome chr2
+Computing alignment global stats for chromosome chr3
+Computing alignment global stats for chromosome chr3_random
+Computing alignment global stats for chromosome chr4
+Computing alignment global stats for chromosome chr4_random
+Computing alignment global stats for chromosome chr5
+Computing alignment global stats for chromosome chr5_random
+Computing alignment global stats for chromosome chr6
+Computing alignment global stats for chromosome chr7
+Computing alignment global stats for chromosome chr7_random
+Computing alignment global stats for chromosome chr8
+Computing alignment global stats for chromosome chr8_random
+Computing alignment global stats for chromosome chr9
+Computing alignment global stats for chromosome chr9_random
+Computing alignment global stats for chromosome chrX
+Computing alignment global stats for chromosome chrX_random
+Computing alignment global stats for chromosome chrY
+Computing alignment global stats for chromosome chrY_random
+model stats loaded, initializing model
+Built the model: 0.0 free memory: 500756264
+Loaded chromosome Sequence
+Segmenting accross graph
+Going to get read iterator to make graph with counts
+Exception in thread "main" java.lang.NullPointerException
+	at broad.pda.seq.segmentation.ContinuousDataAlignmentModel.makeGraphWithCounts(ContinuousDataAlignmentModel.java:1271)
+	at broad.pda.seq.segmentation.ContinuousDataAlignmentModel.contiguousAcrossGraph(ContinuousDataAlignmentModel.java:1212)
+	at broad.pda.seq.segmentation.ContinuousDataAlignmentModel.main(ContinuousDataAlignmentModel.java:2306)

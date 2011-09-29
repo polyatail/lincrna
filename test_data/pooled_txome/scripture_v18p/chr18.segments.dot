@@ -1,0 +1,11 @@
+digraph chr18_1.3219931148174927E-7_9.0772031E7_12.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+"chr18:5671564-5671724"->"chr18:12297574-12297738"->"chr18:12314559-12314721"->"chr18:34614306-34614407"->"chr18:36813800-36813900"->"chr18:38014157-38014257"[style=invis];
+"chr18:5671564-5671724" [width=0.4, fixedsize=true, label=2.0, comment=1.3219931148174927E-7];
+"chr18:12297574-12297738" [width=0.41000000000000003, fixedsize=true, label=2.0, comment=1.3219931148174927E-7];
+"chr18:12314559-12314721" [width=0.405, fixedsize=true, label=2.0, comment=1.3219931148174927E-7];
+"chr18:34614306-34614407" [width=0.2525, fixedsize=true, label=2.0, comment=1.3219931148174927E-7];
+"chr18:36813800-36813900" [width=0.25, fixedsize=true, label=1.0, comment=1.3219931148174927E-7];
+"chr18:38014157-38014257" [width=0.25, fixedsize=true, label=1.0, comment=1.3219931148174927E-7];
+}

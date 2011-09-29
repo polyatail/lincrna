@@ -1,0 +1,14 @@
+digraph chr16_1.3222246123974832E-7_9.831915E7_13.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+"chr16:4590371-4590443"->"chr16:32144886-32144958"->"chr16:33216850-33216922"->"chr16:43633262-43633334"->"chr16:49868009-49868081"->"chr16:49868103-49868175"->"chr16:50666200-50666272"->"chr16:50666277-50666349"->"chr16:57391587-57391661"[style=invis];
+"chr16:4590371-4590443" [width=0.18, fixedsize=true, label=1.0, comment=1.3222246123974832E-7];
+"chr16:32144886-32144958" [width=0.18, fixedsize=true, label=1.0, comment=1.3222246123974832E-7];
+"chr16:33216850-33216922" [width=0.18, fixedsize=true, label=1.0, comment=1.3222246123974832E-7];
+"chr16:43633262-43633334" [width=0.18, fixedsize=true, label=1.0, comment=1.3222246123974832E-7];
+"chr16:49868009-49868081" [width=0.18, fixedsize=true, label=1.0, comment=1.3222246123974832E-7];
+"chr16:49868103-49868175" [width=0.18, fixedsize=true, label=1.0, comment=1.3222246123974832E-7];
+"chr16:50666200-50666272" [width=0.18, fixedsize=true, label=1.0, comment=1.3222246123974832E-7];
+"chr16:50666277-50666349" [width=0.18, fixedsize=true, label=1.0, comment=1.3222246123974832E-7];
+"chr16:57391587-57391661" [width=0.185, fixedsize=true, label=2.0, comment=1.3222246123974832E-7];
+}

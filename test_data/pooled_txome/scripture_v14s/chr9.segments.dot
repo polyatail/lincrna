@@ -1,0 +1,13 @@
+digraph chr9_7.253608694504211E-8_1.24076172E8_9.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+"chr9:40103321-40103357"->"chr9:64026196-64026232"->"chr9:66356299-66356335"->"chr9:70434510-70434546"->"chr9:72943608-72943644"->"chr9:79980731-79980767"->"chr9:108844123-108844159"->"chr9:118990227-118990263"[style=invis];
+"chr9:40103321-40103357" [width=0.09, fixedsize=true, label=1.0, comment=7.253608694504211E-8];
+"chr9:64026196-64026232" [width=0.09, fixedsize=true, label=1.0, comment=7.253608694504211E-8];
+"chr9:66356299-66356335" [width=0.09, fixedsize=true, label=1.0, comment=7.253608694504211E-8];
+"chr9:70434510-70434546" [width=0.09, fixedsize=true, label=1.0, comment=7.253608694504211E-8];
+"chr9:72943608-72943644" [width=0.09, fixedsize=true, label=1.0, comment=7.253608694504211E-8];
+"chr9:79980731-79980767" [width=0.09, fixedsize=true, label=1.0, comment=7.253608694504211E-8];
+"chr9:108844123-108844159" [width=0.09, fixedsize=true, label=1.0, comment=7.253608694504211E-8];
+"chr9:118990227-118990263" [width=0.09, fixedsize=true, label=1.0, comment=7.253608694504211E-8];
+}

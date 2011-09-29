@@ -1,0 +1,3 @@
+ref_gene_id	ref_id	class_code	cuff_gene_id	cuff_id	FMI	FPKM	FPKM_conf_lo	FPKM_conf_hi	cov	len	major_iso_id	ref_match_len
+-	-	r	SCRG000001	SCRT000001	100	0.000000	0.000000	0.000000	0.000000	52	SCRT000001	-
+-	-	r	SCRG000002	SCRT000002	100	0.000000	0.000000	0.000000	0.000000	87	SCRT000002	-
