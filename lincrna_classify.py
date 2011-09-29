@@ -321,7 +321,7 @@ if __name__ == "__main__":
     parser.add_option("--max-csf",
                       dest="max_csf",
                       type="float",
-                      metavar="100.0",
+                      metavar="<int>",
                       default=False,
                       help="remove transcripts with CSF scores above this value")
                       
