@@ -148,7 +148,7 @@ def run_cuffcompare(cuffcomp_options, input_gtfs):
     with open(os.path.join(outdir, "cuffcompare.log"), "w") as cc_log:
         cuffcomp_cmd = [_common.CUFFCOMPARE_PATH, "-V",
                         "-o", os.path.join(outdir, "cuffcompare"),
-                        "-s", args[0]] + \
+                        "-s", _common.genome_fasta[args[0]]] + \
                         ([] if not options.reference else ["-r", options.reference]) + \
                         cuffcomp_options + \
                         input_gtfs
