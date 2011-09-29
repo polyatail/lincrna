@@ -18,7 +18,7 @@ PFAMSCAN_PATH = "/opt/bio/pfamscan/pfam_scan.pl"
 
 # path to sequence data
 genome_mafs = {"mm9": "/comp_sync/data/foreign/ucsc/20100921_multiz30way"}
-genome_fasta = {"mm9": "/comp_sync/data/foreign/ucsc/20100819_mm9_sequence"}
+genome_fasta = {"mm9": "/comp_sync/data/foreign/ucsc/20100816_mm9_sequence"}
 bowtie_index = {"mm9": "/comp_sync/data/foreign/bowtie_index/mm9/basespace"}
 
 # constants for unit tests
