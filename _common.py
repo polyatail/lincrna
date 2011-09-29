@@ -12,6 +12,7 @@ from Bio import AlignIO
 BOWTIE_PATH = "/usr/bin/bowtie"
 TOPHAT_PATH = "/usr/bin/tophat"
 CUFFLINKS_PATH = "/usr/bin/cufflinks"
+SCRIPTURE_PATH = "/usr/bin/scripture"
 CUFFCOMPARE_PATH = "/usr/bin/cuffcompare"
 PHYLOCSF_PATH = "/opt/bio/PhyloCSF-e346e1c/PhyloCSF"
 PFAMSCAN_PATH = "/opt/bio/pfamscan/pfam_scan.pl"
