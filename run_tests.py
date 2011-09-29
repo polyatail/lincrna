@@ -45,6 +45,15 @@ class testDependencies(unittest.TestCase):
             time.sleep(0.1)
         
         self.assertEqual(cufflinks.stderr.readline().strip(), _common.CUFFLINKS_VERSION)
+
+    def testScripture(self):
+        scripture = subprocess.Popen([_common.SCRIPTURE_PATH],
+                                     stderr=subprocess.PIPE)
+        
+        while scripture.poll() == None:
+            time.sleep(0.1)
+        
+        self.assertEqual(scripture.stderr.readline().strip(), _common.SCRIPTURE_VERSION)
         
     def testCuffcompare(self):
         cuffcomp = subprocess.Popen([_common.CUFFCOMPARE_PATH],

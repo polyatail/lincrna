@@ -26,6 +26,7 @@ bowtie_index = {"mm9": "/comp_sync/data/foreign/bowtie_index/mm9/basespace"}
 BOWTIE_VERSION = "bowtie version 0.12.7"
 TOPHAT_VERSION = "TopHat v1.3.1"
 CUFFLINKS_VERSION = "cufflinks v1.0.3"
+SCRIPTURE_VERSION = "Using Version VPaperR3"
 CUFFCOMPARE_VERSION = "cuffcompare v1.0.3 (2403)"
 PHYLOCSF_HELP = "usage: PhyloCSF.Linux.x86_64 parameter_set [file1 file2 ...]"
 PFAMSCAN_HELP = "pfam_scan.pl: search a FASTA file against a library of Pfam HMMs"
