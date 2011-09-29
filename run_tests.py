@@ -342,9 +342,9 @@ class testPooledTopHat(unittest.TestCase):
                                  "./test_data/v18_p_subset-left.fastq,./test_data/v18_p_subset-right.fastq",
                                  "v18_paired")
                                  
-        self.assertTrue(filecmp.cmp("./test_out/v18_single/accepted_hits.bam",
+        self.assertTrue(filecmp.cmp("./test_out/v18_paired/accepted_hits.bam",
                                     "./test_data/pooled_tophat/v18_paired/accepted_hits.bam"))
-        self.assertTrue(filecmp.cmp("./test_out/v18_single/junctions.bed",
+        self.assertTrue(filecmp.cmp("./test_out/v18_paired/junctions.bed",
                                     "./test_data/pooled_tophat/v18_paired/junctions.bed"))
 
     def testRunTH_v14_single(self):
@@ -353,9 +353,9 @@ class testPooledTopHat(unittest.TestCase):
                                  "./test_data/v14_s_subset.fastq",
                                  "v14_single")
                                  
-        self.assertTrue(filecmp.cmp("./test_out/v18_single/accepted_hits.bam",
+        self.assertTrue(filecmp.cmp("./test_out/v14_single/accepted_hits.bam",
                                     "./test_data/pooled_tophat/v14_single/accepted_hits.bam"))
-        self.assertTrue(filecmp.cmp("./test_out/v18_single/junctions.bed",
+        self.assertTrue(filecmp.cmp("./test_out/v14_single/junctions.bed",
                                     "./test_data/pooled_tophat/v14_single/junctions.bed"))
 
     def testRunTH_v14_paired(self):
@@ -365,9 +365,9 @@ class testPooledTopHat(unittest.TestCase):
                                  "v14_paired")
                                  
         self.assertTrue(filecmp.cmp("./test_out/v14_paired/accepted_hits.bam",
-                                    "./test_data/pooled_tophat/v18_single/accepted_hits.bam"))
+                                    "./test_data/pooled_tophat/v14_paired/accepted_hits.bam"))
         self.assertTrue(filecmp.cmp("./test_out/v14_paired/junctions.bed",
-                                    "./test_data/pooled_tophat/v18_single/junctions.bed"))
+                                    "./test_data/pooled_tophat/v14_paired/junctions.bed"))
     
     def testFullRun(self):
         # run all the libraries above in a pooled run
