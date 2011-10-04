@@ -101,8 +101,8 @@ class testFilterReads(unittest.TestCase):
         self.ver18_bad_metadata = open("./test_data/ver18_bad_metadata.fastq", "r")
         self.ver18_single = open("./test_data/ver18_single.fastq", "r")
         
-        self.left_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
-        self.right_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
+        self.left_tempfile = tempfile.NamedTemporaryFile("w+")
+        self.right_tempfile = tempfile.NamedTemporaryFile("w+")
 
     def testReadLen(self):
         result = filter_reads.fastq_readlen(self.ver14_single)
@@ -282,32 +282,54 @@ class testPooledTopHat(unittest.TestCase):
                                      "/dev/null"])
 
     def testBedToJunc(self):
-        expected = ['chr19\t3261580\t3262041\t-',
-                    'chr19\t3265619\t3266376\t-',
-                    'chr19\t3266417\t3267271\t-',
-                    'chr19\t3268370\t3268721\t-', 
-                    'chr19\t3268796\t3271591\t-', 
-                    'chr19\t3271664\t3272923\t-', 
-                    'chr19\t3272971\t3274415\t-', 
-                    'chr19\t3274510\t3276821\t-', 
-                    'chr19\t3276854\t3279596\t-']
-                    
-        result = pooled_tophat._bed_to_junc("./test_data/th_junc_good1.bed")
-        
+        expected = ['chr19\t3261634\t3261974\t-',
+                    'chr19\t3265664\t3266335\t-',
+                    'chr19\t3266458\t3267241\t-',
+                    'chr19\t3268415\t3268659\t-',
+                    'chr19\t3268841\t3271525\t-',
+                    'chr19\t3271699\t3272887\t-',
+                    'chr19\t3273034\t3274355\t-',
+                    'chr19\t3274555\t3276755\t-',
+                    'chr19\t3276918\t3279532\t-']                    
+        result = pooled_tophat._bed_to_junc("./test_data/th_junc_good1.bed")        
+        self.assertEqual(result, expected)
+
+        expected = ['chr19\t3649599\t3652132\t-',
+                    'chr19\t3649608\t3652141\t+',
+                    'chr19\t3652329\t3659243\t-',
+                    'chr19\t3689999\t3706645\t-',
+                    'chr19\t3714624\t3715637\t+',
+                    'chr19\t3715801\t3716490\t+',
+                    'chr19\t3768339\t3786388\t+',
+                    'chr19\t3786626\t3793067\t+',
+                    'chr19\t3793214\t3796639\t+']
+        result = pooled_tophat._bed_to_junc("./test_data/th_junc_good2.bed")        
         self.assertEqual(result, expected)
         
         self.assertRaises(ValueError,
                           pooled_tophat._bed_to_junc,
-                          "./test_data/th_junc_bad.bed")
+                          "./test_data/th_junc_bad1.bed")
+        self.assertRaises(ValueError,
+                          pooled_tophat._bed_to_junc,
+                          "./test_data/th_junc_bad2.bed")
     
-    def testPoolJuncs(self):
-        outfile = tempfile.NamedTemporaryFile("w+",delete=False)        
+    def testPoolJuncs1(self):
+        outfile = tempfile.NamedTemporaryFile("w+")        
         result = pooled_tophat._pool_juncs(["./test_data/th_junc_good1.bed",
                                             "./test_data/th_junc_good2.bed"],
                                             outfile.name)
                                             
         outfile.seek(0)
-        self.assertTrue(filecmp.cmp(outfile.name, "./test_data/th_pooled.juncs"))
+        self.assertTrue(filecmp.cmp(outfile.name, "./test_data/th_pooled1.juncs"))
+
+    def testPoolJuncs2(self):
+        outfile = tempfile.NamedTemporaryFile("w+")        
+        result = pooled_tophat._pool_juncs(["./test_data/th_junc_good1.bed",
+                                            "./test_data/th_junc_good1.bed"],
+                                            outfile.name)
+                                            
+        outfile.seek(0)
+        self.assertTrue(filecmp.cmp(outfile.name, "./test_data/th_pooled2.juncs"))
 
     def testValidateReads(self):
         # mixed FASTQ version

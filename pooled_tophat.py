@@ -111,16 +111,27 @@ def _bed_to_junc(bedfile):
     juncs = []
     
     with open(bedfile, "r") as fp:
+        header = fp.readline()
+        
+        if not header.startswith("track"):
+            raise ValueError("First line in BED file not a 'track' line")
+
+        line_num = 1
         for line in fp:
-            if line.startswith("track") or not line.strip():
-                continue
+            line = line.strip()
+            cols = line.split()
+            line_num += 1
+            if len(cols) < 12: 
+                raise ValueError("Malformed line %d, missing columns" % line_num)
 
-            line_split = line.split("\t")
-
-            try:
-                juncs.append("\t".join(line_split[:3] + [line_split[5]]))
-            except IndexError:
-                raise ValueError("Invalid BED file: %s" % (bedfile,))
+            chromosome = cols[0]
+            orientation = cols[5]
+            block_starts = [int(x) for x in cols[11].split(",")]
+            block_sizes = [int(x) for x in cols[10].split(",")]
+    
+            left_pos = int(cols[1]) + block_starts[0] + block_sizes[0] - 1 
+            right_pos = int(cols[1]) + block_starts[1] 
+            juncs.append("%s\t%d\t%d\t%s" % (chromosome, left_pos, right_pos, orientation))
             
     return juncs
     
@@ -129,6 +140,9 @@ def _pool_juncs(in_bedfiles, out_juncfile):
     
     for bedfile in in_bedfiles:
         pooled_juncs.extend(_bed_to_junc(bedfile))
+
+    # make lines unique
+    pooled_juncs = sorted(list(set(pooled_juncs)))
 
     with open(out_juncfile, "w") as fp:
         fp.write("\n".join(pooled_juncs))    
