@@ -186,6 +186,24 @@ def parse_options(arguments):
                       metavar="[20]",
                       default=20,
                       help="the standard deviation of the distance between pairs")
+
+    parser.add_option("--prerun",
+                      dest="prerun",
+                      action="store_true",
+                      default=False,
+                      help="perform only the 'discovery' TopHat runs")
+
+    parser.add_option("--pool-juncs",
+                      dest="pool_juncs",
+                      action="store_true",
+                      default=False,
+                      help="only pool junctions across samples")
+
+    parser.add_option("--realrun",
+                      dest="realrun",
+                      action="store_true",
+                      default=False,
+                      help="perform only the alignment TopHat runs")
     
     options, args = parser.parse_args(arguments)
     
@@ -209,30 +227,37 @@ def main(arguments=sys.argv[1:]):
     
     if not os.path.exists(options.output_dir):
         os.mkdir(options.output_dir)
+
+    normal_run = not (options.realrun or options.prerun or options.pool_juncs)
     
     # run tophat on each sample individually, using default params with
     # --min-anchor=5 and --min-isoform-fraction=0
-    for cond_name, cond_reads in zip(options.labels, args[1:]):
-        run_tophat("prerun_",
-                   ["-F", "0", "-a", "5"],
-                   cond_reads,
-                   cond_name)
+    if normal_run or options.prerun:
+        for cond_name, cond_reads in zip(options.labels, args[1:]):
+            run_tophat("prerun_",
+                       ["-F", "0", "-a", "5"],
+                       cond_reads,
+                       cond_name)
 
     # generate pooled junctions across all samples
-    pooled_juncs_file = os.path.join(options.output_dir, "pooled.juncs")
-
-    _pool_juncs([os.path.join(options.output_dir,
-                              "prerun_" + x,
-                              "junctions.bed") for x in options.labels],
-                pooled_juncs_file)
+    if normal_run or options.pool_juncs:
+        pooled_juncs_file = os.path.join(options.output_dir, "pooled.juncs")
+    
+        _pool_juncs([os.path.join(options.output_dir,
+                                  "prerun_" + x,
+                                  "junctions.bed") for x in options.labels],
+                    pooled_juncs_file)
+    else:
+        pooled_juncs_file = os.path.join(options.output_dir, "pooled.juncs")
         
     # re-run tophat on each sample individually, using default params with
     # --raw-juncs and --no-novel-juncs
-    for cond_name, cond_reads in zip(options.labels, args[1:]):
-        run_tophat("",
-                   ["-j", pooled_juncs_file, "--no-novel-juncs"],
-                   cond_reads,
-                   cond_name)
+    if normal_run or options.realrun:
+        for cond_name, cond_reads in zip(options.labels, args[1:]):
+            run_tophat("",
+                       ["-j", pooled_juncs_file, "--no-novel-juncs"],
+                       cond_reads,
+                       cond_name)
                         
 if __name__ == "__main__":
     main()
