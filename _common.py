@@ -6,11 +6,12 @@ __date__ = "9/19/2011"
 __version__ = 0.0
 
 import os
+import sys
 from Bio import AlignIO
 
 # path to dependencies
 BOWTIE_PATH = "/usr/bin/bowtie"
-TOPHAT_PATH = "/usr/bin/tophat"
+TOPHAT_PATH = "/usr/bin/tophat-andrew"
 CUFFLINKS_PATH = "/opt/bio/OLD_VERSIONS/cufflinks-1.0.3/cufflinks"
 SCRIPTURE_PATH = "/usr/bin/scripture"
 CUFFCOMPARE_PATH = "/opt/bio/OLD_VERSIONS/cufflinks-1.0.3/cuffcompare"
@@ -73,3 +74,22 @@ def _find_genome_files(dirname):
         raise ValueError("Chromosomes (%s) do not have sequence files" % (", ".join(chroms_without_files),))
         
     return assembly, chromosome_files
+
+def fork_and_run(func, *args, **kwds):
+    pid = os.fork()
+    
+    if pid == 0:
+        func(*args, **kwds)
+        sys.exit(0)
+    else:
+        return pid
+    
+def wait_for_slot(pid_list, slots, finish = False):
+    while len(pid_list) >= slots:
+        waitpid_result = os.waitpid(0, os.WNOHANG & os.WUNTRACED)
+
+        if waitpid_result[0] > 0:
+            pid_list.remove(waitpid_result[0])
+            
+        if finish == True and len(pid_list) == 0:
+            break

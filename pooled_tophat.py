@@ -166,6 +166,13 @@ def parse_options(arguments):
                       metavar="[1]",
                       default=1,
                       help="number of threads used during analysis")
+
+    parser.add_option("-c",
+                      dest="num_procs",
+                      type="int",
+                      metavar="[1]",
+                      default=1,
+                      help="number of concurrent TopHat processes")
                       
     parser.add_option("-L",
                       dest="labels",
@@ -233,11 +240,17 @@ def main(arguments=sys.argv[1:]):
     # run tophat on each sample individually, using default params with
     # --min-anchor=5 and --min-isoform-fraction=0
     if normal_run or options.prerun:
+        pid_list = []
+        
         for cond_name, cond_reads in zip(options.labels, args[1:]):
-            run_tophat("prerun_",
-                       ["-F", "0", "-a", "5"],
-                       cond_reads,
-                       cond_name)
+            pid_list.append(_common.fork_and_run(run_tophat, "prerun_",
+                                                 ["-F", "0", "-a", "5"],
+                                                 cond_reads,
+                                                 cond_name))
+                                 
+            _common.wait_for_slot(pid_list, options.num_procs)
+            
+        _common.wait_for_slot(pid_list, 0, True)
 
     # generate pooled junctions across all samples
     if normal_run or options.pool_juncs:
@@ -253,11 +266,17 @@ def main(arguments=sys.argv[1:]):
     # re-run tophat on each sample individually, using default params with
     # --raw-juncs and --no-novel-juncs
     if normal_run or options.realrun:
+        pid_list = []
+        
         for cond_name, cond_reads in zip(options.labels, args[1:]):
-            run_tophat("",
-                       ["-j", pooled_juncs_file, "--no-novel-juncs"],
-                       cond_reads,
-                       cond_name)
+            pid_list.append(_common.fork_and_run(run_tophat, "",
+                                                 ["-j", pooled_juncs_file, "--no-novel-juncs"],
+                                                 cond_reads,
+                                                 cond_name))
+                                                 
+            _common.wait_for_slot(pid_list, options.num_procs)
+
+        _common.wait_for_slot(pid_list, 0, True)
                         
 if __name__ == "__main__":
     main()
