@@ -208,6 +208,24 @@ def parse_options(arguments):
                       metavar="[80]",
                       default=80,
                       help="fragment length std deviation (unpaired reads only)")
+
+    parser.add_option("--prerun",
+                      dest="prerun",
+                      action="store_true",
+                      default=False,
+                      help="perform only the 'discovery' Cufflinks/Scripture runs")
+
+    parser.add_option("--pool-transcripts",
+                      dest="pool_transcripts",
+                      action="store_true",
+                      default=False,
+                      help="pool transcripts with Cuffcompare")
+
+    parser.add_option("--realrun",
+                      dest="realrun",
+                      action="store_true",
+                      default=False,
+                      help="perform only the quantitation Cufflinks runs")
     
     options, args = parser.parse_args()
     
@@ -240,40 +258,45 @@ def main():
     if not os.path.exists(options.output_dir):
         os.mkdir(options.output_dir)
 
+    normal_run = not (options.realrun or options.prerun or options.pool_transcripts)
+
     # run each sample separately in cufflinks transcript discovery mode
-    for cond_name, cond_reads in zip(options.labels, args[1:]):
-        run_cufflinks("cufflinks_", ["--min-frags-per-transfrag", "0"], cond_reads, cond_name)
-        
-    # make sure there's a BAM index on every input file
-    for cond_reads in args[1:]:
-        _index_bam(cond_reads)
-        
-    # run each sample separately through scripture's slow, shitty algorithm
-    # and convert final BED output to GTF
-    for cond_name, cond_reads in zip(options.labels, args[1:]):
-        run_scripture("scripture_", [], cond_reads, cond_name)
+    if normal_run or options.prerun:
+        for cond_name, cond_reads in zip(options.labels, args[1:]):
+            run_cufflinks("cufflinks_", ["--min-frags-per-transfrag", "0"], cond_reads, cond_name)
+            
+        # make sure there's a BAM index on every input file
+        for cond_reads in args[1:]:
+            _index_bam(cond_reads)
+            
+        # run each sample separately through scripture's slow, shitty algorithm
+        # and convert final BED output to GTF
+        for cond_name, cond_reads in zip(options.labels, args[1:]):
+            run_scripture("scripture_", [], cond_reads, cond_name)
 
     # run cuffcompare to generate the unique intersection of all output GTFs
-    input_gtfs = []
-    
-    for cond_name in options.labels:
-        input_gtfs.append(os.path.join(options.output_dir,
-                                       "cufflinks_" + cond_name,
-                                       "transcripts.gtf"))
-        input_gtfs.append(os.path.join(options.output_dir,
-                                       "scripture_" + cond_name,
-                                       "transcripts.gtf"))
-                                       
-    run_cuffcompare([], input_gtfs)
+    if normal_run or options.pool_transcripts:
+        input_gtfs = []
+        
+        for cond_name in options.labels:
+            input_gtfs.append(os.path.join(options.output_dir,
+                                           "cufflinks_" + cond_name,
+                                           "transcripts.gtf"))
+            input_gtfs.append(os.path.join(options.output_dir,
+                                           "scripture_" + cond_name,
+                                           "transcripts.gtf"))
+                                           
+        run_cuffcompare([], input_gtfs)
     
     # re-run each sample separately in abundance calculation mode
-    for cond_name, cond_reads in zip(options.labels, args[1:]):
-        run_cufflinks("FPKM_", ["--min-frags-per-transfrag", "0",
-                                "-G", os.path.join(options.output_dir,
-                                                   "cuffcompare",
-                                                   "cuffcompare.combined.gtf")] + \
-                               ([] if not options.mask else ["-M", options.mask]),
-                      cond_reads, cond_name)
+    if normal_run or options.realrun:
+        for cond_name, cond_reads in zip(options.labels, args[1:]):
+            run_cufflinks("FPKM_", ["--min-frags-per-transfrag", "0",
+                                    "-G", os.path.join(options.output_dir,
+                                                       "cuffcompare",
+                                                       "cuffcompare.combined.gtf")] + \
+                                   ([] if not options.mask else ["-M", options.mask]),
+                          cond_reads, cond_name)
                         
 if __name__ == "__main__":
     main()
