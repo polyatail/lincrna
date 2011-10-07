@@ -1,8 +1,0 @@
-digraph chr1_2.0284445534215012E-8_1.97195432E8_4.0 {
- rankdir=LR; 
- node [shape = rectangle];
-"chr1:20769383-20769419"->"chr1:172072527-172072563"->"chr1:180261271-180261307"[style=invis];
-"chr1:20769383-20769419" [width=0.09, fixedsize=true, label=1.0, comment=2.0284445534215012E-8];
-"chr1:172072527-172072563" [width=0.09, fixedsize=true, label=1.0, comment=2.0284445534215012E-8];
-"chr1:180261271-180261307" [width=0.09, fixedsize=true, label=1.0, comment=2.0284445534215012E-8];
-}

@@ -1,6 +1,0 @@
-digraph chr16_2.034191711380743E-8_9.831915E7_2.0 {
- rankdir=LR; 
- node [shape = rectangle];
-"chr16:57156228-57156264"[style=invis];
-"chr16:57156228-57156264" [width=0.09, fixedsize=true, label=1.0, comment=2.034191711380743E-8];
-}

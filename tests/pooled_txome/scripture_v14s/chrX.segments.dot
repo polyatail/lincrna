@@ -1,0 +1,9 @@
+digraph chrX_3.0002947009467056E-8_1.66650296E8_5.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+"chrX:16241848-16241884"->"chrX:34338570-34338606"->"chrX:39866643-39866679"->"chrX:70596699-70596735"[style=invis];
+"chrX:16241848-16241884" [width=0.09, fixedsize=true, label=1.0, comment=3.0002947009467056E-8];
+"chrX:34338570-34338606" [width=0.09, fixedsize=true, label=1.0, comment=3.0002947009467056E-8];
+"chrX:39866643-39866679" [width=0.09, fixedsize=true, label=1.0, comment=3.0002947009467056E-8];
+"chrX:70596699-70596735" [width=0.09, fixedsize=true, label=1.0, comment=3.0002947009467056E-8];
+}

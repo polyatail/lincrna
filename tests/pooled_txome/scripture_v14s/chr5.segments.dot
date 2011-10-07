@@ -1,0 +1,9 @@
+digraph chr5_3.277887666776548E-8_1.52537259E8_5.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+"chr5:23912539-23912575"->"chr5:34003893-34003929"->"chr5:52543133-52543169"->"chr5:77396146-77396182"[style=invis];
+"chr5:23912539-23912575" [width=0.09, fixedsize=true, label=1.0, comment=3.277887666776548E-8];
+"chr5:34003893-34003929" [width=0.09, fixedsize=true, label=1.0, comment=3.277887666776548E-8];
+"chr5:52543133-52543169" [width=0.09, fixedsize=true, label=1.0, comment=3.277887666776548E-8];
+"chr5:77396146-77396182" [width=0.09, fixedsize=true, label=1.0, comment=3.277887666776548E-8];
+}

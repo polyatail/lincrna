@@ -1,0 +1,8 @@
+digraph chr13_3.3254544449653584E-8_1.20284312E8_4.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+"chr13:3550293-3550329"->"chr13:38140789-38140825"->"chr13:55800685-55800721"[style=invis];
+"chr13:3550293-3550329" [width=0.09, fixedsize=true, label=1.0, comment=3.3254544449653584E-8];
+"chr13:38140789-38140825" [width=0.09, fixedsize=true, label=1.0, comment=3.3254544449653584E-8];
+"chr13:55800685-55800721" [width=0.09, fixedsize=true, label=1.0, comment=3.3254544449653584E-8];
+}

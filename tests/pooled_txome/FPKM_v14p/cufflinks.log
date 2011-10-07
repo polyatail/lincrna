@@ -1,0 +1,16 @@
+/opt/bio/OLD_VERSIONS/cufflinks-1.0.3/cufflinks -q -p 30 -o ./txome_out/FPKM_v14p --min-frags-per-transfrag 0 -G ./txome_out/cuffcompare/cuffcompare.combined.gtf -M ./test_data/20110715_mm9_rRNA_tRNA_mask.fixed.gtf ./test_out/v14p/accepted_hits.bam
+
+Warning: Your version of Cufflinks is not up-to-date. It is recommended that you upgrade to Cufflinks v1.1.0 to benefit from the most recent features and bug fixes (http://cufflinks.cbcb.umd.edu).
+[17:05:34] Loading reference annotation.
+[17:05:34] Loading reference annotation.
+[17:05:34] Inspecting reads and determining fragment length distribution.
+Processed 829 loci.                         
+Warning: Using default Gaussian distribution due to insufficient paired-end reads in open ranges.  It is recommended that correct paramaters (--frag-len-mean and --frag-len-std-dev) be provided.
+> Map Properties:
+>	Total Map Mass: 374.00
+>	Read Type: 72bp single-end
+>	Fragment Length Distribution: Truncated Gaussian (default)
+>	              Default Mean: 200
+>	           Default Std Dev: 80
+[17:05:35] Estimating transcript abundances.
+Processed 829 loci.                         

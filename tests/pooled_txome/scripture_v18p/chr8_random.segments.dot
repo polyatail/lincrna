@@ -1,0 +1,5 @@
+digraph chr8_random_0.0_849593.0_0.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+[style=invis];
+}

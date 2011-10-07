@@ -10,6 +10,7 @@ import sys
 from Bio import AlignIO
 
 # path to dependencies
+SAMTOOLS_PATH = "/usr/bin/samtools"
 BOWTIE_PATH = "/usr/bin/bowtie"
 TOPHAT_PATH = "/usr/bin/tophat-andrew"
 CUFFLINKS_PATH = "/opt/bio/OLD_VERSIONS/cufflinks-1.0.3/cufflinks"
@@ -17,6 +18,8 @@ SCRIPTURE_PATH = "/usr/bin/scripture"
 CUFFCOMPARE_PATH = "/opt/bio/OLD_VERSIONS/cufflinks-1.0.3/cuffcompare"
 PHYLOCSF_PATH = "/opt/bio/PhyloCSF-e346e1c/PhyloCSF"
 PFAMSCAN_PATH = "/opt/bio/pfamscan/pfam_scan.pl"
+UCSC_KENT_PATH = "/opt/bio/ucsc_kent-20100816/bin"
+UCSC_HTTP_PATH = "http://hgdownload.cse.ucsc.edu/goldenPath/%(assembly)s/database/%(table)s.txt.gz"
 
 # path to sequence data
 genome_mafs = {"mm9": "/comp_sync/data/foreign/ucsc/20100921_multiz30way"}
@@ -34,7 +37,7 @@ PFAMSCAN_HELP = "pfam_scan.pl: search a FASTA file against a library of Pfam HMM
 
 def _load_maf(assembly):
     dirname = genome_mafs[assembly]
-    found_assembly, chrom_files = _find_genome_files(dirname)
+    found_assembly, chrom_files = find_genome_files(dirname)
 
     assert assembly == found_assembly
     
@@ -47,7 +50,7 @@ def _load_maf(assembly):
                                                   
     return chrom_maf
 
-def _find_genome_files(dirname):
+def find_genome_files(dirname):
     dir_contents = os.listdir(dirname)
     
     assembly = None

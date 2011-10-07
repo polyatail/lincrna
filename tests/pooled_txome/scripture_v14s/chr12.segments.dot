@@ -1,0 +1,8 @@
+digraph chr12_3.2987642087052245E-8_1.2125753E8_4.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+"chr12:76732164-76732200"->"chr12:87447038-87447074"->"chr12:88769897-88769933"[style=invis];
+"chr12:76732164-76732200" [width=0.09, fixedsize=true, label=1.0, comment=3.2987642087052245E-8];
+"chr12:87447038-87447074" [width=0.09, fixedsize=true, label=1.0, comment=3.2987642087052245E-8];
+"chr12:88769897-88769933" [width=0.09, fixedsize=true, label=1.0, comment=3.2987642087052245E-8];
+}

@@ -1,0 +1,137 @@
+# Cuffcompare v1.0.3 | Command line was:
+#/opt/bio/OLD_VERSIONS/cufflinks-1.0.3/cuffcompare -V -o ./txome_out/cuffcompare/cuffcompare -s /comp_sync/data/foreign/ucsc/20100816_mm9_sequence -r ./test_data/20110715_mm9_knownGene.fixed.gtf ./txome_out/cufflinks_v18s/transcripts.gtf ./txome_out/scripture_v18s/transcripts.gtf ./txome_out/cufflinks_v18p/transcripts.gtf ./txome_out/scripture_v18p/transcripts.gtf ./txome_out/cufflinks_v14s/transcripts.gtf ./txome_out/scripture_v14s/transcripts.gtf ./txome_out/cufflinks_v14p/transcripts.gtf ./txome_out/scripture_v14p/transcripts.gtf
+#
+
+#= Summary for dataset: ./txome_out/cufflinks_v18s/transcripts.gtf :
+#     Query mRNAs :     247 in     247 loci  (0 multi-exon transcripts)
+#            (0 multi-transcript loci, ~1.0 transcripts per locus)
+# Reference mRNAs :   55377 in   28232 loci  (48142 multi-exon)
+# Corresponding super-loci:            101
+#--------------------|   Sn   |  Sp   |  fSn |  fSp  
+        Base level: 	  0.0	 40.8	  - 	  - 
+        Exon level: 	  0.0	  0.0	  0.0	  0.0
+      Intron level: 	  0.0	 -nan	  0.0	 -nan
+Intron chain level: 	  0.0	 -nan	  0.0	 -nan
+  Transcript level: 	  0.0	  0.0	  0.0	  0.0
+       Locus level: 	  0.0	  0.0	  0.0	  0.0
+   Missed exons:	246243/246354 (100.0%)
+    Wrong exons:	142/247 ( 57.5%)
+ Missed introns:	215164/215164 (100.0%)
+ Missed loci:	27879/28232 ( 98.7%)
+  Wrong loci:	142/247 ( 57.5%)
+
+#= Summary for dataset: ./txome_out/scripture_v18s/transcripts.gtf :
+#     Query mRNAs :       2 in       2 loci  (0 multi-exon transcripts)
+#            (0 multi-transcript loci, ~1.0 transcripts per locus)
+# Reference mRNAs :   55365 in   28228 loci  (48130 multi-exon)
+# Corresponding super-loci:              0
+#--------------------|   Sn   |  Sp   |  fSn |  fSp  
+        Base level: 	  0.0	  0.0	  - 	  - 
+        Exon level: 	  0.0	  0.0	  0.0	  0.0
+      Intron level: 	  0.0	 -nan	  0.0	 -nan
+Intron chain level: 	  0.0	 -nan	  0.0	 -nan
+  Transcript level: 	  0.0	  0.0	  0.0	  0.0
+       Locus level: 	  0.0	  0.0	  0.0	  0.0
+   Missed exons:	246287/246287 (100.0%)
+    Wrong exons:	2/2 (100.0%)
+ Missed introns:	215104/215104 (100.0%)
+ Missed loci:	1505/28228 (  5.3%)
+  Wrong loci:	2/2 (100.0%)
+
+#= Summary for dataset: ./txome_out/cufflinks_v18p/transcripts.gtf :
+#     Query mRNAs :     405 in     405 loci  (0 multi-exon transcripts)
+#            (0 multi-transcript loci, ~1.0 transcripts per locus)
+# Reference mRNAs :   55357 in   28227 loci  (48122 multi-exon)
+# Corresponding super-loci:             99
+#--------------------|   Sn   |  Sp   |  fSn |  fSp  
+        Base level: 	  0.0	 23.6	  - 	  - 
+        Exon level: 	  0.0	  0.0	  0.0	  0.0
+      Intron level: 	  0.0	 -nan	  0.0	 -nan
+Intron chain level: 	  0.0	 -nan	  0.0	 -nan
+  Transcript level: 	  0.0	  0.0	  0.0	  0.0
+       Locus level: 	  0.0	  0.0	  0.0	  0.0
+   Missed exons:	246082/246197 (100.0%)
+    Wrong exons:	299/405 ( 73.8%)
+ Missed introns:	215016/215016 (100.0%)
+ Missed loci:	27875/28227 ( 98.8%)
+  Wrong loci:	299/405 ( 73.8%)
+
+#= Summary for dataset: ./txome_out/scripture_v18p/transcripts.gtf :
+#     Query mRNAs :       4 in       4 loci  (0 multi-exon transcripts)
+#            (0 multi-transcript loci, ~1.0 transcripts per locus)
+# Reference mRNAs :   55311 in   28213 loci  (48077 multi-exon)
+# Corresponding super-loci:              0
+#--------------------|   Sn   |  Sp   |  fSn |  fSp  
+        Base level: 	  0.0	  0.0	  - 	  - 
+        Exon level: 	  0.0	  0.0	  0.0	  0.0
+      Intron level: 	  0.0	 -nan	  0.0	 -nan
+Intron chain level: 	  0.0	 -nan	  0.0	 -nan
+  Transcript level: 	  0.0	  0.0	  0.0	  0.0
+       Locus level: 	  0.0	  0.0	  0.0	  0.0
+   Missed exons:	245992/245992 (100.0%)
+    Wrong exons:	4/4 (100.0%)
+ Missed introns:	214824/214824 (100.0%)
+ Missed loci:	4792/28213 ( 17.0%)
+  Wrong loci:	4/4 (100.0%)
+
+#= Summary for dataset: ./txome_out/cufflinks_v14s/transcripts.gtf :
+#     Query mRNAs :      54 in      54 loci  (0 multi-exon transcripts)
+#            (0 multi-transcript loci, ~1.0 transcripts per locus)
+# Reference mRNAs :   55294 in   28206 loci  (48061 multi-exon)
+# Corresponding super-loci:             30
+#--------------------|   Sn   |  Sp   |  fSn |  fSp  
+        Base level: 	  0.0	 57.1	  - 	  - 
+        Exon level: 	  0.0	  0.0	  0.0	  0.0
+      Intron level: 	  0.0	 -nan	  0.0	 -nan
+Intron chain level: 	  0.0	 -nan	  0.0	 -nan
+  Transcript level: 	  0.0	  0.0	  0.0	  0.0
+       Locus level: 	  0.0	  0.0	  0.0	  0.0
+   Missed exons:	245770/245802 (100.0%)
+    Wrong exons:	23/54 ( 42.6%)
+ Missed introns:	214639/214639 (100.0%)
+ Missed loci:	24199/28206 ( 85.8%)
+  Wrong loci:	23/54 ( 42.6%)
+
+#= Summary for dataset: ./txome_out/scripture_v14s/transcripts.gtf :
+#     Query mRNAs :       0 in       0 loci  (0 multi-exon transcripts)
+#            (0 multi-transcript loci, ~-nan transcripts per locus)
+# Reference mRNAs :   55377 in   28232 loci  (48142 multi-exon)
+
+#= Summary for dataset: ./txome_out/cufflinks_v14p/transcripts.gtf :
+#     Query mRNAs :     139 in     139 loci  (0 multi-exon transcripts)
+#            (0 multi-transcript loci, ~1.0 transcripts per locus)
+# Reference mRNAs :   55377 in   28232 loci  (48142 multi-exon)
+# Corresponding super-loci:             48
+#--------------------|   Sn   |  Sp   |  fSn |  fSp  
+        Base level: 	  0.0	 31.5	  - 	  - 
+        Exon level: 	  0.0	  0.0	  0.0	  0.7
+      Intron level: 	  0.0	 -nan	  0.0	 -nan
+Intron chain level: 	  0.0	 -nan	  0.0	 -nan
+  Transcript level: 	  0.0	  0.0	  0.0	  0.0
+       Locus level: 	  0.0	  0.0	  0.0	  0.0
+   Missed exons:	246304/246354 (100.0%)
+    Wrong exons:	91/139 ( 65.5%)
+ Missed introns:	215164/215164 (100.0%)
+ Missed loci:	27932/28232 ( 98.9%)
+  Wrong loci:	91/139 ( 65.5%)
+
+#= Summary for dataset: ./txome_out/scripture_v14p/transcripts.gtf :
+#     Query mRNAs :       7 in       7 loci  (0 multi-exon transcripts)
+#            (0 multi-transcript loci, ~1.0 transcripts per locus)
+# Reference mRNAs :   55357 in   28225 loci  (48122 multi-exon)
+# Corresponding super-loci:              1
+#--------------------|   Sn   |  Sp   |  fSn |  fSp  
+        Base level: 	  0.0	 16.9	  - 	  - 
+        Exon level: 	  0.0	  0.0	  0.0	  0.0
+      Intron level: 	  0.0	 -nan	  0.0	 -nan
+Intron chain level: 	  0.0	 -nan	  0.0	 -nan
+  Transcript level: 	  0.0	  0.0	  0.0	  0.0
+       Locus level: 	  0.0	  0.0	  0.0	  0.0
+   Missed exons:	246289/246290 (100.0%)
+    Wrong exons:	6/7 ( 85.7%)
+ Missed introns:	215111/215111 (100.0%)
+ Missed loci:	6868/28225 ( 24.3%)
+  Wrong loci:	6/7 ( 85.7%)
+
+ Total union super-loci across all input datasets: 800 
+  (0 multi-transcript, ~1.1 transcripts per locus)

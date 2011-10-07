@@ -1,9 +1,0 @@
-chr17	Scripture	transcript	39983310	39983482	1000	.	.	gene_id "SCRG000001"; transcript_id "SCRT000001";
-chr17	Scripture	exon	39983310	39983482	1000	.	.	gene_id "SCRG000001"; transcript_id "SCRT000001";
-chr17	Scripture	transcript	39983550	39983786	1000	.	.	gene_id "SCRG000002"; transcript_id "SCRT000002";
-chr17	Scripture	exon	39983550	39983625	1000	.	.	gene_id "SCRG000002"; transcript_id "SCRT000002";
-chr17	Scripture	exon	39983625	39983786	1000	.	.	gene_id "SCRG000002"; transcript_id "SCRT000002";
-chr2	Scripture	transcript	172335050	172335202	1000	.	.	gene_id "SCRG000003"; transcript_id "SCRT000003";
-chr2	Scripture	exon	172335050	172335202	1000	.	.	gene_id "SCRG000003"; transcript_id "SCRT000003";
-chr16	Scripture	transcript	57391475	57391741	1000	.	.	gene_id "SCRG000004"; transcript_id "SCRT000004";
-chr16	Scripture	exon	57391475	57391741	1000	.	.	gene_id "SCRG000004"; transcript_id "SCRT000004";

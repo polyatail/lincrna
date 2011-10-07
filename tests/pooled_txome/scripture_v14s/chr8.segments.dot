@@ -1,0 +1,12 @@
+digraph chr8_6.07261921957719E-8_1.31738871E8_8.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+"chr8:14033652-14033688"->"chr8:54672373-54672409"->"chr8:87502462-87502498"->"chr8:87553471-87553507"->"chr8:108048823-108048859"->"chr8:108231752-108231788"->"chr8:109582637-109582673"[style=invis];
+"chr8:14033652-14033688" [width=0.09, fixedsize=true, label=1.0, comment=6.07261921957719E-8];
+"chr8:54672373-54672409" [width=0.09, fixedsize=true, label=1.0, comment=6.07261921957719E-8];
+"chr8:87502462-87502498" [width=0.09, fixedsize=true, label=1.0, comment=6.07261921957719E-8];
+"chr8:87553471-87553507" [width=0.09, fixedsize=true, label=1.0, comment=6.07261921957719E-8];
+"chr8:108048823-108048859" [width=0.09, fixedsize=true, label=1.0, comment=6.07261921957719E-8];
+"chr8:108231752-108231788" [width=0.09, fixedsize=true, label=1.0, comment=6.07261921957719E-8];
+"chr8:109582637-109582673" [width=0.09, fixedsize=true, label=1.0, comment=6.07261921957719E-8];
+}

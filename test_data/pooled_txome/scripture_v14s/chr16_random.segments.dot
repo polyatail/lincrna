@@ -1,5 +1,0 @@
-digraph chr16_random_0.0_3994.0_0.0 {
- rankdir=LR; 
- node [shape = rectangle];
-[style=invis];
-}

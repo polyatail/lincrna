@@ -1,0 +1,8 @@
+digraph chr3_2.506269071806946E-8_1.59599783E8_4.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+"chr3:16116042-16116078"->"chr3:37020003-37020039"->"chr3:58326494-58326530"[style=invis];
+"chr3:16116042-16116078" [width=0.09, fixedsize=true, label=1.0, comment=2.506269071806946E-8];
+"chr3:37020003-37020039" [width=0.09, fixedsize=true, label=1.0, comment=2.506269071806946E-8];
+"chr3:58326494-58326530" [width=0.09, fixedsize=true, label=1.0, comment=2.506269071806946E-8];
+}

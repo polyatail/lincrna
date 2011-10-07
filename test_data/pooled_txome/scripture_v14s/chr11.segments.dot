@@ -1,8 +1,0 @@
-digraph chr11_3.282890193494861E-8_1.21843856E8_4.0 {
- rankdir=LR; 
- node [shape = rectangle];
-"chr11:60678474-60678510"->"chr11:69550277-69550313"->"chr11:78117832-78117868"[style=invis];
-"chr11:60678474-60678510" [width=0.09, fixedsize=true, label=1.0, comment=3.282890193494861E-8];
-"chr11:69550277-69550313" [width=0.09, fixedsize=true, label=1.0, comment=3.282890193494861E-8];
-"chr11:78117832-78117868" [width=0.09, fixedsize=true, label=1.0, comment=3.282890193494861E-8];
-}

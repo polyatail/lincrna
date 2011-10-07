@@ -1,0 +1,17 @@
+digraph chr3_1.0651643555179521E-7_1.59599783E8_17.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+"chr3:5860349-5860421"->"chr3:5860439-5860520"->"chr3:5860554-5860626"->"chr3:51320335-51320407"->"chr3:57521960-57522094"->"chr3:88624608-88624680"->"chr3:88624698-88624770"->"chr3:96447756-96447828"->"chr3:97718221-97718293"->"chr3:97718314-97718386"->"chr3:103937339-103937477"->"chr3:105486094-105486166"[style=invis];
+"chr3:5860349-5860421" [width=0.18, fixedsize=true, label=1.0, comment=1.0651643555179521E-7];
+"chr3:5860439-5860520" [width=0.2025, fixedsize=true, label=3.0, comment=1.0651643555179521E-7];
+"chr3:5860554-5860626" [width=0.18, fixedsize=true, label=1.0, comment=1.0651643555179521E-7];
+"chr3:51320335-51320407" [width=0.18, fixedsize=true, label=1.0, comment=1.0651643555179521E-7];
+"chr3:57521960-57522094" [width=0.335, fixedsize=true, label=2.0, comment=1.0651643555179521E-7];
+"chr3:88624608-88624680" [width=0.18, fixedsize=true, label=1.0, comment=1.0651643555179521E-7];
+"chr3:88624698-88624770" [width=0.18, fixedsize=true, label=1.0, comment=1.0651643555179521E-7];
+"chr3:96447756-96447828" [width=0.18, fixedsize=true, label=1.0, comment=1.0651643555179521E-7];
+"chr3:97718221-97718293" [width=0.18, fixedsize=true, label=1.0, comment=1.0651643555179521E-7];
+"chr3:97718314-97718386" [width=0.18, fixedsize=true, label=1.0, comment=1.0651643555179521E-7];
+"chr3:103937339-103937477" [width=0.34500000000000003, fixedsize=true, label=2.0, comment=1.0651643555179521E-7];
+"chr3:105486094-105486166" [width=0.18, fixedsize=true, label=1.0, comment=1.0651643555179521E-7];
+}

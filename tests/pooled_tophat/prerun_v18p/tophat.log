@@ -1,0 +1,46 @@
+/usr/bin/tophat -p 1 -o ./test_out/prerun_v18p -z none --segment-length 25 -F 0 -a 5 -r 200 --mate-std-dev 20 /comp_sync/data/foreign/bowtie_index/mm9/basespace ./test_data/v18_p_subset-left.fastq ./test_data/v18_p_subset-right.fastq
+
+
+[Tue Sep 27 17:50:21 2011] Beginning TopHat run (v1.3.1)
+-----------------------------------------------
+[Tue Sep 27 17:50:21 2011] Preparing output location ./test_out/prerun_v18p/
+[Tue Sep 27 17:50:21 2011] Checking for Bowtie index files
+[Tue Sep 27 17:50:21 2011] Checking for reference FASTA file
+[Tue Sep 27 17:50:21 2011] Checking for Bowtie
+	Bowtie version:			 0.12.7.0
+[Tue Sep 27 17:50:21 2011] Checking for Samtools
+	Samtools Version: 0.1.12a
+[Tue Sep 27 17:50:21 2011] Generating SAM header for /comp_sync/data/foreign/bowtie_index/mm9/basespace
+[Tue Sep 27 17:50:26 2011] Preparing reads
+	format:		 fastq
+	quality scale:	 phred33 (default)
+	Left  reads: min. length=100, count=640
+	Right reads: min. length=100, count=639
+[Tue Sep 27 17:50:26 2011] Mapping left_kept_reads against basespace with Bowtie 
+[Tue Sep 27 17:50:31 2011] Processing bowtie hits
+[Tue Sep 27 17:55:29 2011] Mapping left_kept_reads_seg1 against basespace with Bowtie (1/4)
+[Tue Sep 27 17:55:34 2011] Mapping left_kept_reads_seg2 against basespace with Bowtie (2/4)
+[Tue Sep 27 17:55:40 2011] Mapping left_kept_reads_seg3 against basespace with Bowtie (3/4)
+[Tue Sep 27 17:55:45 2011] Mapping left_kept_reads_seg4 against basespace with Bowtie (4/4)
+[Tue Sep 27 17:55:50 2011] Mapping right_kept_reads against basespace with Bowtie 
+[Tue Sep 27 17:55:56 2011] Processing bowtie hits
+[Tue Sep 27 18:00:53 2011] Mapping right_kept_reads_seg1 against basespace with Bowtie (1/4)
+[Tue Sep 27 18:00:58 2011] Mapping right_kept_reads_seg2 against basespace with Bowtie (2/4)
+[Tue Sep 27 18:01:04 2011] Mapping right_kept_reads_seg3 against basespace with Bowtie (3/4)
+[Tue Sep 27 18:01:09 2011] Mapping right_kept_reads_seg4 against basespace with Bowtie (4/4)
+[Tue Sep 27 18:01:15 2011] Searching for junctions via segment mapping
+[Tue Sep 27 18:06:12 2011] Retrieving sequences for splices
+[Tue Sep 27 18:20:52 2011] Indexing splices
+[Tue Sep 27 18:20:53 2011] Mapping left_kept_reads_seg1 against segment_juncs with Bowtie (1/4)
+[Tue Sep 27 18:20:53 2011] Mapping left_kept_reads_seg2 against segment_juncs with Bowtie (2/4)
+[Tue Sep 27 18:20:53 2011] Mapping left_kept_reads_seg3 against segment_juncs with Bowtie (3/4)
+[Tue Sep 27 18:20:53 2011] Mapping left_kept_reads_seg4 against segment_juncs with Bowtie (4/4)
+[Tue Sep 27 18:20:53 2011] Joining segment hits
+[Tue Sep 27 18:25:50 2011] Mapping right_kept_reads_seg1 against segment_juncs with Bowtie (1/4)
+[Tue Sep 27 18:25:50 2011] Mapping right_kept_reads_seg2 against segment_juncs with Bowtie (2/4)
+[Tue Sep 27 18:25:50 2011] Mapping right_kept_reads_seg3 against segment_juncs with Bowtie (3/4)
+[Tue Sep 27 18:25:50 2011] Mapping right_kept_reads_seg4 against segment_juncs with Bowtie (4/4)
+[Tue Sep 27 18:25:51 2011] Joining segment hits
+[Tue Sep 27 18:30:48 2011] Reporting output tracks
+-----------------------------------------------
+Run complete [00:40:27 elapsed]

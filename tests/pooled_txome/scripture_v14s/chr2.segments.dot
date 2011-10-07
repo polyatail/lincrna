@@ -1,0 +1,9 @@
+digraph chr2_2.7510605930064067E-8_1.81748087E8_5.0 {
+ rankdir=LR; 
+ node [shape = rectangle];
+"chr2:103618163-103618199"->"chr2:125082840-125082876"->"chr2:127057448-127057484"->"chr2:152839759-152839795"[style=invis];
+"chr2:103618163-103618199" [width=0.09, fixedsize=true, label=1.0, comment=2.7510605930064067E-8];
+"chr2:125082840-125082876" [width=0.09, fixedsize=true, label=1.0, comment=2.7510605930064067E-8];
+"chr2:127057448-127057484" [width=0.09, fixedsize=true, label=1.0, comment=2.7510605930064067E-8];
+"chr2:152839759-152839795" [width=0.09, fixedsize=true, label=1.0, comment=2.7510605930064067E-8];
+}

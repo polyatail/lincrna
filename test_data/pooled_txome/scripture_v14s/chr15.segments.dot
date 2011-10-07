@@ -1,8 +1,0 @@
-digraph chr15_3.8649219816220256E-8_1.03494974E8_4.0 {
- rankdir=LR; 
- node [shape = rectangle];
-"chr15:63901715-63901751"->"chr15:75902344-75902380"->"chr15:76735347-76735383"[style=invis];
-"chr15:63901715-63901751" [width=0.09, fixedsize=true, label=1.0, comment=3.8649219816220256E-8];
-"chr15:75902344-75902380" [width=0.09, fixedsize=true, label=1.0, comment=3.8649219816220256E-8];
-"chr15:76735347-76735383" [width=0.09, fixedsize=true, label=1.0, comment=3.8649219816220256E-8];
-}
