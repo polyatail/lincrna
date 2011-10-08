@@ -97,7 +97,10 @@ def fastq_desc_to_ver(desc):
     return read_ver
 
 def fastq_callback(fname):
-    return globals()[FASTQ_PARAMS[fastq_version(fname)]["callback"]]
+    return fastq_ver_to_callback(fastq_version(fname))
+
+def fastq_ver_to_callback(ver):
+    return globals()[FASTQ_PARAMS[ver]["callback"]]
     
 def single_parser(fp_in, fp_out, callback):
     for seq_rec in SeqIO.parse(fp_in, "fastq"):
