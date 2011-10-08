@@ -111,7 +111,11 @@ def paired_parser(fp_in, fp_out_left, fp_out_right, callback):
     right_count = 0
     
     for seq_rec in SeqIO.parse(fp_in, "fastq"):
-        mate_pair, filtered, _ = callback(seq_rec.description)
+        mate_pair, filtered, readtag = callback(seq_rec.description)
+
+        seq_rec.id = readtag
+        seq_rec.name = readtag
+        seq_rec.description = ""
 
         if filtered == "N":
             if mate_pair == "1":
