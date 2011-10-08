@@ -69,7 +69,11 @@ def fastq_readlen(fname):
 
 def fastq_version(fname):
     first_record = SeqIO.parse(fname, "fastq").next()
-    desc_split = first_record.description.split(" ")
+
+    return fastq_desc_to_ver(first_record.description)
+
+def fastq_desc_to_ver(desc):
+    desc_split = desc.split(" ")
     
     if len(desc_split) == 2:
         # Illumina v1.8
