@@ -91,6 +91,9 @@ def fastq_version(fname):
         raise ValueError("Could not detect FASTQ pipeline version")
         
     return read_ver
+
+def fastq_callback(fname):
+    return globals()[FASTQ_PARAMS[fastq_version(fname)]["callback"]]
     
 def single_parser(fp_in, fp_out, callback):
     for seq_rec in SeqIO.parse(fp_in, "fastq"):

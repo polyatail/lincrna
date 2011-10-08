@@ -38,10 +38,8 @@ def parse_options(arguments):
 def main():
     parse_options(sys.argv[1:])
 
-    read_ver = fastq.fastq_version(args[0])
-
     try:
-        callback_func = vars(fastq)[fastq.FASTQ_PARAMS[read_ver]["callback"]]
+        callback_func = fastq.fastq_callback(args[0])
     except KeyError:
         raise ValueError("No callback function for FASTQ version")
     
