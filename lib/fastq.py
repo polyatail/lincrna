@@ -170,12 +170,9 @@ def fastq_filter_trim(fp_in, qual_offset, min_qual, min_fraction, min_length):
     for seq_rec in fast_fastq(fastq_trimmer.stdout):
         yield seq_rec
 
-def single_parser(fp_in, fp_out, callback, qual_offset, min_qual, readlen):
-    qual_filtered = fastq_filter_trim(fp_in,
-                                      qual_offset,
-                                      min_qual,
-                                      50,
-                                      int(readlen / 2))    
+def single_parser(fp_in, fp_out, callback, qual_offset, min_qual, min_len):
+    qual_filtered = fastq_filter_trim(fp_in, qual_offset, min_qual,
+                                      50, min_len)
     
     for seq_rec in qual_filtered:
         mate_pair, filtered, _ = callback(seq_rec.id)
@@ -197,7 +194,7 @@ def paired_parser(fp_in, fp_out_left, fp_out_right, fp_out_orphans,
     right_reads = []
 
     qual_filtered = fastq_filter_trim(fp_in, qual_offset, min_qual, 50,
-                                      int(readlen / 2))
+                                      min_len)
     
     for seq_rec in qual_filtered:
         mate_pair, filtered, readtag = callback(seq_rec.id)
@@ -228,7 +225,7 @@ def paired_parser(fp_in, fp_out_left, fp_out_right, fp_out_orphans,
     # re-filter reads
     fp_in.seek(0)
     qual_filtered = fastq_filter_trim(fp_in, qual_offset, min_qual, 50,
-                                      int(readlen / 2))
+                                      min_len)
 
     for seq_rec in qual_filtered:
         mate_pair, filtered, readtag = callback(seq_rec.id)

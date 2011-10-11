@@ -63,7 +63,7 @@ def main():
                             callback_func,
                             phred_offset,
                             25,
-                            fastq_readlen)
+                            int(fastq_readlen) / 2)
     else:
         filtered_out = os.path.join(options.output_dir,
                                     stripped_fname + "-filtered.fastq")
@@ -73,7 +73,7 @@ def main():
                             callback_func,
                             phred_offset,
                             25,
-                            fastq_readlen)
+                            int(fastq_readlen) / 2)
         
 if __name__ == "__main__":
     main()
