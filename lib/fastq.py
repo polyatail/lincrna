@@ -8,9 +8,9 @@ ILLUMINA_V14 = 0x01
 ILLUMINA_V18 = 0x02
 
 FASTQ_PARAMS = {ILLUMINA_V14: {"callback": "_illumina14",
-                               "quals": "phred64"},
+                               "qual_offset": 64},
                 ILLUMINA_V18: {"callback": "_illumina18",
-                               "quals": "phred33"}}
+                               "qual_offset": 33}}
 
 def validate_reads(input_fastq):
     # figure out phred type and read length for each file
@@ -60,9 +60,16 @@ def _illumina18(description):
 
 def phred_version(fastq_type):
     try:
-        return FASTQ_PARAMS[fastq_type]["quals"]
+        offset = FASTQ_PARAMS[fastq_type]["quals"]
     except KeyError:
-        raise ValueError("Specified FASTQ type has no quality value")
+        raise ValueError("Specified FASTQ type has no quality offset")
+
+    if offset == 33:
+        return "phred33"
+    elif offset == 64:
+        return "phred64"
+    else:
+        raise ValueError("Unknown quality offset %s" % (offset,))
 
 def fastq_readlen(fname):
     first_record = SeqIO.parse(fname, "fastq").next()
@@ -106,23 +113,29 @@ def fastq_ver_to_callback(ver):
     
 def fastq_filter_trim(fp_in, qual_offset, min_qual, min_fraction, min_length):
     fastq_filter = subprocess.Popen([_common.FASTQ_FILTER,
-                                     "-Q", qual_offset,
-                                     "-q", min_qual,
-                                     "-p", min_fraction],
+                                     "-Q", str(qual_offset),
+                                     "-q", str(min_qual),
+                                     "-p", str(min_fraction)],
                                     stdin=fp_in,
                                     stdout=subprocess.PIPE)
     fastq_trimmer = subprocess.Popen([_common.FASTQ_TRIMMER,
-                                      "-Q", qual_offset,
-                                      "-t", min_qual,
-                                      "-l", min_length],
+                                      "-Q", str(qual_offset),
+                                      "-t", str(min_qual),
+                                      "-l", str(min_length)],
                                      stdin=fastq_filter.stdout,
                                      stdout=subprocess.PIPE)
 
     for seq_rec in SeqIO.parse(fastq_trimmer.stdout, "fastq"):
         yield seq_rec
 
-def single_parser(fp_in, fp_out, callback):
-    for seq_rec in SeqIO.parse(fp_in, "fastq"):
+def single_parser(fp_in, fp_out, callback, qual_offset, min_qual, readlen):
+    qual_filtered = fastq_filter_trim(fp_in,
+                                      qual_offset,
+                                      min_qual,
+                                      50,
+                                      int(readlen / 2))    
+    
+    for seq_rec in qual_filtered:
         mate_pair, filtered, _ = callback(seq_rec.description)
         
         if mate_pair != "1":
