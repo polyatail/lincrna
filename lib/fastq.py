@@ -72,14 +72,31 @@ def phred_version(fastq_type):
         raise ValueError("Unknown quality offset %s" % (offset,))
 
 def fastq_readlen(fname):
-    first_record = SeqIO.parse(fname, "fastq").next()
-
-    return len(first_record.seq)
+    readlens = []
+    
+    for seq_rec in fast_fastq(open(fname, "r")):
+        readlens.append(len(seq_rec.sequence))
+        
+        if len(readlens) == 10000:
+            break
+        
+    return sum(readlens) / len(readlens)
 
 def fastq_version(fname):
-    first_record = SeqIO.parse(fname, "fastq").next()
+    fastq_vers = []
+    
+    for seq_rec in fast_fastq(open(fname, "r")):
+        fastq_vers.append(fastq_desc_to_ver(seq_rec.id))
 
-    return fastq_desc_to_ver(first_record.description)
+        if len(fastq_vers) == 10000:
+            break
+
+    fastq_vers = list(set(fastq_vers))
+    
+    if len(fastq_vers) <> 1:
+        raise ValueError("Multiple FASTQ types in one file")
+        
+    return fastq_vers[0]
 
 def fastq_desc_to_ver(desc):
     desc_split = desc.split(" ")
