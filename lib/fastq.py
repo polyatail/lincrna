@@ -121,12 +121,7 @@ def fastq_ver_to_phred(ver):
     except KeyError:
         raise ValueError("Specified FASTQ type has no quality offset")
 
-    if offset == 33:
-        return "phred33"
-    elif offset == 64:
-        return "phred64"
-    else:
-        raise ValueError("Unknown quality offset %s" % (offset,))
+    return offset
 
 def fast_fastq(fp_in):
     recs = 0

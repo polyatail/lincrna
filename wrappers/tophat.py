@@ -48,12 +48,10 @@ class TopHat():
     
         _, phred_ver, readlen = fastq.validate_reads(input_fastq)
         
-        if phred_ver == "phred64":
+        if phred_ver == 64:
             phred_param = ["--phred64-quals"]
-        elif phred_ver == "phred33":
+        elif phred_ver == 33:
             phred_param = []
-        elif phred_ver == "solexa33":
-            phred_param = ["--solexa-quals"]
         else:
             raise ValueError("Unrecognized phred version")
     
