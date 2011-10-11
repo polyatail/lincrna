@@ -4,8 +4,8 @@ from Bio import SeqIO
 import subprocess
 import _common
 
-ILLUMINA_V14 = 0x01
-ILLUMINA_V18 = 0x02
+ILLUMINA_V14 = "A"
+ILLUMINA_V18 = "B"
 
 FASTQ_PARAMS = {ILLUMINA_V14: {"callback": "_illumina14",
                                "qual_offset": 64},
@@ -117,7 +117,7 @@ def fastq_ver_to_callback(ver):
 
 def fastq_ver_to_phred(ver):
     try:
-        offset = FASTQ_PARAMS[ver]["quals"]
+        offset = FASTQ_PARAMS[ver]["qual_offset"]
     except KeyError:
         raise ValueError("Specified FASTQ type has no quality offset")
 
