@@ -110,7 +110,32 @@ def fastq_callback(fname):
 
 def fastq_ver_to_callback(ver):
     return globals()[FASTQ_PARAMS[ver]["callback"]]
+
+def fast_fastq(fp_in):
+    recs = 0
+    buf = []
     
+    for line in fp_in:
+        buf.append(line)
+        
+        if len(buf) == 4:
+            recs += 1
+            if recs % 1000 == 0:
+                print recs, "records"
+            yield fastq_record(buf)
+            buf = []
+    
+class fastq_record():
+    def __init__(self, lines):
+        lines = [x.strip() for x in lines]
+
+        self.id = lines[0][1:]
+        self.sequence = lines[1]
+        self.quals = lines[3]
+
+    def raw(self):
+        return "\n".join(["@%s" % (self.id,), self.sequence, "+", self.quals, ""])
+
 def fastq_filter_trim(fp_in, qual_offset, min_qual, min_fraction, min_length):
     fastq_filter = subprocess.Popen([_common.FASTQ_FILTER,
                                      "-Q", str(qual_offset),
@@ -125,7 +150,7 @@ def fastq_filter_trim(fp_in, qual_offset, min_qual, min_fraction, min_length):
                                      stdin=fastq_filter.stdout,
                                      stdout=subprocess.PIPE)
 
-    for seq_rec in SeqIO.parse(fastq_trimmer.stdout, "fastq"):
+    for seq_rec in fast_fastq(fastq_trimmer.stdout):
         yield seq_rec
 
 def single_parser(fp_in, fp_out, callback, qual_offset, min_qual, readlen):
@@ -136,56 +161,77 @@ def single_parser(fp_in, fp_out, callback, qual_offset, min_qual, readlen):
                                       int(readlen / 2))    
     
     for seq_rec in qual_filtered:
-        mate_pair, filtered, _ = callback(seq_rec.description)
+        mate_pair, filtered, _ = callback(seq_rec.id)
         
         if mate_pair != "1":
             raise ValueError("Found mate_pair = 2 in single-end library")
         
         if filtered == "N":
-            SeqIO.write(seq_rec, fp_out, "fastq")
+            fp_out.write(seq_rec.raw())
         elif filtered == "Y":
             pass
         else:
             raise ValueError("Filtered field must be Y/N")
-            
-def paired_parser(fp_in, fp_out_left, fp_out_right, callback):      
-    left_count = 0
-    right_count = 0
-    
-    for seq_rec in SeqIO.parse(fp_in, "fastq"):
-        mate_pair, filtered, readtag = callback(seq_rec.description)
 
-        seq_rec.id = readtag
-        seq_rec.name = readtag
-        seq_rec.description = ""
+def paired_parser(fp_in, fp_out_left, fp_out_right, fp_out_orphans,
+                  callback, qual_offset, min_qual, readlen):
+    # filter reads, track readtags
+    left_reads = []
+    right_reads = []
+
+    qual_filtered = fastq_filter_trim(fp_in, qual_offset, min_qual, 50,
+                                      int(readlen / 2))
+    
+    for seq_rec in qual_filtered:
+        mate_pair, filtered, readtag = callback(seq_rec.id)
 
         if filtered == "N":
             if mate_pair == "1":
-                left_count += 1
-                SeqIO.write(seq_rec, fp_out_left, "fastq")
+                left_reads.append(readtag)
             elif mate_pair == "2":
-                right_count += 1
-                SeqIO.write(seq_rec, fp_out_right, "fastq")
+                right_reads.append(readtag)
             else:
                 raise ValueError("Paired end field must be 1/2")
         elif filtered == "Y":
             pass
         else:
             raise ValueError("Filtered field must be Y/N")
+
+    # determine pairs and orphans
+    left_set = set(left_reads)
+    right_set = set(right_reads)
+
+    paired = left_set.intersection(right_set)
+    orphans = left_set.symmetric_difference(right_set)
+
+    # track order reads are written
+    left_reads = []
+    right_reads = []
+
+    # re-filter reads
+    fp_in.seek(0)
+    qual_filtered = fastq_filter_trim(fp_in, qual_offset, min_qual, 50,
+                                      int(readlen / 2))
+
+    for seq_rec in qual_filtered:
+        mate_pair, filtered, readtag = callback(seq_rec.id)
+        
+        # strip paired-end information from read IDs
+        seq_rec.id = readtag
+
+        if readtag in paired:
+            if mate_pair == "1":
+                left_reads.append(readtag)
+                fp_out_left.write(seq_rec.raw())
+            elif mate_pair == "2":
+                right_reads.append(readtag)
+                fp_out_right.write(seq_rec.raw())
+            else:
+                raise ValueError("Paired end field must be 1/2")
+        elif seq_rec.id in orphans:
+            fp_out_orphans.write(seq_rec.raw())
             
-    fp_out_left.seek(0)
-    fp_out_right.seek(0)
-    
-    left_parser = SeqIO.parse(fp_out_left, "fastq")
-    right_parser = SeqIO.parse(fp_out_right, "fastq")
-
-    if left_count <> right_count:
-        raise ValueError("Left read count (%s) != right read count (%s)" % \
-                         (left_count, right_count))
-
-    for _ in range(left_count):
-        left_rec = left_parser.next()
-        right_rec = right_parser.next()
-
-        if callback(left_rec.description)[2] != callback(right_rec.description)[2]:
-            raise ValueError("Output reads are not in order")
+    # verify that reads are sorted
+    for left, right in zip(left_reads, right_reads):
+        if left != right:
+            raise ValueError("Reads are not sorted")
