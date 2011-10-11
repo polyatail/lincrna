@@ -60,10 +60,11 @@ def main():
         fastq.paired_parser(open(args[0], "r"),
                             open(left_out, "w+"),
                             open(right_out, "w+"),
+                            open(orphan_out, "w+"),
                             callback_func,
                             phred_offset,
                             25,
-                            int(fastq_readlen) / 2)
+                            int(fastq_readlen / 2))
     else:
         filtered_out = os.path.join(options.output_dir,
                                     stripped_fname + "-filtered.fastq")
@@ -73,7 +74,7 @@ def main():
                             callback_func,
                             phred_offset,
                             25,
-                            int(fastq_readlen) / 2)
+                            int(fastq_readlen / 2))
         
 if __name__ == "__main__":
     main()

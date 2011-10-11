@@ -188,7 +188,7 @@ def single_parser(fp_in, fp_out, callback, qual_offset, min_qual, min_len):
             raise ValueError("Filtered field must be Y/N")
 
 def paired_parser(fp_in, fp_out_left, fp_out_right, fp_out_orphans,
-                  callback, qual_offset, min_qual, readlen):
+                  callback, qual_offset, min_qual, min_len):
     # filter reads, track readtags
     left_reads = []
     right_reads = []
