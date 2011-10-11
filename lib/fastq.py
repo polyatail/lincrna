@@ -194,9 +194,9 @@ def paired_parser(fp_in, fp_out_left, fp_out_right, fp_out_orphans,
 
         if filtered == "N":
             if mate_pair == "1":
-                left_reads.append(readtag)
+                left_reads.append(hash(readtag))
             elif mate_pair == "2":
-                right_reads.append(readtag)
+                right_reads.append(hash(readtag))
             else:
                 raise ValueError("Paired end field must be 1/2")
         elif filtered == "Y":
@@ -226,7 +226,7 @@ def paired_parser(fp_in, fp_out_left, fp_out_right, fp_out_orphans,
         # strip paired-end information from read IDs
         seq_rec.id = readtag
 
-        if readtag in paired:
+        if hash(readtag) in paired:
             if mate_pair == "1":
                 left_reads.append(readtag)
                 fp_out_left.write(seq_rec.raw())
@@ -235,7 +235,7 @@ def paired_parser(fp_in, fp_out_left, fp_out_right, fp_out_orphans,
                 fp_out_right.write(seq_rec.raw())
             else:
                 raise ValueError("Paired end field must be 1/2")
-        elif seq_rec.id in orphans:
+        elif hash(readtag) in orphans:
             fp_out_orphans.write(seq_rec.raw())
             
     # verify that reads are sorted
