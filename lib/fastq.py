@@ -19,9 +19,12 @@ def validate_reads(input_fastq):
     readlen = []
 
     for fname in input_fastq:
-        fastq_ver.append(fastq_version(fname))
-        phred_ver.append(phred_version(fastq_version(fname)))
-        readlen.append(fastq_readlen(fname))
+        this_ver = fastq_version(fname)
+        this_readlen = fastq_readlen(fname)
+        
+        fastq_ver.append(this_ver)
+        readlen.append(this_readlen)
+        phred_ver.append(fastq_ver_to_phred(this_ver))
 
     for param_list in [fastq_ver, phred_ver, readlen]:
         if len(set(param_list)) <> 1:
@@ -57,19 +60,6 @@ def _illumina18(description):
         raise ValueError("Illumina v1.8+ metadata format invalid")
     
     return meta_split[0], meta_split[1], main_split[0]
-
-def phred_version(fastq_type):
-    try:
-        offset = FASTQ_PARAMS[fastq_type]["quals"]
-    except KeyError:
-        raise ValueError("Specified FASTQ type has no quality offset")
-
-    if offset == 33:
-        return "phred33"
-    elif offset == 64:
-        return "phred64"
-    else:
-        raise ValueError("Unknown quality offset %s" % (offset,))
 
 def fastq_readlen(fname):
     readlens = []
@@ -122,11 +112,21 @@ def fastq_desc_to_ver(desc):
         
     return read_ver
 
-def fastq_callback(fname):
-    return fastq_ver_to_callback(fastq_version(fname))
-
 def fastq_ver_to_callback(ver):
     return globals()[FASTQ_PARAMS[ver]["callback"]]
+
+def fastq_ver_to_phred(ver):
+    try:
+        offset = FASTQ_PARAMS[ver]["quals"]
+    except KeyError:
+        raise ValueError("Specified FASTQ type has no quality offset")
+
+    if offset == 33:
+        return "phred33"
+    elif offset == 64:
+        return "phred64"
+    else:
+        raise ValueError("Unknown quality offset %s" % (offset,))
 
 def fast_fastq(fp_in):
     recs = 0
