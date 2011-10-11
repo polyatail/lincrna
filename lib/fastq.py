@@ -3,6 +3,7 @@
 from Bio import SeqIO
 import subprocess
 import _common
+import operator
 
 ILLUMINA_V14 = "A"
 ILLUMINA_V18 = "B"
@@ -62,15 +63,19 @@ def _illumina18(description):
     return meta_split[0], meta_split[1], main_split[0]
 
 def fastq_readlen(fname):
-    readlens = []
+    readlens = dict(zip(range(1000), [0] * 1000))
+    reads = 0
     
     for seq_rec in fast_fastq(open(fname, "r")):
-        readlens.append(len(seq_rec.sequence))
+        readlens[len(seq_rec.sequence)] += 1
+        reads += 1
         
-        if len(readlens) == 10000:
+        if reads == 10000:
             break
-        
-    return sum(readlens) / len(readlens)
+
+    readlens = sorted(readlens.iteritems(), key=operator.itemgetter(1), reverse=True)
+
+    return readlens[0][0]
 
 def fastq_version(fname):
     fastq_vers = []
