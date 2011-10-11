@@ -15,22 +15,23 @@ from lib import fastq
 
 class testFilterReads(unittest.TestCase):
     def setUp(self):
-        self.ver14_pe_good = open("./filter_reads/ver14_pe_good.fastq", "r")
-        self.ver14_pe_bad = open("./filter_reads/ver14_pe_bad.fastq", "r")
-        self.ver14_pe_mixed = open("./filter_reads/ver14_pe_mixed.fastq", "r")
-        self.ver14_pe_unordered = open("./filter_reads/ver14_pe_unordered.fastq", "r")
-        self.ver14_bad_metadata = open("./filter_reads/ver14_bad_metadata.fastq", "r")
-        self.ver14_single = open("./filter_reads/ver14_single.fastq", "r")
+        self.ver14_pe_good = "./filter_reads/ver14_pe_good.fastq"
+        self.ver14_pe_bad = "./filter_reads/ver14_pe_bad.fastq"
+        self.ver14_pe_mixed = "./filter_reads/ver14_pe_mixed.fastq"
+        self.ver14_pe_unordered = "./filter_reads/ver14_pe_unordered.fastq"
+        self.ver14_bad_metadata = "./filter_reads/ver14_bad_metadata.fastq"
+        self.ver14_single = "./filter_reads/ver14_single.fastq"
 
-        self.ver18_pe_good = open("./filter_reads/ver18_pe_good.fastq", "r")
-        self.ver18_pe_bad = open("./filter_reads/ver18_pe_bad.fastq", "r")
-        self.ver18_pe_mixed = open("./filter_reads/ver18_pe_mixed.fastq", "r")
-        self.ver18_pe_unordered = open("./filter_reads/ver18_pe_unordered.fastq", "r")
-        self.ver18_bad_metadata = open("./filter_reads/ver18_bad_metadata.fastq", "r")
-        self.ver18_single = open("./filter_reads/ver18_single.fastq", "r")
+        self.ver18_pe_good = "./filter_reads/ver18_pe_good.fastq"
+        self.ver18_pe_bad = "./filter_reads/ver18_pe_bad.fastq"
+        self.ver18_pe_mixed = "./filter_reads/ver18_pe_mixed.fastq"
+        self.ver18_pe_unordered = "./filter_reads/ver18_pe_unordered.fastq"
+        self.ver18_bad_metadata = "./filter_reads/ver18_bad_metadata.fastq"
+        self.ver18_single = "./filter_reads/ver18_single.fastq"
         
-        self.left_tempfile = tempfile.NamedTemporaryFile("w+")
-        self.right_tempfile = tempfile.NamedTemporaryFile("w+")
+        self.left_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
+        self.right_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
+        self.orphans_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
         
     def testValidateReads(self):
         # mixed FASTQ version
@@ -39,22 +40,16 @@ class testFilterReads(unittest.TestCase):
                           ["./pooled_tophat/v18_100bp.fastq",
                            "./pooled_tophat/v14_100bp.fastq"])
 
-        # mixed read lengths
-        self.assertRaises(ValueError,
-                          fastq.validate_reads,
-                          ["./pooled_tophat/v14_36bp.fastq",
-                           "./pooled_tophat/v14_72bp.fastq"])
-
-        self.assertEqual((fastq.ILLUMINA_V14, "phred64", 36),
+        self.assertEqual(fastq.ILLUMINA_V14,
                          fastq.validate_reads(["./pooled_tophat/v14_36bp.fastq"]))
 
-        self.assertEqual((fastq.ILLUMINA_V14, "phred64", 72),
+        self.assertEqual(fastq.ILLUMINA_V14,
                          fastq.validate_reads(["./pooled_tophat/v14_72bp.fastq"]))
 
-        self.assertEqual((fastq.ILLUMINA_V14, "phred64", 100),
+        self.assertEqual(fastq.ILLUMINA_V14,
                          fastq.validate_reads(["./pooled_tophat/v14_100bp.fastq"]))
 
-        self.assertEqual((fastq.ILLUMINA_V18, "phred33", 100),
+        self.assertEqual(fastq.ILLUMINA_V18,
                          fastq.validate_reads(["./pooled_tophat/v18_100bp.fastq"]))
 
     def testReadLen(self):
@@ -122,7 +117,7 @@ class testFilterReads(unittest.TestCase):
                     40:  ['2', 'Y', 'HWUSI-EAS614_1:1:1:998:7758:0'],
                     44:  ['2', 'Y', 'HWUSI-EAS614_1:1:1:998:9048:0']}
 
-        for line_num, line in enumerate(self.ver14_pe_mixed):
+        for line_num, line in enumerate(open(self.ver14_pe_mixed, "r")):
             if line_num % 4 == 0 and line.startswith("@"):
                 line = line.strip().lstrip("@")
                 mate_pair, filtered, fixed = fastq._illumina14(line)
@@ -133,7 +128,7 @@ class testFilterReads(unittest.TestCase):
                 
         self.assertRaises(ValueError,
                           fastq._illumina14,
-                          self.ver14_bad_metadata.readline().strip().lstrip("@"))
+                          open(self.ver14_bad_metadata, "r").readline().strip().lstrip("@"))
 
     def testIllumina18(self):
         expected = {0:  ['1', 'N', 'HWI-ST619:136:D06CDACXX:6:1101:1125:195244'],
@@ -149,7 +144,7 @@ class testFilterReads(unittest.TestCase):
                     40:  ['2', 'Y', 'HWI-ST619:136:D06CDACXX:6:1101:1220:1952'],
                     44:  ['2', 'Y', 'HWI-ST619:136:D06CDACXX:6:1101:1112:1953']}
 
-        for line_num, line in enumerate(self.ver18_pe_mixed):
+        for line_num, line in enumerate(open(self.ver18_pe_mixed, "r")):
             if line_num % 4 == 0 and line.startswith("@"):
                 line = line.strip().lstrip("@")
                 mate_pair, filtered, fixed = fastq._illumina18(line)
@@ -160,13 +155,15 @@ class testFilterReads(unittest.TestCase):
                 
         self.assertRaises(ValueError,
                           fastq._illumina18,
-                          self.ver18_bad_metadata.readline().strip().lstrip("@"))        
+                          open(self.ver18_bad_metadata, "r").readline().strip().lstrip("@"))        
 
     def testPairedParser_v14_mixed(self):
-        fastq.paired_parser(self.ver14_pe_mixed,
-                                    self.left_tempfile,
-                                    self.right_tempfile,
-                                    fastq._illumina14)
+        fastq.paired_parser(open(self.ver14_pe_mixed, "r"),
+                            self.left_tempfile,
+                            self.right_tempfile,
+                            self.orphans_tempfile,
+                            fastq._illumina14,
+                            64, 25, 36)
                                     
         self.left_tempfile.seek(0)
         self.right_tempfile.seek(0)
@@ -179,16 +176,20 @@ class testFilterReads(unittest.TestCase):
     def testPairedParser_v14_unordered(self):
         self.assertRaises(ValueError,
                           fastq.paired_parser,
-                          self.ver14_pe_unordered,
+                          open(self.ver14_pe_unordered, "r"),
                           self.left_tempfile,
                           self.right_tempfile,
-                          fastq._illumina14)
+                          self.orphans_tempfile,
+                          fastq._illumina14,
+                          64, 25, 36)
                           
     def testPairedParser_v18_mixed(self):
-        fastq.paired_parser(self.ver18_pe_mixed,
-                                    self.left_tempfile,
-                                    self.right_tempfile,
-                                    fastq._illumina18)
+        fastq.paired_parser(open(self.ver18_pe_mixed, "r"),
+                            self.left_tempfile,
+                            self.right_tempfile,
+                            self.orphans_tempfile,
+                            fastq._illumina18,
+                            33, 25, 50)
 
         self.left_tempfile.seek(0)
         self.right_tempfile.seek(0)
@@ -201,15 +202,18 @@ class testFilterReads(unittest.TestCase):
     def testPairedParser_v18_unordered(self):
         self.assertRaises(ValueError,
                           fastq.paired_parser,
-                          self.ver18_pe_unordered,
+                          open(self.ver18_pe_unordered, "r"),
                           self.left_tempfile,
                           self.right_tempfile,
-                          fastq._illumina18)
+                          self.orphans_tempfile,
+                          fastq._illumina18,
+                          33, 25, 50)
 
     def testSingleParser_v14(self):
-        fastq.single_parser(self.ver14_single,
-                                    self.left_tempfile,
-                                    fastq._illumina14)
+        fastq.single_parser(open(self.ver14_single, "r"),
+                            self.left_tempfile,
+                            fastq._illumina14,
+                            64, 25, 36)
 
         self.left_tempfile.seek(0)
 
@@ -218,9 +222,10 @@ class testFilterReads(unittest.TestCase):
 
 
     def testSingleParser_v18(self):
-        fastq.single_parser(self.ver18_single,
-                                    self.left_tempfile,
-                                    fastq._illumina18)
+        fastq.single_parser(open(self.ver18_single, "r"),
+                            self.left_tempfile,
+                            fastq._illumina18,
+                            33, 25, 18)
 
         self.left_tempfile.seek(0)
 
