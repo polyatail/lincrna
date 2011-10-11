@@ -16,22 +16,15 @@ FASTQ_PARAMS = {ILLUMINA_V14: {"callback": "_illumina14",
 def validate_reads(input_fastq):
     # figure out phred type and read length for each file
     fastq_ver = []
-    phred_ver = []
-    readlen = []
 
     for fname in input_fastq:
-        this_ver = fastq_version(fname)
-        this_readlen = fastq_readlen(fname)
-        
-        fastq_ver.append(this_ver)
-        readlen.append(this_readlen)
-        phred_ver.append(fastq_ver_to_phred(this_ver))
+        fastq_ver.append(fastq_version(fname))
 
-    for param_list in [fastq_ver, phred_ver, readlen]:
+    for param_list in [fastq_ver]:
         if len(set(param_list)) <> 1:
             raise ValueError("Passed reads files have parameter types: %s" % (param_list,))
 
-    return fastq_ver[0], phred_ver[0], readlen[0]
+    return fastq_ver[0]
 
 def _illumina14(description):
     meta_split = description.split(":")

@@ -46,7 +46,8 @@ class TopHat():
         if len(input_fastq) > 2:
             raise ValueError("Maximum of two reads per sample!")
     
-        _, phred_ver, readlen = fastq.validate_reads(input_fastq)
+        fastq_ver = fastq.validate_reads(input_fastq)
+        phred_ver = fastq.fastq_ver_to_phred(fastq_ver)
         
         if phred_ver == 64:
             phred_param = ["--phred64-quals"]
@@ -56,10 +57,7 @@ class TopHat():
             raise ValueError("Unrecognized phred version")
     
         # set segment length
-        if readlen < 50:
-            seg_length = int(readlen / 2)
-        else:
-            seg_length = 25
+        seg_length = 18
         
         with open(log_file, "w") as log_fp:
             tophat_cmd = [_common.TOPHAT_PATH,
