@@ -33,15 +33,15 @@ def _illumina14(description):
         # IMPORTANT: 1 = KEEP THE READ, 0 = DISCARD THE READ
         # INTERNALLY, Y = DISCARD THE READ, N = KEEP THE READ
         if meta_split[7] == "1":
-            meta_split[7] = "N"
+            meta_split[7] = False
         elif meta_split[7] == "0":
-            meta_split[7] = "Y"
+            meta_split[7] = True
         else:
             raise ValueError("Filtered field must be 1/0")
     except IndexError:
         raise ValueError("Illumina v1.4 metadata format invalid")
     
-    return meta_split[6], meta_split[7], ":".join(meta_split[:6])
+    return int(meta_split[6]), meta_split[7], ":".join(meta_split[:6])
     
 def _illumina18(description):
     try:
@@ -52,8 +52,15 @@ def _illumina18(description):
         
     if len(meta_split) <> 4:
         raise ValueError("Illumina v1.8+ metadata format invalid")
+
+    if meta_split[1] == "Y":
+        meta_split[1] = True
+    elif meta_split[1] == "N":
+        meta_split[1] = False
+    else:
+        raise ValueError("Filtered field must be Y/N")
     
-    return meta_split[0], meta_split[1], main_split[0]
+    return int(meta_split[0]), meta_split[1], main_split[0]
 
 def fastq_readlen(fname):
     readlens = dict(zip(range(1000), [0] * 1000))
@@ -170,15 +177,15 @@ def single_parser(fp_in, fp_out, callback, qual_offset, min_qual, min_len):
     for seq_rec in qual_filtered:
         mate_pair, filtered, _ = callback(seq_rec.id)
         
-        if mate_pair != "1":
+        if mate_pair != 1:
             raise ValueError("Found mate_pair = 2 in single-end library")
         
-        if filtered == "N":
+        if filtered == False:
             fp_out.write(seq_rec.raw())
-        elif filtered == "Y":
+        elif filtered == True:
             pass
         else:
-            raise ValueError("Filtered field must be Y/N")
+            raise ValueError("Filtered field must be boolean")
 
 def paired_parser(fp_in, fp_out_left, fp_out_right, fp_out_orphans,
                   callback, qual_offset, min_qual, min_len):
@@ -192,24 +199,28 @@ def paired_parser(fp_in, fp_out_left, fp_out_right, fp_out_orphans,
     for seq_rec in qual_filtered:
         mate_pair, filtered, readtag = callback(seq_rec.id)
 
-        if filtered == "N":
-            if mate_pair == "1":
+        if filtered == False:
+            if mate_pair == 1:
                 left_reads.append(hash(readtag))
-            elif mate_pair == "2":
+            elif mate_pair == 2:
                 right_reads.append(hash(readtag))
             else:
                 raise ValueError("Paired end field must be 1/2")
-        elif filtered == "Y":
+        elif filtered == True:
             pass
         else:
-            raise ValueError("Filtered field must be Y/N")
+            raise ValueError("Filtered field must be boolean")
 
     # determine pairs and orphans
     left_set = set(left_reads)
+    del left_reads
     right_set = set(right_reads)
+    del right_reads
 
     paired = left_set.intersection(right_set)
     orphans = left_set.symmetric_difference(right_set)
+
+    del left_set, right_set
 
     # track order reads are written
     left_reads = []
@@ -227,10 +238,10 @@ def paired_parser(fp_in, fp_out_left, fp_out_right, fp_out_orphans,
         seq_rec.id = readtag
 
         if hash(readtag) in paired:
-            if mate_pair == "1":
+            if mate_pair == 1:
                 left_reads.append(readtag)
                 fp_out_left.write(seq_rec.raw())
-            elif mate_pair == "2":
+            elif mate_pair == 2:
                 right_reads.append(readtag)
                 fp_out_right.write(seq_rec.raw())
             else:
