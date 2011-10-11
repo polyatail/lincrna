@@ -20,6 +20,8 @@ PHYLOCSF_PATH = "/opt/bio/PhyloCSF-e346e1c/PhyloCSF"
 PFAMSCAN_PATH = "/opt/bio/pfamscan/pfam_scan.pl"
 UCSC_KENT_PATH = "/opt/bio/ucsc_kent-20100816/bin"
 UCSC_HTTP_PATH = "http://hgdownload.cse.ucsc.edu/goldenPath/%(assembly)s/database/%(table)s.txt.gz"
+FASTQ_FILTER = "/usr/bin/fastq_quality_filter"
+FASTQ_TRIMMER = "/usr/bin/fastq_quality_trimmer"
 
 # path to sequence data
 genome_mafs = {"mm9": "/comp_sync/data/foreign/ucsc/20100921_multiz30way"}

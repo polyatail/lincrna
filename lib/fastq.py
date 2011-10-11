@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from Bio import SeqIO
+import subprocess
+import _common
 
 ILLUMINA_V14 = 0x01
 ILLUMINA_V18 = 0x02
@@ -102,6 +104,23 @@ def fastq_callback(fname):
 def fastq_ver_to_callback(ver):
     return globals()[FASTQ_PARAMS[ver]["callback"]]
     
+def fastq_filter_trim(fp_in, qual_offset, min_qual, min_fraction, min_length):
+    fastq_filter = subprocess.Popen([_common.FASTQ_FILTER,
+                                     "-Q", qual_offset,
+                                     "-q", min_qual,
+                                     "-p", min_fraction],
+                                    stdin=fp_in,
+                                    stdout=subprocess.PIPE)
+    fastq_trimmer = subprocess.Popen([_common.FASTQ_TRIMMER,
+                                      "-Q", qual_offset,
+                                      "-t", min_qual,
+                                      "-l", min_length],
+                                     stdin=fastq_filter.stdout,
+                                     stdout=subprocess.PIPE)
+
+    for seq_rec in SeqIO.parse(fastq_trimmer.stdout, "fastq"):
+        yield seq_rec
+
 def single_parser(fp_in, fp_out, callback):
     for seq_rec in SeqIO.parse(fp_in, "fastq"):
         mate_pair, filtered, _ = callback(seq_rec.description)
