@@ -37,11 +37,12 @@ def parse_options(arguments):
 
 def main():
     parse_options(sys.argv[1:])
+    
+    fastq_ver = fastq.fastq_version(args[0])
+    fastq_readlen = fastq.fastq_readlen(args[0])
 
-    try:
-        callback_func = fastq.fastq_callback(args[0])
-    except KeyError:
-        raise ValueError("No callback function for FASTQ version")
+    callback_func = fastq.fastq_ver_to_callback(fastq_ver)
+    phred_offset = fastq.fastq_ver_to_phred(fastq_ver)
     
     if not os.path.exists(options.output_dir):
         os.mkdir(options.output_dir)
@@ -53,18 +54,26 @@ def main():
                                 stripped_fname + "-left.fastq")
         right_out = os.path.join(options.output_dir,
                                  stripped_fname + "-right.fastq")
+        orphan_out = os.path.join(options.output_dir,
+                                  stripped_fname + "-orphans.fastq")
                             
         fastq.paired_parser(open(args[0], "r"),
                             open(left_out, "w+"),
                             open(right_out, "w+"),
-                            callback_func)
+                            callback_func,
+                            phred_offset,
+                            25,
+                            fastq_readlen)
     else:
         filtered_out = os.path.join(options.output_dir,
                                     stripped_fname + "-filtered.fastq")
 
         fastq.single_parser(open(args[0], "r"),
                             open(filtered_out, "w+"),
-                            callback_func)
+                            callback_func,
+                            phred_offset,
+                            25,
+                            fastq_readlen)
         
 if __name__ == "__main__":
     main()
