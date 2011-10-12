@@ -4,6 +4,7 @@ from Bio import SeqIO
 import subprocess
 import _common
 import operator
+import os
 
 ILLUMINA_V14 = "A"
 ILLUMINA_V18 = "B"
@@ -128,53 +129,72 @@ def fastq_ver_to_phred(ver):
 
     return offset
 
-def fast_fastq(fp_in):
+def fast_fastq_offset(fp_in):
+    recs = 0
     buf = []
+    offset = fp_in.tell()
     
-    for line in fp_in:
+    while True:
+        line = fp_in.readline()
+        
+        if not line:
+            raise StopIteration
+
         buf.append(line)
         
         if len(buf) == 4:
-            yield fastq_record(buf)
+            recs += 1
+            if recs % 1000 == 0:
+                print recs, "records"
+            yield fastq_record(buf, offset)
+            buf = []     
+            offset = fp_in.tell()
+
+def fast_fastq(fp_in):
+    buf = []
+     
+    for line in fp_in:
+        buf.append(line)
+         
+        if len(buf) == 4:
+            yield fastq_record(buf, 0)
             buf = []
-    
+
 class fastq_record():
-    def __init__(self, lines):
+    def __init__(self, lines, offset):
         lines = [x.strip() for x in lines]
 
         self.id = lines[0][1:]
         self.sequence = lines[1]
         self.quals = lines[3]
+        self.offset = offset
 
     def raw(self):
         return "\n".join(["@%s" % (self.id,), self.sequence, "+", self.quals, ""])
 
-def fastq_filter_trim_native(fp_in, qual_offset, min_qual, min_fraction, min_length):
-    min_fraction /= float(100)
+def fastq_filter_trim_native(seq_rec, qual_offset, min_qual, min_fraction, min_length):
+    quals = [ord(x) - qual_offset for x in seq_rec.quals]
+    
+    perc_above_cutoff = float(sum([1 for x in quals if x >= min_qual])) / \
+                        float(len(quals))
 
-    for seq_rec in fast_fastq(fp_in):
-        quals = [ord(x) - qual_offset for x in seq_rec.quals]
-        
-        perc_above_cutoff = float(sum([1 for x in quals if x >= min_qual])) / \
-                            float(len(quals))
+    if perc_above_cutoff * 100 < min_fraction:
+        return False
 
-        if perc_above_cutoff < min_fraction:
+    for pos, (nt, qual) in enumerate(reversed(zip(seq_rec.sequence, quals))):
+        if qual < min_qual:
             continue
+        else:
+            break
+    
+    if pos > 0:
+        seq_rec.sequence = seq_rec.sequence[:-pos]
+        seq_rec.quals = seq_rec.quals[:-pos]
 
-        for pos, (nt, qual) in enumerate(reversed(zip(seq_rec.sequence, quals))):
-            if qual < min_qual:
-                continue
-            else:
-                break
-        
-        if pos > 0:
-            seq_rec.sequence = seq_rec.sequence[:-pos]
-            seq_rec.quals = seq_rec.quals[:-pos]
-
-            if len(seq_rec.sequence) < min_length:
-                continue
-        
-        yield seq_rec
+    if len(seq_rec.sequence) < min_length:
+        return False
+    
+    return seq_rec
         
 def fastq_filter_trim(fp_in, qual_offset, min_qual, min_fraction, min_length):
     fastq_filter = subprocess.Popen([_common.FASTQ_FILTER,
@@ -276,3 +296,86 @@ def paired_parser(fp_in, fp_out_left, fp_out_right, fp_out_orphans,
     for left, right in zip(left_reads, right_reads):
         if left != right:
             raise ValueError("Reads are not sorted")
+
+def split_paired_parser(fp_in, fp_out_left, fp_out_right, fp_out_orphans,
+                        callback, qual_offset, min_qual, min_len):
+    fp_fastq = fast_fastq_offset(fp_in)
+
+    # guess that mate-pairs start at 50% through the file
+    fp_in.seek(0)
+    read1 = fp_fastq.next()
+
+    fp_in.seek(os.stat(fp_in.name).st_size / 2)
+    read2 = fp_fastq.next()
+
+    if callback(read1.id)[2] == callback(read2.id)[2]:
+        pair1_offset = 0
+        pair2_offset = read2.offset
+    else:
+        # find out where the mate-pairs starts
+        pair1_offset = 0
+        pair2_offset = 0
+    
+        for seq_rec in fp_fastq:
+            mate_pair, filtered, readtag = callback(seq_rec.id)
+            
+            if mate_pair == 2:
+                pair2_offset = seq_rec.offset
+                break
+        
+    while True:
+        fp_in.seek(pair1_offset)
+        try:
+            pair1_read = fp_fastq.next()
+        except StopIteration:
+            break
+        pair1_offset = pair1_read.offset + len(pair1_read.raw())
+        
+        mate_pair1, filtered1, readtag1 = callback(pair1_read.id)
+        
+        fp_in.seek(pair2_offset)
+        try:
+            pair2_read = fp_fastq.next()
+        except StopIteration:
+            break
+        pair2_offset = pair2_read.offset + len(pair2_read.raw())
+        
+        mate_pair2, filtered2, readtag2 = callback(pair2_read.id)
+
+        assert readtag1 == readtag2
+
+        pair1_read.id = readtag1
+        pair2_read.id = readtag2
+        
+        if filtered1 == False:
+            filtered_read1 = fastq_filter_trim_native(pair1_read, qual_offset,
+                                                      min_qual, 50, min_len)
+            
+            if filtered_read1 == False:
+                filtered1 = True
+            else:
+                pair1_read = filtered_read1
+                
+        if filtered2 == False:
+            filtered_read2 = fastq_filter_trim_native(pair2_read, qual_offset,
+                                                      min_qual, 50, min_len)
+            
+            if filtered_read2 == False:
+                filtered2 = True
+            else:
+                pair2_read = filtered_read2
+                
+        if filtered1 == True and filtered2 == True:
+            # do nothing
+            pass
+        elif filtered1 == False and filtered2 == True:
+            # left is an orphan
+            fp_out_orphans.write(pair1_read.raw())
+        elif filtered1 == True and filtered2 == False:
+            # right is an orphan
+            fp_out_orphans.write(pair2_read.raw())
+        elif filtered1 == False and filtered2 == False:
+            # they form a good pair            
+            fp_out_left.write(pair1_read.raw())
+            fp_out_right.write(pair2_read.raw())
+        

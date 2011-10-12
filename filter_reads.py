@@ -27,6 +27,12 @@ def parse_options(arguments):
                       action="store_true",
                       default=False,
                       help="this is a paired-end library")
+
+    parser.add_option("--split-sorted",
+                      dest="split_sorted",
+                      action="store_true",
+                      default=False,
+                      help="paired-end reads are in two sorted files that were concatenated")
               
     options, args = parser.parse_args(arguments)
     
@@ -56,15 +62,20 @@ def main():
                                  stripped_fname + "-right.fastq")
         orphan_out = os.path.join(options.output_dir,
                                   stripped_fname + "-orphans.fastq")
+
+        if options.split_sorted:
+            parser_func = fastq.split_paired_parser
+        else:
+            parser_func = fastq.paired_parser
                             
-        fastq.paired_parser(open(args[0], "r"),
-                            open(left_out, "w+"),
-                            open(right_out, "w+"),
-                            open(orphan_out, "w+"),
-                            callback_func,
-                            phred_offset,
-                            25,
-                            int(fastq_readlen / 2))
+        parser_func(open(args[0], "r"),
+                    open(left_out, "w+"),
+                    open(right_out, "w+"),
+                    open(orphan_out, "w+"),
+                    callback_func,
+                    phred_offset,
+                    25,
+                    int(fastq_readlen / 2))
     else:
         filtered_out = os.path.join(options.output_dir,
                                     stripped_fname + "-filtered.fastq")
