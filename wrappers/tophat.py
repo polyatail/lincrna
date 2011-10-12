@@ -46,11 +46,20 @@ class TopHat():
         if len(input_fastq) > 2:
             raise ValueError("Maximum of two reads per sample!")
     
-        fastq_ver = fastq.validate_reads(input_fastq)
-        phred_ver = fastq.fastq_ver_to_phred(fastq_ver)
+        phreds = []
+        
+        for fastq in input_fastq:
+            phreds.append(fastq.fastq_phred(fastq))
+
+        if len(set(phreds)) <> 1:
+            raise ValueError("Multiple quality types in reads")
+        else:
+            phred_ver = phreds[0]
         
         if phred_ver == 64:
             phred_param = ["--phred64-quals"]
+        elif phred_ver == 59:
+            phred_param = ["--solexa-quals"]
         elif phred_ver == 33:
             phred_param = []
         else:

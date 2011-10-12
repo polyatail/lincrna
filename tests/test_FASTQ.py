@@ -102,6 +102,27 @@ class testFilterReads(unittest.TestCase):
         self.assertRaises(ValueError,
                           fastq.fastq_version,
                           self.ver18_bad_metadata)
+
+    def testPhredVersion(self):
+        # version 1.4 tests
+        result = fastq.fastq_phred("./pooled_tophat/v14_p_subset-left.fastq")
+        self.assertEqual(result, 64)
+
+        result = fastq.fastq_phred("./pooled_tophat/v14_p_subset-right.fastq")
+        self.assertEqual(result, 64)
+
+        result = fastq.fastq_phred("./pooled_tophat/v14_s_subset.fastq")
+        self.assertEqual(result, 64)
+            
+        # version 1.8 tests
+        result = fastq.fastq_phred("./pooled_tophat/v18_p_subset-left.fastq")
+        self.assertEqual(result, 33)
+
+        result = fastq.fastq_phred("./pooled_tophat/v18_p_subset-right.fastq")
+        self.assertEqual(result, 33)
+
+        result = fastq.fastq_phred("./pooled_tophat/v18_s_subset.fastq")
+        self.assertEqual(result, 33)
                           
     def testIllumina14(self):
         expected = {0:  ['1', 'N', 'HWUSI-EAS614_1:1:1:1077:5738:0'],

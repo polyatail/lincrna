@@ -94,6 +94,45 @@ def fastq_version(fname):
         
     return fastq_vers[0]
 
+def fastq_phred(fname):
+    fastq_phreds = {33: 0,
+                    59: 0,
+                    64: 0}
+
+    reads = 0
+    
+    for seq_rec in fast_fastq(open(fname, "r")):
+        fastq_phreds[guess_quality_offset(seq_rec.quals)] += 1
+        reads += 1
+
+        if reads == 10000:
+            break
+
+    fastq_phreds = sorted(fastq_phreds.iteritems(), key=operator.itemgetter(1), reverse=True)
+
+    return fastq_phreds[0][0]
+
+def guess_quality_offset(quals):
+    result = {33: 0,
+              59: 0,
+              64: 0}
+
+    quals = [ord(x) for x in quals]
+
+    for i in quals:
+        if i >= 33 and i <= 74:
+            result[33] += 1
+            
+        if i >= 59 and i <= 104:
+            result[59] += 1
+            
+        if i >= 64 and i <= 104:
+            result[64] += 1
+
+    result = sorted(result.iteritems(), key=operator.itemgetter(1), reverse=True)
+
+    return result[0][0]
+
 def fastq_desc_to_ver(desc):
     desc_split = desc.split(" ")
     
