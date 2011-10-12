@@ -129,16 +129,12 @@ def fastq_ver_to_phred(ver):
     return offset
 
 def fast_fastq(fp_in):
-    recs = 0
     buf = []
     
     for line in fp_in:
         buf.append(line)
         
         if len(buf) == 4:
-            recs += 1
-            if recs % 1000 == 0:
-                print recs, "records"
             yield fastq_record(buf)
             buf = []
     
