@@ -153,6 +153,33 @@ class fastq_record():
     def raw(self):
         return "\n".join(["@%s" % (self.id,), self.sequence, "+", self.quals, ""])
 
+def fastq_filter_trim_native(fp_in, qual_offset, min_qual, min_fraction, min_length):
+    min_fraction /= float(100)
+
+    for seq_rec in fast_fastq(fp_in):
+        quals = [ord(x) - qual_offset for x in seq_rec.quals]
+        
+        perc_above_cutoff = float(sum([1 for x in quals if x >= min_qual])) / \
+                            float(len(quals))
+
+        if perc_above_cutoff < min_fraction:
+            continue
+
+        for pos, (nt, qual) in enumerate(reversed(zip(seq_rec.sequence, quals))):
+            if qual < min_qual:
+                continue
+            else:
+                break
+        
+        if pos > 0:
+            seq_rec.sequence = seq_rec.sequence[:-pos]
+            seq_rec.quals = seq_rec.quals[:-pos]
+
+            if len(seq_rec.sequence) < min_length:
+                continue
+        
+        yield seq_rec
+        
 def fastq_filter_trim(fp_in, qual_offset, min_qual, min_fraction, min_length):
     fastq_filter = subprocess.Popen([_common.FASTQ_FILTER,
                                      "-Q", str(qual_offset),
