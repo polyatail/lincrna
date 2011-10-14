@@ -29,9 +29,9 @@ class testFilterReads(unittest.TestCase):
         self.ver18_bad_metadata = "./filter_reads/ver18_bad_metadata.fastq"
         self.ver18_single = "./filter_reads/ver18_single.fastq"
         
-        self.left_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
-        self.right_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
-        self.orphans_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
+        self.left_tempfile = tempfile.NamedTemporaryFile("w+")
+        self.right_tempfile = tempfile.NamedTemporaryFile("w+")
+        self.orphans_tempfile = tempfile.NamedTemporaryFile("w+")
 
     def testReadLen(self):
         result = fastq.fastq_readlen(self.ver14_single)
