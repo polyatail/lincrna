@@ -48,8 +48,8 @@ class TopHat():
     
         phreds = []
         
-        for fastq in input_fastq:
-            phreds.append(fastq.fastq_phred(fastq))
+        for fq in input_fastq:
+            phreds.append(fastq.fastq_phred(fq))
 
         if len(set(phreds)) <> 1:
             raise ValueError("Multiple quality types in reads")
@@ -75,7 +75,7 @@ class TopHat():
                           "-z", "none",
                           "--segment-length", str(seg_length)] + \
                           phred_param + \
-                          tophat_options + \
+                          map(str, tophat_options) + \
                           [self.bowtie_index] + \
                           input_fastq
                                             

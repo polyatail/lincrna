@@ -14,19 +14,6 @@ FASTQ_PARAMS = {ILLUMINA_V14: {"callback": "_illumina14",
                 ILLUMINA_V18: {"callback": "_illumina18",
                                "qual_offset": 33}}
 
-def validate_reads(input_fastq):
-    # figure out phred type and read length for each file
-    fastq_ver = []
-
-    for fname in input_fastq:
-        fastq_ver.append(fastq_version(fname))
-
-    for param_list in [fastq_ver]:
-        if len(set(param_list)) <> 1:
-            raise ValueError("Passed reads files have parameter types: %s" % (param_list,))
-
-    return fastq_ver[0]
-
 def _illumina14(description):
     meta_split = description.split(":")
 

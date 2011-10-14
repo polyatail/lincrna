@@ -125,7 +125,9 @@ def main(arguments=sys.argv[1:]):
             run_input_fastq = input_fastq.split(",")
             
             jobs.append((run_input_fastq,
-                         ["-F", "0", "-a", "5"],
+                         ["-F", "0", "-a", "5"] + \
+                         ["-r", options.inner_dist,
+                          "-s", options.inner_dist_sd],
                          run_out_dir))
             
         th = tophat.TopHat(options.bowtie_index,
@@ -154,7 +156,9 @@ def main(arguments=sys.argv[1:]):
             run_input_fastq = input_fastq.split(",")
             
             jobs.append((run_input_fastq,
-                         ["-j", pooled_juncs_file, "--no-novel-juncs"],
+                         ["-j", pooled_juncs_file, "--no-novel-juncs"] + \
+                         ["-r", options.inner_dist,
+                          "-s", options.inner_dist_sd],
                          run_out_dir))
             
         th = tophat.TopHat(options.bowtie_index,

@@ -32,25 +32,6 @@ class testFilterReads(unittest.TestCase):
         self.left_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
         self.right_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
         self.orphans_tempfile = tempfile.NamedTemporaryFile("w+",delete=False)
-        
-    def testValidateReads(self):
-        # mixed FASTQ version
-        self.assertRaises(ValueError,
-                          fastq.validate_reads,
-                          ["./pooled_tophat/v18_100bp.fastq",
-                           "./pooled_tophat/v14_100bp.fastq"])
-
-        self.assertEqual(fastq.ILLUMINA_V14,
-                         fastq.validate_reads(["./pooled_tophat/v14_36bp.fastq"]))
-
-        self.assertEqual(fastq.ILLUMINA_V14,
-                         fastq.validate_reads(["./pooled_tophat/v14_72bp.fastq"]))
-
-        self.assertEqual(fastq.ILLUMINA_V14,
-                         fastq.validate_reads(["./pooled_tophat/v14_100bp.fastq"]))
-
-        self.assertEqual(fastq.ILLUMINA_V18,
-                         fastq.validate_reads(["./pooled_tophat/v18_100bp.fastq"]))
 
     def testReadLen(self):
         result = fastq.fastq_readlen(self.ver14_single)
