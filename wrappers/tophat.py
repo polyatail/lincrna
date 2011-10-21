@@ -64,16 +64,12 @@ class TopHat():
             phred_param = []
         else:
             raise ValueError("Unrecognized phred version")
-    
-        # set segment length
-        seg_length = 18
         
         with open(log_file, "w") as log_fp:
             tophat_cmd = [_common.TOPHAT_PATH,
                           "-p", str(self.num_threads),
                           "-o", out_dir,
-                          "-z", "none",
-                          "--segment-length", str(seg_length)] + \
+                          "-z", "none"] + \
                           phred_param + \
                           map(str, tophat_options) + \
                           [self.bowtie_index] + \
