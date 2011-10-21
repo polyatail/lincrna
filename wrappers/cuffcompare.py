@@ -31,6 +31,7 @@ class Cuffcompare():
                             [" ".join(input_gtfs)]
             
             log_fp.write(" ".join(cuffcomp_cmd) + "\n\n")
+            log_fp.flush()
             
             cuffcomp_proc = subprocess.Popen(cuffcomp_cmd, stderr=log_fp)
                                               

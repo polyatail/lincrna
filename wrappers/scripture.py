@@ -39,6 +39,7 @@ class Scripture():
                              scripture_options
                              
             log_fp.write(" ".join(scripture_cmd) + "\n\n")    
+            log_fp.flush()
                              
             scripture_proc = subprocess.Popen(scripture_cmd, stderr=log_fp)
                                             

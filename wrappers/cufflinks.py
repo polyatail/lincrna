@@ -31,6 +31,7 @@ class Cufflinks():
                              [input_bam]
         
             log_fp.write(" ".join(cufflinks_cmd) + "\n\n")                         
+            log_fp.flush()
                              
             cufflinks_proc = subprocess.Popen(cufflinks_cmd, stderr=log_fp)
                                                 

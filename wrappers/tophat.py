@@ -80,6 +80,7 @@ class TopHat():
                           input_fastq
                                             
             log_fp.write(" ".join(tophat_cmd) + "\n\n")
+            log_fp.flush()
             
             tophat_proc = subprocess.Popen(tophat_cmd, stderr=log_fp)
                                             
