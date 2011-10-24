@@ -126,6 +126,8 @@ def main(arguments=sys.argv[1:]):
             
             jobs.append((run_input_fastq,
                          ["-F", "0", "-a", "5"] + \
+                         ["--coverage-search",
+                          "--closure-search"] + \
                          ["-r", options.inner_dist,
                           "-s", options.inner_dist_sd],
                          run_out_dir))
