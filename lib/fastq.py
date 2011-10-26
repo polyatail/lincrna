@@ -116,9 +116,24 @@ def guess_quality_offset(quals):
         if i >= 64 and i <= 104:
             result[64] += 1
 
-    result = sorted(result.iteritems(), key=operator.itemgetter(1), reverse=True)
+    s_result = sorted(result.iteritems(), key=operator.itemgetter(1), reverse=True)
 
-    return result[0][0]
+    # 3-way tie, prefer 33
+    if len(set(result.values())) == 1:
+        return 33
+    # top 2 are a tie
+    elif s_result[0][1] == s_result[1][1]:
+        # prefer 33
+        if s_result[0][0] in (33, 64) and \
+           s_result[1][0] in (33, 64):
+               return 33
+        # disfavor 59
+        elif s_result[0][0] in (33, 64):
+            return s_result[0][0]
+        elif s_result[1][0] in (33, 64):
+            return s_result[1][0]
+    else:
+        return s_result[0][0]
 
 def fastq_desc_to_ver(desc):
     desc_split = desc.split(" ")
