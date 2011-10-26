@@ -27,7 +27,7 @@ def pool_juncs(in_bedfiles, out_juncfile):
 def parse_options(arguments):
     global options, args
 
-    parser = OptionParser(usage="%prog [options] <assembly> <reads1-L[,reads1-R]> [reads2-L[,reads2-R]]",
+    parser = OptionParser(usage="%prog [options] <assembly> <tophat.params>",
                           version="%prog " + str(__version__))
                           
     parser.add_option("-o",
@@ -49,26 +49,6 @@ def parse_options(arguments):
                       metavar="[1]",
                       default=1,
                       help="number of concurrent TopHat processes")
-                      
-    parser.add_option("-L",
-                      dest="labels",
-                      metavar="sample1,...sampleN",
-                      default=None,
-                      help="comma-separated list of condition labels")
-                      
-    parser.add_option("-r",
-                      dest="inner_dist",
-                      type="int",
-                      metavar="[200]",
-                      default=200,
-                      help="the mean inner distance between mate-pairs")
-                      
-    parser.add_option("-s",
-                      dest="inner_dist_sd",
-                      type="int",
-                      metavar="[20]",
-                      default=20,
-                      help="the standard deviation of the distance between pairs")
 
     parser.add_option("--prerun",
                       dest="prerun",
@@ -90,21 +70,31 @@ def parse_options(arguments):
     
     options, args = parser.parse_args(arguments)
     
-    if len(args) < 2:
-        print "Error: Not enough arguments"
+    if len(args) <> 2:
+        print "Error: Incorrect number of arguments"
         parser.print_help()
         sys.exit(0)
-        
-    if options.labels != None:
-        options.labels = options.labels.split(",")
-        
-        if len(options.labels) <> len(args) - 1:
-            print "Error: When using -L, must specify a label for every condition"
+
+    labels = []
+    runs = []
+    
+    for line in open(args[1], "r"):
+        if line.startswith("#"): continue
+        line_split = line.strip().split("\t")
+
+        if len(line_split) <> 6:
+            print "Error: Invalid line in params file"
+            print "\t", line
             parser.print_help()
             sys.exit(0)
-    else:
-        options.labels = ["sample%s" % (x,) for x in range(len(args))]
-        
+
+        labels.append(line_split[0])
+        runs.append(dict(zip(["label", "inner_dist", "inner_dist_sd",
+                              "seed_len", "left_reads", "right_reads"],
+                             line_split)))
+
+    options.labels = labels
+    options.runs = runs
     options.bowtie_index = _common.bowtie_index[args[0]]
 
 def main(arguments=sys.argv[1:]):
@@ -120,16 +110,18 @@ def main(arguments=sys.argv[1:]):
     if normal_run or options.prerun:
         jobs = []
 
-        for label, input_fastq in zip(options.labels, args[1:]):
+        for label, run_params in zip(options.labels, options.runs):
             run_out_dir = os.path.join(options.output_dir, "prerun_" + label)
-            run_input_fastq = input_fastq.split(",")
+            run_input_fastq = [run_params["left_reads"], run_params["right_reads"]]
             
             jobs.append((run_input_fastq,
-                         ["-F", "0", "-a", "5"] + \
+                         ["--min-isoform-fraction", "0",
+                          "--min-anchor", "5"] + \
                          ["--coverage-search",
                           "--closure-search"] + \
-                         ["-r", options.inner_dist,
-                          "-s", options.inner_dist_sd],
+                         ["--mate-inner-dist", run_params["inner_dist"],
+                          "--mate-std-dev", run_params["inner_dist_sd"],
+                          "--seed-length", run_params["seed_len"]],
                          run_out_dir))
             
         th = tophat.TopHat(options.bowtie_index,
@@ -153,14 +145,16 @@ def main(arguments=sys.argv[1:]):
     if normal_run or options.realrun:
         jobs = []
 
-        for label, input_fastq in zip(options.labels, args[1:]):
+        for label, run_params in zip(options.labels, options.runs):
             run_out_dir = os.path.join(options.output_dir, label)
-            run_input_fastq = input_fastq.split(",")
+            run_input_fastq = [run_params["left_reads"], run_params["right_reads"]]
             
             jobs.append((run_input_fastq,
-                         ["-j", pooled_juncs_file, "--no-novel-juncs"] + \
-                         ["-r", options.inner_dist,
-                          "-s", options.inner_dist_sd],
+                         ["--raw-juncs", pooled_juncs_file,
+                          "--no-novel-juncs"] + \
+                         ["--mate-inner-dist", run_params["inner_dist"],
+                          "--mate-std-dev", run_params["inner_dist_sd"],
+                          "--seed-length", run_params["seed_len"]],
                          run_out_dir))
             
         th = tophat.TopHat(options.bowtie_index,
