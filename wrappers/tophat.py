@@ -22,6 +22,12 @@ class TopHat():
         pid_list = []
         
         for input_fastq, tophat_options, out_dir in jobs:
+            if len(jobs) == 1:
+                self.run_single(input_fastq,
+                                ([] if not tophat_options else tophat_options),
+                                (self.out_dir if not out_dir else out_dir))
+                return
+
             pid = _common.fork_and_run(self.run_single,
                                        input_fastq,
                                        ([] if not tophat_options else tophat_options),
