@@ -11,6 +11,8 @@ from Bio import AlignIO
 
 # path to dependencies
 SAMTOOLS_PATH = "/usr/bin/samtools"
+IGVTOOLS_PATH = "/usr/bin/igvtools"
+PILEUP_TO_WIG_PATH = "/comp_node0/andrew/work/misc_tools/pileup_to_wig"
 BOWTIE_PATH = "/usr/bin/bowtie"
 TOPHAT_PATH = "/usr/bin/tophat-andrew"
 CUFFLINKS_PATH = "/usr/bin/cufflinks"
@@ -27,6 +29,11 @@ FASTQ_TRIMMER = "/usr/bin/fastq_quality_trimmer"
 genome_mafs = {"mm9": "/comp_sync/data/foreign/ucsc/20100921_multiz30way"}
 genome_fasta = {"mm9": "/comp_sync/data/foreign/ucsc/20100816_mm9_sequence"}
 bowtie_index = {"mm9": "/comp_sync/data/foreign/bowtie_index/mm9/basespace"}
+
+# UCSC constants
+UCSC_PARAMS = {"mm9": ("mammal", "mouse", "mm9")}
+UCSC_HGCUSTOM = "http://genome.ucsc.edu/cgi-bin/hgCustom"
+UCSC_RENDERTRACKS = "http://genome.ucsc.edu/cgi-bin/hgRenderTracks"
 
 # constants for unit tests
 BOWTIE_VERSION = "bowtie version 0.12.7"
@@ -91,7 +98,11 @@ def fork_and_run(func, *args, **kwds):
     
 def wait_for_slot(pid_list, slots, finish = False):
     while len(pid_list) >= slots:
-        waitpid_result = os.waitpid(0, os.WNOHANG & os.WUNTRACED)
+        try:
+            waitpid_result = os.waitpid(0, os.WNOHANG & os.WUNTRACED)
+        except OSError as err:
+            pid_list = []
+            return
 
         if waitpid_result[0] > 0:
             pid_list.remove(waitpid_result[0])

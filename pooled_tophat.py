@@ -117,7 +117,7 @@ def main(arguments=sys.argv[1:]):
             jobs.append((run_input_fastq,
                          ["--min-isoform-fraction", "0",
                           "--min-anchor", "5"] + \
-                         ["--coverage-search",
+                         ["--no-coverage-search",
                           "--closure-search"] + \
                          ["--mate-inner-dist", run_params["inner_dist"],
                           "--mate-std-dev", run_params["inner_dist_sd"],
@@ -151,7 +151,9 @@ def main(arguments=sys.argv[1:]):
             
             jobs.append((run_input_fastq,
                          ["--raw-juncs", pooled_juncs_file,
-                          "--no-novel-juncs"] + \
+                          "--no-novel-juncs",
+                          "--no-novel-indels",
+                          "--no-coverage-search"] + \
                          ["--mate-inner-dist", run_params["inner_dist"],
                           "--mate-std-dev", run_params["inner_dist_sd"],
                           "--seed-length", run_params["seed_len"]],

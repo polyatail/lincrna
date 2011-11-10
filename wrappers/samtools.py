@@ -28,3 +28,38 @@ class SAMTools():
             return True
         else:
             return False
+            
+    def pileup(self, input_bam):
+        if not os.path.exists(input_bam):
+            raise ValueError("BAM file not found")
+            
+        samtools_proc = subprocess.Popen([_common.SAMTOOLS_PATH,
+                                          "pileup",
+                                          input_bam],
+                                          stdout=subprocess.PIPE)
+
+        samtools_reader = samtools_proc.stdout.xreadlines()
+
+        while samtools_proc.poll() == None:
+            yield samtools_reader.next()
+            
+    def wig(self, input_bam, output_fp, filter_less_than):
+        if not os.path.exists(input_bam):
+            raise ValueError("BAM file not found")
+            
+        samtools_proc = subprocess.Popen([_common.SAMTOOLS_PATH,
+                                          "pileup",
+                                          input_bam],
+                                          stdout=subprocess.PIPE)
+
+        pileup_to_wig = subprocess.Popen([_common.PILEUP_TO_WIG_PATH,
+                                          str(filter_less_than)],
+                                          stdin=samtools_proc.stdout,
+                                          stdout=output_fp)
+
+        while samtools_proc.poll() == None:
+            time.sleep(1)
+            
+        while pileup_to_wig.poll() == None:
+            time.sleep(1)
+            
